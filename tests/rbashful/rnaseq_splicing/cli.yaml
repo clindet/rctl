@@ -1,0 +1,33 @@
+config:
+    log-path: '{{logfn}}'
+x-reference-data:
+    all-apps: &ids
+        - '{{id}}'
+tasks:
+    - name: Download genomes (hg38)
+      tags: download_hg38
+      parallel-tasks: 
+        - cmd: rbashful -e "genome_version='94'" -n download_hg38_reffa
+
+    - name: Download genomes (hg19)
+      tags: download_hg19
+      parallel-tasks: 
+        - cmd: rbashful -e "genome_version='75'" -n download_hg19_reffa
+
+    - name: STAR Indexing 
+      tags: index
+      parallel-tasks: 
+        - cmd: rbashful -e "genome_version='75'" -n hg19_star_2_5_3a_rerffa_index
+        - cmd: rbashful -e "genome_version='94'" -n hg38_star_2_5_3a_rerffa_index
+
+    - name: Clean STAR Indexing 
+      tags: clean
+      parallel-tasks: 
+        - cmd: rbashful -e "genome_version='75'" -n clean_star_2_5_3a_rerffa_index
+        - cmd: rbashful -e "genome_version='94'" -n clean_star_2_5_3a_rerffa_index
+
+    - name: STAR alignment hg19 and hg38
+      tags: star_alignment
+      parallel-tasks:
+        - cmd: rbashful -e 'genome_version="75", id="<replace>"' & rbashful -e 'genome_version="94", id="<replace>"'
+          for-each: *ids

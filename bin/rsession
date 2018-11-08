@@ -1,0 +1,40 @@
+#!/usr/bin/env Rscript
+suppressMessages(if(!require('pacman')) install.packages('pacman'))
+pkgs <- c("optparse")
+suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
+option_list <- list(
+  make_option(c("-v", "--verbose"), action = "store_true", default = FALSE, help = "Print extra output [default FALSE]"), 
+  make_option(c("-f", "--func"), help = "Function name [e.g. sessionInfo (1), sessioninfo::session_info (2)].", 
+              default = "sessionInfo"),
+  make_option(c("-e", "--extra"), help = " Extra parameters [e.g. include_base=TRUE].", default = ""),
+  make_option(c("-d", "--doc"), action = "store_true", default = FALSE, help = "Print functions document")
+)
+
+usage <- paste("%prog [options] [params]",
+                "Examples:", "%prog", 
+                "%prog -f 1", 
+                "%prog -f 2 -e 'include_base=TRUE'", 
+                "%prog -d", 
+                sep = "\n")
+opt <- parse_args(OptionParser(option_list = option_list, 
+                  usage = usage), positional_arguments = TRUE)
+opt_args <- opt$args
+opt <- opt$option
+
+predefined_funcs <- list("1"="sessionInfo", "2"="sessioninfo::session_info")
+if (opt[["func"]] %in% names(predefined_funcs)) {
+  predefined_func <- predefined_funcs[[ opt[["func"]] ]]
+  if (length(grep("::|:::", opt[["func"]])) > 0) {
+    dep_pkg <- strsplit(predefined_func, "::|:::")[[1]][1]
+    suppressWarnings(suppressMessages(pacman::p_load(pkgs, character.only = TRUE)))
+  }
+  opt[["func"]] <- predefined_func
+}
+params <- list()
+if (opt[["extra"]] != "") {
+  cmd_text <- sprintf("params <- list(%s)", opt[["extra"]])
+  eval(parse(text = cmd_text))
+}
+
+if (opt$doc) eval(parse(text = sprintf("?%s", opt[["func"]])))
+eval(parse(text = sprintf("do.call(%s, params)", opt[["func"]])))

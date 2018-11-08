@@ -1,0 +1,56 @@
+#!/usr/bin/env Rscript
+suppressMessages(if(!require('pacman')) install.packages('pacman'))
+pkgs <- c("optparse")
+suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
+option_list <- list(
+  make_option(c("-v", "--verbose"), action = "store_true", default = FALSE, help = "Print extra output [default FALSE]"), 
+  make_option(c("-f", "--func"), help = "Index or name of used function [e.g. install.packages (1), devtools::install_github (2), BiocManager::install (3), pacman::p_load (4), BioInstaller::install.bioinfo (5)].", 
+              default = "install.packages"),
+  make_option(c("-p", "--pkgs"), help = "Package or item names [e.g. ggplot2,stringr or JhuangLab/BioInstaller (mode is devtools::install_github)].", 
+              default = ""),
+  make_option(c("-e", "--extra"), help = " Extra parameters [e.g. ref='develop'].", default = ""),
+  make_option(c("-d", "--doc"), action = "store_true", default = FALSE, help = "Print functions document")
+)
+
+usage <- paste("%prog [options] [params]",
+                "Examples:", "%prog -p ini", 
+                "%prog ini,yaml", "%prog -f 2 JhuangLab/ngstk", 
+                "%prog -f 2 -e \"force = TRUE, ref = 'develop'\" JhuangLab/ngstk", 
+                "%prog -f 3 ggtree; %prog rinstall -f 4 ggtree",
+                "%prog -f 5 -e \"show.all.names=T\"",
+                "%prog -f 5 -e \"show.all.versions=T\" db_annovar_avsnp",
+                "%prog -f 5 -e \"download.dir='/tmp/avsnp', extra.list=list(buildver='hg19')\" db_annovar_avsnp", sep = "\n")
+opt <- parse_args(OptionParser(option_list = option_list, 
+                  usage = usage), positional_arguments = TRUE)
+opt_args <- opt$args
+opt <- opt$option
+if (opt[["pkgs"]] == "" && length(opt_args) > 0) opt[["pkgs"]] <- opt_args[1]
+pkgs <- strsplit(opt[["pkgs"]], ",")[[1]]
+pkgs <- gsub(" ", "", pkgs, fixed = TRUE)
+if (opt[["extra"]] != "") {
+  cmd_text <- sprintf("params <- list(pkgs = pkgs, %s)", opt[["extra"]])
+} else {
+  cmd_text <- sprintf("params <- list(pkgs = pkgs)")
+}
+eval(parse(text = cmd_text))
+
+predefined_funcs <- list("1"="install.packages", "2"="devtools::install_github", 
+                         "3"="BiocManager::install", "4"="pacman::p_load", 
+                         "5"="BioInstaller::install.bioinfo")
+if (opt[["func"]] %in% names(predefined_funcs)) {
+  predefined_func <- predefined_funcs[[ opt[["func"]] ]]
+  if (length(grep("::|:::", opt[["func"]])) > 0) {
+    dep_pkg <- strsplit(predefined_func, "::|:::")[[1]][1]
+    suppressWarnings(suppressMessages(pacman::p_load(pkgs, character.only = TRUE)))
+  }
+  opt[["func"]] <- predefined_func
+}
+if (length(grep("devtools", opt[["func"]])) > 0) names(params)[which(names(params) == "pkgs")] <- "repo"
+if (length(grep("BioInstaller", opt[["func"]])) > 0) {
+  if (opt[["pkgs"]] == "" && (!is.null(params$show.all.names) && params$show.all.names)) opt[["pkgs"]] <- "_any_pkg_"
+  names(params)[which(names(params) == "pkgs")] <- "name"
+}
+if (length(grep("pacman", opt[["func"]])) > 0) {names(params)[which(names(params) == "pkgs")] <- ""; params$character.only <- TRUE}
+
+if (opt$doc) eval(parse(text = sprintf("?%s", opt[["func"]])))
+if (opt[["pkgs"]] != "") eval(parse(text = sprintf("do.call(%s, params)", opt[["func"]])))

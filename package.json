@@ -1,0 +1,16 @@
+{
+  "name": "ngsjs",
+  "version": "0.1.2",
+  "description": "a command line scripts library to facilitate the construction, distribution and executiton of reproducible next-generation sequencing (NGS) data analysis workflows including [snakemake](https://snakemake.readthedocs.io/en/stable/), [nextflow](https://www.nextflow.io/), [bpipe](https://github.com/ssadedin/bpipe) and [WDL](https://github.com/openwdl/wdl).",
+  "main": "index.js",
+  "repository": "git@github.com:Miachol/ngsjs.git",
+  "author": "Jianfeng <lee_jianfeng@sjtu.edu.cn>",
+  "license": "MIT",
+  "dependencies": {},
+  "bin": {
+    "rsession": "./bin/rsession",
+    "rinstall": "./bin/rinstall",
+    "rbashful": "./bin/rbashful",
+    "rdeps": "./bin/rdeps"
+  }
+}

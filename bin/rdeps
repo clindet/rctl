@@ -1,0 +1,10 @@
+#! /usr/bin/env Rscript
+#
+pkgs <- c("optparse", "configr", "devtools", "BiocManager", 
+          "sessioninfo", "BioInstaller", "glue", 
+          "futile.logger")
+if(!require('pacman')) install.packages('pacman')
+suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
+
+flog.info("All basic dependences (R packages) were resolved.")
+flog.info(paste0(pkgs, collapse = ", "))

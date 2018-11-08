@@ -1,0 +1,86 @@
+#!/usr/bin/env Rscript
+suppressMessages(if(!require('pacman')) install.packages('pacman'))
+pkgs <- c("optparse", "configr", "stringr", "glue", "futile.logger")
+suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
+option_list <- list(
+  make_option(c("-v", "--verbose"), action="store_true", default = FALSE, help = "Print extra output [FALSE]"), 
+  make_option(c("-c", "--cli-yaml"), help = "bashful used YAML file [cli.yaml]", default = "cli.yaml"),
+  make_option(c("-t", "--env-toml"), help = "TOML file stores environment variables [env.toml]", default = "env.toml"),
+  make_option(c("-e", "--extra-list"), help = "Need to replaced environment variables", default = ""),
+  make_option(c("-p", "--parse-cli-yaml"), action = "store_true", default = FALSE, help = "Replace cli config keys [FALSE]"),
+  make_option(c("-o", "--output-cli-yaml"), default = NULL, help = "Output file of parsed cli YAML file [*.parsed.yaml]"),
+  make_option(c("-n", "--cmd-name"), help = "Run CMDs section using name [NULL]", default = ""),
+  make_option(c("--auto-create-dir"), action="store_true", default = FALSE, help = "Auto create dir in env.toml output section [FALSE]")
+)
+
+opt <- parse_args(OptionParser(option_list = option_list))
+eval(parse(text = sprintf("extra.list <- list(%s)", opt[['extra-list']])))
+
+if (length(extra.list) > 0) {
+  for(i in names(extra.list)) {
+    extra.list[[i]] <- as.character(extra.list[[i]])
+  }
+}
+
+if (opt[['parse-cli-yaml']] && file.exists(opt[['cli-yaml']])) {
+  opt_cli <- paste0(readLines(opt[['cli-yaml']]), collapse="\n")
+  extra.list.pairs <- ""
+  for(i in names(extra.list)) {
+    opt_cli <- str_replace_all(opt_cli, 
+                                fixed(sprintf("{{%s}}", i)), extra.list[[i]])
+    if (extra.list.pairs == "") {extra.list.pairs <- sprintf("%s => %s", i, extra.list[[i]])}
+    else {extra.list.pairs <- paste(extra.list.pairs, sprintf("%s => %s", i, extra.list[[i]]), sep = ", ")}
+  }
+  if (!is.character(opt[["output-cli-yaml"]])) {
+    outfn <- str_replace(opt[['cli-yaml']], ".yaml$|.yml$|.YAML$", ".parsed.yaml")
+    if (!str_detect(outfn, ".parsed.yaml$")) outfn <- sprintf("%s.parsed", opt[['cli_yaml']])
+  } else {
+    outfn <- opt[["output-cli-yaml"]]
+  }
+  if (opt[["verbose"]]) flog.info(sprintf("Converting %s to parsed %s [%s].", 
+      opt[['cli-yaml']], outfn, extra.list.pairs))
+  cat(opt_cli, file = outfn)
+} else if (opt[['parse-cli-yaml']] && !file.exists(opt[['cli-yaml']])) {
+  flog.warn(sprintf("YAML file %s do not exists.", opt[['cli-yaml']]), sep = "\n")
+}
+
+if (file.exists(opt[['env-toml']])) {
+  config <- read.config(opt[["env-toml"]])
+  config <- parse.extra(config, glue.parse = TRUE)
+  config <- parse.extra(config, glue.parse = TRUE, rcmd.parse = TRUE, extra.list = extra.list)
+  attach(config)
+  for(i in names(output)) {
+    cond_1 <- length(grep("dir", i)) > 0
+    cond_2 <- length(grep("/", output[[i]])) > 0
+    if (cond_1 && cond_2 && !dir.exists(output[[i]]) && opt[["auto-create-dir"]]) 
+        dir.create(output[[i]], recursive = TRUE)
+  }
+} else {
+  config <- list()
+}
+
+# Set the global commands [default, start_tags]
+config$cmds$default <- "#R#print('Just print this message in R.')#R#"
+config$cmds$start_tags <- glue("bashful run --only-tags {extra.list$tags} {opt[['cli-yaml']]}")
+
+cmd <- config$cmds[[opt[['cmd-name']]]]
+cmd_msg <- config$cmds_msg[[opt[['cmd-name']]]]
+
+if (is.character(cmd)) {
+  if (!is.character(cmd_msg)) 
+    cmd_msg <- sprintf("Running rbashful '%s' command with %s YAML file and %s TOML file.", 
+      opt[['cmd-name']], normalizePath(opt[['cli-yaml']]), 
+      normalizePath(opt[['env-toml']]))
+  if (str_detect(cmd, '#R#')) {
+    cmd <- str_remove_all(cmd, "#R#")
+    msg <- c(cmd_msg, sprintf("Running R CMD: %s", cmd))
+    if (opt$verbose) flog.info(msg)
+    eval(parse(text = cmd))
+  } else {
+    msg <- c(cmd_msg, sprintf("Running bash CMD: %s", cmd))
+    if (opt$verbose) flog.info(msg)
+    system(cmd)
+  }
+}
+flog.info('Done.')
+
