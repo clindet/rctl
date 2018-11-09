@@ -79,3 +79,6 @@ packrat/lib*/
 # rbashful parsed
 *.parsed.yaml
 .bashful
+
+# Mac
+*.DS_Store

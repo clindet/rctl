@@ -1,6 +1,6 @@
 # ngsjs 0.1.2 ChangeLog
 
-## 2018-11-08, Version 0.1.2 (Current)
+## 2018-11-08, Version 0.1.2
 
 ### Notable changes
 

@@ -1,4 +1,10 @@
 #!/usr/bin/env Rscript
+# Author: Jianfeng Li
+# Email: lee_jianfeng@sjtu.edu.cn
+# Year: 2018
+# Homepage: https://github.com/JhuangLab/ngsjs
+# License: MIT
+# Copyrights 2018 Jianfeng All Rights Reserved.
 suppressMessages(if(!require('pacman')) install.packages('pacman'))
 pkgs <- c("optparse", "configr", "stringr", "glue", "futile.logger")
 suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
@@ -13,7 +19,16 @@ option_list <- list(
   make_option(c("--auto-create-dir"), action="store_true", default = FALSE, help = "Auto create dir in env.toml output section [FALSE]")
 )
 
-opt <- parse_args(OptionParser(option_list = option_list))
+
+description <- sprintf("Description:\n%s", 
+                       "rbashful is an extend bashful tool for style bash commands.")
+usage <- paste("%prog [options] [params]", 
+               "Examples:",
+               "%prog -c ${workdir}/cli.yaml --env-toml ${workdir}/env.toml --cmd-name default -v",
+                sep = "\n")
+opt_parser_obj <- OptionParser(option_list = option_list,
+                        usage = usage, description = description) 
+opt <- parse_args(opt_parser_obj) 
 eval(parse(text = sprintf("extra.list <- list(%s)", opt[['extra-list']])))
 
 if (length(extra.list) > 0) {
@@ -81,6 +96,9 @@ if (is.character(cmd)) {
     if (opt$verbose) flog.info(msg)
     system(cmd)
   }
+  flog.info('Done.')
+} else {
+  flog.info('No commands were ran.')
+  print_help(opt_parser_obj)
 }
-flog.info('Done.')
 

@@ -1,9 +1,14 @@
-#! /usr/bin/env Rscript
-#
+#!/usr/bin/env Rscript
+# Author: Jianfeng Li
+# Email: lee_jianfeng@sjtu.edu.cn
+# Year: 2018
+# Homepage: https://github.com/JhuangLab/ngsjs
+# License: MIT
+# Copyrights 2018 Jianfeng All Rights Reserved.
 pkgs <- c("optparse", "configr", "devtools", "BiocManager", 
           "sessioninfo", "BioInstaller", "glue", 
           "futile.logger")
-if(!require('pacman')) install.packages('pacman')
+suppressMessages(if(!require('pacman')) install.packages('pacman'))
 suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
 
 flog.info("All basic dependences (R packages) were resolved.")

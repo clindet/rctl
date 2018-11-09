@@ -1,0 +1,36 @@
+#!/usr/bin/env Rscript
+# Author: Jianfeng Li
+# Email: lee_jianfeng@sjtu.edu.cn
+# Year: 2018
+# Homepage: https://github.com/JhuangLab/ngsjs
+# License: MIT
+# Copyrights 2018 Jianfeng All Rights Reserved.
+suppressMessages(if(!require('pacman')) install.packages('pacman'))
+pkgs <- c("optparse")
+suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
+option_list <- list(
+  make_option(c("--list-all-subcmds"), action = "store_true", default = FALSE, help = "Print all supported subcmds of ngsjs.")
+)
+
+subcmds <- "rbashful, rconfig, rdeps, rinstall, rsession"
+description <- sprintf("Description:\n%s %s\n%s", 
+                       "Main interface of ngsjs package tools.",
+                       sprintf("Now, total %s subcmds are supported: %s.",
+                       length(strsplit(subcmds, ", ")[[1]]), subcmds),
+                       "View the ngsjs homepage https://github.com/JhuangLab/ngsjs for more detail."
+                      )
+usage <- paste(sprintf("%%prog [subcmds: %s]", subcmds),
+                sep = "\n")
+opt_parser_obj <- OptionParser(option_list = option_list,
+                        usage = usage, description = description) 
+opt <- parse_args(opt_parser_obj, positional_arguments = TRUE, print_help_and_exit = FALSE) 
+opt_args <- opt$args
+opt <- opt$option
+if (length(opt_args) == 0 && !opt[['list-all-subcmds']]) {
+  print_help(opt_parser_obj)
+} else if (length(opt_args) == 0 && opt[['list-all-subcmds']]) {
+  cat(sprintf("Availabe: %s", subcmds), sep = "\n")
+} else {
+  if (opt$help) system(sprintf("%s -h", paste(opt_args, collapse = " ")))
+  else system(paste(opt_args, collapse = " "))
+}
