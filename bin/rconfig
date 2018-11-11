@@ -10,10 +10,10 @@ config <- c("optparse", "configr", "futile.logger")
 suppressMessages(pacman::p_load(config, character.only = TRUE))
 option_list <- list(
   make_option(c("-v", "--verbose"), action = "store_true", default = FALSE, help = "Print extra output [default FALSE]"), 
-  make_option(c("-f", "--func"), help = "Index or name of used function [e.g. configr::read.config (1), configr::write.config].", 
+  make_option(c("-f", "--func"), help = "Index or name of used function [e.g. configr::read.config (1), configr::write.config (2)].", 
               default = "configr::read.config"),
   make_option(c("-i", "--config"), help = "Input or output configuationo file.", default = ""), 
-  make_option(c("-e", "--extra"), help = "Extra parameters [e.g. ref='develop'].", default = ""),
+  make_option(c("-e", "--extra"), help = "Extra parameters [e.g. extra.list=list(key='value')].", default = ""),
   make_option(c("-r", "--rfunc"), help = "R function to process the parsed configuation file [e.g. function(x){return(x[[1]])} ].", 
   default = NULL),
   make_option(c("-d", "--doc"), action = "store_true", default = FALSE, help = "Print functions document")
