@@ -10,11 +10,10 @@ pkgs <- c("optparse", "devtools", "BiocManager",
           "futile.logger")
 suppressMessages(if(!require('pacman')) install.packages('pacman'))
 suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
-pkgs <- c(pkgs, "configr", "ngstk", "BioInstaller", "annovarR")
+pkgs <- c(pkgs, "configr", "ngstk", "BioInstaller")
 suppressMessages(devtools::install_github("Miachol/configr"))
 suppressMessages(devtools::install_github("JhuangLab/ngstk"))
 suppressMessages(devtools::install_github("JhuangLab/BioInstaller"))
-suppressMessages(devtools::install_github("JhuangLab/annovarR"))
 
 flog.info("All basic dependences (R packages) were resolved.")
 flog.info(paste0(pkgs, collapse = ", "))

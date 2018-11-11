@@ -11,6 +11,13 @@
   </a>
 </p>
 
+<p align="center">
+   <a href="https://circleci.com/gh/JhuangLab/ngsjs/tree/dev"><img src="https://img.shields.io/circleci/project/github/JhuangLab/ngsjs/dev.svg" alt="Build Status"></a>
+  <a href="https://npmcharts.com/compare/ngsjs?minimal=true"><img src="https://img.shields.io/npm/dm/ngsjs.svg" alt="Downloads"></a>
+  <a href="https://www.npmjs.com/package/ngsjs"><img src="https://img.shields.io/npm/v/ngsjs.svg" alt="Version"></a>
+  <a href="https://www.npmjs.com/package/ngsjs"><img src="https://img.shields.io/npm/l/ngsjs.svg" alt="License"></a>
+</p>
+
 [ngsjs](https://github.com/JhuangLab/ngsjs) is a command line scripts
 library to facilitate the construction, distribution and execution of
 reproducible next-generation sequencing (NGS) data analysis workflows
