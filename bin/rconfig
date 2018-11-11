@@ -6,15 +6,15 @@
 # License: MIT
 # Copyrights 2018 Jianfeng All Rights Reserved.
 suppressMessages(if(!require('pacman')) install.packages('pacman'))
-config <- c("optparse", "configr", "futile.logger")
-suppressMessages(pacman::p_load(config, character.only = TRUE))
+pkgs <- c("optparse", "configr", "futile.logger")
+suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
 option_list <- list(
   make_option(c("-v", "--verbose"), action = "store_true", default = FALSE, help = "Print extra output [default FALSE]"), 
   make_option(c("-f", "--func"), help = "Index or name of used function [e.g. configr::read.config (1), configr::write.config (2)].", 
               default = "configr::read.config"),
   make_option(c("-i", "--config"), help = "Input or output configuationo file.", default = ""), 
   make_option(c("-e", "--extra"), help = "Extra parameters [e.g. extra.list=list(key='value')].", default = ""),
-  make_option(c("-r", "--rfunc"), help = "R function to process the parsed configuation file [e.g. function(x){return(x[[1]])} ].", 
+  make_option(c("-r", "--rfunc"), help = "R function (input param 'x') to process the parsed configuation file [e.g. function(x){return(x[[1]])} or x[[1]] ].", 
   default = NULL),
   make_option(c("-d", "--doc"), action = "store_true", default = FALSE, help = "Print functions document")
 )
@@ -38,11 +38,10 @@ opt <- opt$option
 if (opt[["config"]] == "" && length(opt_args) > 0) opt[["config"]] <- opt_args[1]
 if (!is.null(opt[["rfunc"]]) && length(opt_args) > 1) opt[["rfunc"]] <- opt_args[2]
 
-if (opt[["config"]] == "" && !opt$doc) {
+if (opt[["config"]] == "" && !opt[["doc"]]) {
   print_help(opt_parser_obj)
 }  else {
-  config <- strsplit(opt[["config"]], ",")[[1]]
-  config <- gsub(" ", "", config, fixed = TRUE)
+  config <- opt[['config']]
   if (opt[["extra"]] != "") {
     cmd_text <- sprintf("params <- list(file = config, %s)", opt[["extra"]])
   } else {
@@ -66,7 +65,12 @@ if (opt[["config"]] == "" && !opt$doc) {
   
     if (opt[["config"]] != "") {
       eval(parse(text = sprintf("x <- do.call(%s, params)", opt[["func"]])))
-      if (is.character(opt[["rfunc"]]) && length(grep("function", opt[["rfunc"]])) > 0) 
+
+      is.function <- length(grep("function", opt[["rfunc"]])) > 0
+      if (is.character(opt[["rfunc"]]) && !is.function) {
+        opt[["rfunc"]] <- sprintf("function(x) {%s}", opt[["rfunc"]])
+      }
+      if (is.character(opt[["rfunc"]])) 
         x <- do.call(eval(parse(text = opt$rfunc)), list(x=x))
       if (is.character(x) || is.numeric(x)) cat(paste(x, collapse = "\n"), sep = "\n")
       else x

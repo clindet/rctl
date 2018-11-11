@@ -8,7 +8,8 @@
   "license": "MIT",
   "dependencies": {},
   "scripts": {
-    "test": "./bin/rdeps && ./bin/ngsjs && ./bin/rbashful && ./bin/rconfig && ./bin/rinstall && ./bin/rsession"
+    "gadd": "yarn global add `pwd`",
+    "test": "./bin/rdeps && ./bin/ngsjs && ./bin/rbashful && ./bin/rconfig && ./bin/rinstall && ./bin/rsession && ./bin/rclrs"
   },
   "bin": {
     "ngsjs": "./bin/ngsjs",
@@ -16,6 +17,7 @@
     "rinstall": "./bin/rinstall",
     "rbashful": "./bin/rbashful",
     "rconfig": "./bin/rconfig",
-    "rdeps": "./bin/rdeps"
+    "rdeps": "./bin/rdeps",
+    "rclrs": "./bin/rclrs"
   }
 }

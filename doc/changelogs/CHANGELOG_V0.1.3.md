@@ -1,6 +1,6 @@
 # ngsjs 0.1.3 ChangeLog
 
-## 2018-11-09, Version 0.1.3 (Current)
+## 2018-11-09, Version 0.1.3
 
 **New scripts:**  
 

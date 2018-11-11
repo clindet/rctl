@@ -60,6 +60,7 @@ Besides, we establish a framework to integrate various data analysis workflows a
 - rinstall: Install R packages and [BioInstaller](https://github.com/JhuangLab/BioInstaller) resources using `install.packages()` and R packages `devtools`, `BiocManager` and `BioInstaller`
 - rbashful: Using the GO program [bashful](https://github.com/wagoodman/bashful), yaml and toml and R scripts to stitch together commands and bash snippits and run them with a bit of style
 - rconfig: Using the R package `configr` to parse and generate json, ini, yaml, and toml format configuration files
+- rclrs: Using the R package `ngstk` to generate colors for visulization using a theme key
 
 ## Requirements
 
