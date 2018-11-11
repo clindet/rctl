@@ -14,6 +14,7 @@ jobs:
     steps:
       - checkout
 
+      - run: source /etc/profile
       # Download and cache dependencies
       - restore_cache:
           keys:
