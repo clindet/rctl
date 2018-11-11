@@ -61,6 +61,7 @@ Besides, we establish a framework to integrate various data analysis workflows a
 - rbashful: Using the GO program [bashful](https://github.com/wagoodman/bashful), yaml and toml and R scripts to stitch together commands and bash snippits and run them with a bit of style
 - rconfig: Using the R package `configr` to parse and generate json, ini, yaml, and toml format configuration files
 - rclrs: Using the R package `ngstk` to generate colors for visulization using a theme key
+- rmv: Using the R package `ngstk` to format the file names.
 
 ## Requirements
 
@@ -82,9 +83,25 @@ Besides, we establish a framework to integrate various data analysis workflows a
 You need to install the [node](https://nodejs.org/en/), [R](https://cran.r-project.org/) and [GO](https://golang.org/) for running all [ngsjs](https://github.com/JhuangLab/ngsjs) executable files.
 
 ```{bash eval=FALSE}
+# Use conda to manage the env
+conda install go nodejs \
+echo 'export NODE_PATH="/path/miniconda2/lib/node_modules/"\n' >> ~/.bashrc \
+&& npm install -g npm \
+&& npm install -g yarn \
+&& echo 'export PATH=$PATH:~/.yarn/bin/\n' >> ~/.bashrc
+
+# Other see https://nodejs.org/en/download/package-manager/
+# For: Ubuntu
+apt update
+apt install -y npm golang
+
+# For MacOS
+brew install node go
+```
+
+```{bash eval=FALSE}
 npm install -g ngsjs
 # or
-curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 yarn global add ngsjs
 
 # If you not to globaly install ngsjs 
@@ -176,12 +193,13 @@ rinstall -f 5 -e "download.dir='/tmp/avsnp', extra.list=list(buildver='hg19')" d
 # Use configr::read.config parsing json format file
 # Reture the list object output
 rconfig package.json
-rconfig -i package.json
+rconfig -c package.json
 
 # Use configr::read.config parsing json format file with the custom R function
-rconfig -i test.json -r 'function(x){x[["a"]] + x[["b"]]}'
-rconfig -i test.json -r 'function(x){x[["a"]]}'
-rconfig -i test.json -r 'function(x){x[["b"]]}'
+rconfig -c test.json -r 'function(x){x[["a"]] + x[["b"]]}'
+rconfig -c test.json -r 'function(x){x[["a"]]}'
+rconfig -c test.json -r 'function(x){x[["b"]]}'
+rconfig -c test.json -r 'x[["b"]]'
 
 # Use configr::write.config parsing json format file
 rconfig -f "configr::write.config" test.json -e "config.dat=list(a=1, b=2), write.type='json'"
@@ -223,10 +241,10 @@ go get github.com/wagoodman/bashful
 
 ![](https://raw.githubusercontent.com/wagoodman/bashful/master/doc/demo.gif)
 
-View a `rbashful` demo [here](https://github.com/JhuangLab/ngsjs/tests/rbashful/rnaseq_splicing).
+View a `rbashful` demo [here](https://github.com/JhuangLab/ngsjs/test/rbashful/rnaseq_splicing).
 
 ```{r}
-source_dir <- "~/Documents/repositories/ljf/github/ngsjs/tests/rbashful/rnaseq_splicing"
+source_dir <- "~/Documents/repositories/ljf/github/ngsjs/test/rbashful/rnaseq_splicing"
 
 # View the cli.yaml
 cat(paste0(readLines(sprintf("%s/cli.yaml", source_dir)), 
@@ -240,6 +258,36 @@ cat(paste0(readLines(sprintf("%s/env.toml", source_dir)),
 cat(paste0(readLines(sprintf("%s/submit.sh", source_dir)), 
            collapse = "\n"), sep = "\n")
 ```
+
+### rclrs
+
+```{bash}
+# Show default and red/blue theme colors
+rclrs default
+rclrs -t default
+rclrs -t red_blue
+
+# Show default theme colors (extract the first element)
+rclrs -t default -r 'x[1]'
+
+# Show all supported theme
+rclrs --show-all-themes
+```
+
+### rmv
+
+```{bash eval = FALSE}
+# do.rename is used to preview the new filenames
+# 
+rmv "`ls`" -e "do.rename = F, prefix = 'prefix', suffix = 'suffix'"
+rmv "`ls`" -e "do.rename = F, replace = list(old =c('-', '__'), new = c('_', '_'))"
+rmv "`ls`" -e "do.rename = F, toupper = TRUE"
+rmv "`ls`" -e "do.rename = F, tolower = TRUE"
+
+
+rmv "`ls`" -e "do.rename=T, replace=list(old='new', new='old')"
+```
+
 
 ## Snippets of ngsjs scripts output
 
@@ -265,6 +313,18 @@ rbashful
 
 ```{bash}
 rconfig
+```
+
+### rclrs
+
+```{bash}
+rclrs
+```
+
+### rmv
+
+```{bash}
+rmv
 ```
 
 ### rsession

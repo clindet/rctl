@@ -5,7 +5,8 @@
 **New scripts:**  
 
 - `bin/rclrs`
+- `bin/rmv`
 
 **New features:**
 
-- Simpler `rfunc` (input param x): function (x){x[1]} => x[1] in `bin/rclrs` and `bin/rconfig`
+- Support `ngstk::format_filenames` to format filenames [profix, prefix, replace, toupper, tolower].

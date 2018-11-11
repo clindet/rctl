@@ -12,7 +12,7 @@ option_list <- list(
   make_option(c("-v", "--verbose"), action = "store_true", default = FALSE, help = "Print extra output [default FALSE]"), 
   make_option(c("-f", "--func"), help = "Index or name of used function [e.g. configr::read.config (1), configr::write.config (2)].", 
               default = "configr::read.config"),
-  make_option(c("-i", "--config"), help = "Input or output configuationo file.", default = ""), 
+  make_option(c("-c", "--cfg"), help = "Input or output configuationo file.", default = ""), 
   make_option(c("-e", "--extra"), help = "Extra parameters [e.g. extra.list=list(key='value')].", default = ""),
   make_option(c("-r", "--rfunc"), help = "R function (input param 'x') to process the parsed configuation file [e.g. function(x){return(x[[1]])} or x[[1]] ].", 
   default = NULL),
@@ -23,7 +23,7 @@ description <- sprintf("Description:\n%s",
                        "rconfig is an R-based tool to parse and generate configuration file.")
 usage <- paste("%prog [options] [params]",
                 "%prog package.json",
-                "%prog -i package.json",
+                "%prog -c package.json",
                 "%prog -f 2 test.json -e \"config.dat=list(a=1, b=2), write.type='json'\"", 
                 "%prog -f \"configr::write.config\" test.json -e \"config.dat=list(a=1, b=2), write.type='json'\"", 
                 "%prog -i test.json -r 'function(x){x[[\"a\"]] + x[[\"b\"]]}'",
@@ -35,17 +35,17 @@ opt_parser_obj <- OptionParser(option_list = option_list,
 opt <- parse_args(opt_parser_obj, positional_arguments = TRUE) 
 opt_args <- opt$args
 opt <- opt$option
-if (opt[["config"]] == "" && length(opt_args) > 0) opt[["config"]] <- opt_args[1]
+if (opt[["cfg"]] == "" && length(opt_args) > 0) opt[["cfg"]] <- opt_args[1]
 if (!is.null(opt[["rfunc"]]) && length(opt_args) > 1) opt[["rfunc"]] <- opt_args[2]
 
-if (opt[["config"]] == "" && !opt[["doc"]]) {
+if (opt[["cfg"]] == "" && !opt[["doc"]]) {
   print_help(opt_parser_obj)
 }  else {
-  config <- opt[['config']]
+  cfg <- opt[['cfg']]
   if (opt[["extra"]] != "") {
-    cmd_text <- sprintf("params <- list(file = config, %s)", opt[["extra"]])
+    cmd_text <- sprintf("params <- list(file = cfg, %s)", opt[["extra"]])
   } else {
-    cmd_text <- sprintf("params <- list(file = config)")
+    cmd_text <- sprintf("params <- list(file = cfg)")
   }
   eval(parse(text = cmd_text))
   
@@ -54,16 +54,16 @@ if (opt[["config"]] == "" && !opt[["doc"]]) {
     predefined_func <- predefined_funcs[[ opt[["func"]] ]]
     if (length(grep("::|:::", opt[["func"]])) > 0) {
       dep_pkg <- strsplit(predefined_func, "::|:::")[[1]][1]
-      suppressWarnings(suppressMessages(pacman::p_load(config, character.only = TRUE)))
+      suppressWarnings(suppressMessages(pacman::p_load(dep_pkg, character.only = TRUE)))
     }
     opt[["func"]] <- predefined_func
   }
   if (opt[["doc"]]) {
     eval(parse(text = sprintf("?%s", opt[["func"]])))
   } else {
-    if (length(grep("write.config", opt[["func"]])) > 0) names(params)[which(names(params) == "config")] <- "file.path"
+    if (length(grep("write.config", opt[["func"]])) > 0) names(params)[which(names(params) == "file")] <- "file.path"
   
-    if (opt[["config"]] != "") {
+    if (opt[["cfg"]] != "") {
       eval(parse(text = sprintf("x <- do.call(%s, params)", opt[["func"]])))
 
       is.function <- length(grep("function", opt[["rfunc"]])) > 0

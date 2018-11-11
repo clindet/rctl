@@ -10,53 +10,48 @@ pkgs <- c("optparse", "ngstk")
 suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
 option_list <- list(
   make_option(c("-v", "--verbose"), action = "store_true", default = FALSE, help = "Print extra output [default FALSE]"), 
-  make_option(c("-f", "--func"), help = "Index or name of used function [e.g. ngstk::set_colors (1).", 
-              default = "ngstk::set_colors"),
-  make_option(c("-t", "--theme"), help = "Input the theme name and return the colors.", default = ""), 
-  make_option(c("-s", "--show-all-themes"), help = "Show all included themes.", action = "store_true", default = FALSE), 
-  make_option(c("-r", "--rfunc"), help = "R function (input param 'x') to process the returned colors or theme [e.g. function(x){return(x[[2]])} or x[[2]]].", 
+  make_option(c("-f", "--func"), help = "Index or name of used function [e.g. ngstk::format_filenames (1).", 
+              default = "ngstk::format_filenames"),
+  make_option(c("-l", "--old-files"), help = "Input the files need to be renamed (string will be split by '\\n', ',' and ';').", default = ""), 
+  make_option(c("-r", "--rfunc"), help = "R function (input param 'x') to process the returned colors or old-files [e.g. function(x){return(x[[2]])} or x[[2]]].", 
   default = NULL),
-  make_option(c("-e", "--extra"), help = "Extra parameters [e.g. theme_config_file = 'your_color_cfg.toml'].", default = ""),
+  make_option(c("-e", "--extra"), help = "Extra parameters [e.g. toupper = TRUE)].", default = ""),
   make_option(c("-d", "--doc"), action = "store_true", default = FALSE, help = "Print functions document")
 )
 
 description <- sprintf("Description:\n%s", 
-                       "rclrs is an R-based tool to generate colors for visulization using a theme key.")
+                       "rmv is an R-based tool to format file names.")
 usage <- paste("%prog [options] [params]",
-                "%prog default",
-                "%prog -t default",
-                "%prog -t default -r 'x[1]'",
-                "%prog -t red_blue",
-                "%prog --show-all-themes",
+                "%prog \"`ls`\" -e \"do.rename = FALSE, prefix = 'prefix', suffix = 'suffix'\"",
+                "%prog \"`ls`\" -e \"do.rename = FALSE, replace = list(old =c('-', '__'), new = c('_', '_'))\"",
+                "%prog \"`ls`\" -e \"do.rename = FALSE, toupper = TRUE\"",
+                "%prog \"`ls`\" -e \"do.rename = FALSE, tolower = TRUE\"",
+                "%prog \"`ls`\" -e \"do.rename=T, replace=list(old='new', new='old')\"",
                 sep = "\n")
 opt_parser_obj <- OptionParser(option_list = option_list,
                         usage = usage, description = description) 
 opt <- parse_args(opt_parser_obj, positional_arguments = TRUE) 
 opt_args <- opt$args
 opt <- opt$option
-if (opt[["theme"]] == "" && length(opt_args) > 0) opt[["theme"]] <- opt_args[1]
+if (opt[["old-files"]] == "" && length(opt_args) > 0) opt[["old-files"]] <- opt_args[1]
 if (!is.null(opt[["rfunc"]]) && length(opt_args) > 1) opt[["rfunc"]] <- opt_args[2]
 
-if (opt[["theme"]] == "" && !opt[["doc"]] && !opt[["show-all-themes"]]) {
+if (opt[["old-files"]] == "" && !opt[["doc"]]) {
   print_help(opt_parser_obj)
 } else {
-  theme <- opt[["theme"]]
-  if (!opt[["show-all-themes"]] && opt[["extra"]] != "") {
-    cmd_text <- sprintf("params <- list(theme = theme, %s)", opt[["extra"]])
-  } else if (opt[["show-all-themes"]] && opt[["extra"]] != "") {
-    cmd_text <- sprintf("params <- list(show_all_themes = %s, %s)", opt[["show-all-themes"]], opt[["extra"]])
-  } else if (opt[["show-all-themes"]] && opt[["extra"]] == "") {
-    cmd_text <- sprintf("params <- list(show_all_themes = %s)", opt[["show-all-themes"]]) 
+  input_files <- strsplit(opt[["old-files"]], "\n|,|;")[[1]]
+  if (opt[["extra"]] != "") {
+    cmd_text <- sprintf("params <- list(input_files = input_files, %s)", opt[["extra"]])
   } else {
-    cmd_text <- sprintf("params <- list(theme = theme)")
+    cmd_text <- sprintf("params <- list(input_files = input_files)")
   }
   eval(parse(text = cmd_text))
-  predefined_funcs <- list("1"="ngstk::set_colors") 
+  predefined_funcs <- list("1"="ngstk::format_filenames") 
   if (opt[["func"]] %in% names(predefined_funcs)) {
     predefined_func <- predefined_funcs[[ opt[["func"]] ]]
     if (length(grep("::|:::", opt[["func"]])) > 0) {
       dep_pkg <- strsplit(predefined_func, "::|:::")[[1]][1]
-      suppressWarnings(suppressMessages(pacman::p_load(dep_pkg, character.only = TRUE)))
+      suppressWarnings(suppressMessages(pacman::p_load(old-files, character.only = TRUE)))
     }
     opt[["func"]] <- predefined_func
   }

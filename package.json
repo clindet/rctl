@@ -18,6 +18,7 @@
     "rbashful": "./bin/rbashful",
     "rconfig": "./bin/rconfig",
     "rdeps": "./bin/rdeps",
-    "rclrs": "./bin/rclrs"
+    "rclrs": "./bin/rclrs",
+    "rmv": "./bin/rmv"
   }
 }
