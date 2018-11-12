@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 ```
 
 <p align="center">
-  <a href="https://github/JhuangLab/ngsjs">
+  <a href="https://github/ngsjs/ngsjs">
     <img
       alt="ngsjs"
       src="doc/images/ngsjs-logo.svg"
@@ -23,13 +23,13 @@ knitr::opts_chunk$set(
 </p>
 
 <p align="center">
-   <a href="https://circleci.com/gh/JhuangLab/ngsjs/tree/master"><img src="https://img.shields.io/circleci/project/github/JhuangLab/ngsjs/master.svg" alt="Build Status"></a>
+   <a href="https://circleci.com/gh/ngsjs/ngsjs/tree/master"><img src="https://img.shields.io/circleci/project/github/ngsjs/ngsjs/master.svg" alt="Build Status"></a>
   <a href="https://npmcharts.com/compare/ngsjs?minimal=true"><img src="https://img.shields.io/npm/dm/ngsjs.svg" alt="Downloads"></a>
   <a href="https://www.npmjs.com/package/ngsjs"><img src="https://img.shields.io/npm/v/ngsjs.svg" alt="Version"></a>
   <a href="https://www.npmjs.com/package/ngsjs"><img src="https://img.shields.io/npm/l/ngsjs.svg" alt="License"></a>
 </p>
 
-[ngsjs](https://github.com/JhuangLab/ngsjs) is a command line scripts library to facilitate the construction, distribution and execution of reproducible next-generation sequencing (NGS) data analysis workflows including [snakemake](https://snakemake.readthedocs.io/en/stable/), [nextflow](https://www.nextflow.io/), [bpipe](https://github.com/ssadedin/bpipe) and [WDL](https://github.com/openwdl/wdl).
+[ngsjs](https://github.com/ngsjs/ngsjs) is a command line scripts library to facilitate the construction, distribution and execution of reproducible next-generation sequencing (NGS) data analysis workflows including [snakemake](https://snakemake.readthedocs.io/en/stable/), [nextflow](https://www.nextflow.io/), [bpipe](https://github.com/ssadedin/bpipe) and [WDL](https://github.com/openwdl/wdl).
 
 # ngsjs
 
@@ -57,7 +57,7 @@ Besides, we establish a framework to integrate various data analysis workflows a
 
 - rdeps: Install `ngsjs` required R packages
 - rsession: Get output of `sessionInfo()` and `sessioninfo::session\_info()`
-- rinstall: Install R packages and [BioInstaller](https://github.com/JhuangLab/BioInstaller) resources using `install.packages()` and R packages `devtools`, `BiocManager` and `BioInstaller`
+- rinstall: Install R packages and [BioInstaller](https://github.com/ngsjs/BioInstaller) resources using `install.packages()` and R packages `devtools`, `BiocManager` and `BioInstaller`
 - rbashful: Using the GO program [bashful](https://github.com/wagoodman/bashful), yaml and toml and R scripts to stitch together commands and bash snippits and run them with a bit of style
 - rconfig: Using the R package `configr` to parse and generate json, ini, yaml, and toml format configuration files
 - rclrs: Using the R package `ngstk` to generate colors for visulization using a theme key
@@ -80,7 +80,7 @@ Besides, we establish a framework to integrate various data analysis workflows a
 
 ## Installation
 
-You need to install the [node](https://nodejs.org/en/), [R](https://cran.r-project.org/) and [GO](https://golang.org/) for running all [ngsjs](https://github.com/JhuangLab/ngsjs) executable files.
+You need to install the [node](https://nodejs.org/en/), [R](https://cran.r-project.org/) and [GO](https://golang.org/) for running all [ngsjs](https://github.com/ngsjs/ngsjs) executable files.
 
 ```{bash eval=FALSE}
 # Use conda to manage the env
@@ -157,12 +157,12 @@ rinstall -d
 rinstall yaml
 rinstall -f 1 yaml
 
-# Install R package ngstk from GitHub JhuangLab/ngstk (devtools::install_github)
-rinstall -f 2 JhuangLab/ngstk
+# Install R package ngstk from GitHub ngsjs/ngstk (devtools::install_github)
+rinstall -f 2 ngsjs/ngstk
 
-# Install R package ngstk from GitHub JhuangLab/ngstk (install.package)
+# Install R package ngstk from GitHub ngsjs/ngstk (install.package)
 # devtools::install_github with force = TRUE, ref = 'develop'
-rinstall -f 2 -e "force = TRUE, ref = 'develop'" JhuangLab/ngstk
+rinstall -f 2 -e "force = TRUE, ref = 'develop'" ngsjs/ngstk
 
 # Install Bioconductor package ggtree (BiocManager)
 # BiocManager::install('ggtree')
@@ -241,7 +241,7 @@ go get github.com/wagoodman/bashful
 
 ![](https://raw.githubusercontent.com/wagoodman/bashful/master/doc/demo.gif)
 
-View a `rbashful` demo [here](https://github.com/JhuangLab/ngsjs/test/rbashful/rnaseq_splicing).
+View a `rbashful` demo [here](https://github.com/ngsjs/ngsjs/test/rbashful/rnaseq_splicing).
 
 ```{r}
 source_dir <- "~/Documents/repositories/ljf/github/ngsjs/test/rbashful/rnaseq_splicing"
@@ -335,7 +335,7 @@ rsession -f 2 -e 'include_base=TRUE'
 
 ## How to contribute?
 
-Please fork the [GitHub ngsjs repository](https://github.com/JhuangLab/ngsjs), modify it, and submit a pull request to us. 
+Please fork the [GitHub ngsjs repository](https://github.com/ngsjs/ngsjs), modify it, and submit a pull request to us. 
 
 ## Maintainer
 

@@ -2,7 +2,7 @@
 # Author: Jianfeng Li
 # Email: lee_jianfeng@sjtu.edu.cn
 # Year: 2018
-# Homepage: https://github.com/JhuangLab/ngsjs
+# Homepage: https://github.com/ngsjs/ngsjs
 # License: MIT
 # Copyrights 2018 Jianfeng All Rights Reserved.
 suppressMessages(if(!require('pacman')) install.packages('pacman'))
@@ -26,7 +26,8 @@ usage <- paste("%prog [options] [params]",
                 "%prog \"`ls`\" -e \"do.rename = FALSE, replace = list(old =c('-', '__'), new = c('_', '_'))\"",
                 "%prog \"`ls`\" -e \"do.rename = FALSE, toupper = TRUE\"",
                 "%prog \"`ls`\" -e \"do.rename = FALSE, tolower = TRUE\"",
-                "%prog \"`ls`\" -e \"do.rename=T, replace=list(old='new', new='old')\"",
+                "%prog -e \"files_dir = '.', pattern = '.*.txt', do.rename=F, replace=list(old='old', new='new')\"",
+                "%prog \"`ls`\" -e \"do.rename=T, replace=list(old='old', new='new')\"",
                 sep = "\n")
 opt_parser_obj <- OptionParser(option_list = option_list,
                         usage = usage, description = description) 
@@ -36,14 +37,17 @@ opt <- opt$option
 if (opt[["old-files"]] == "" && length(opt_args) > 0) opt[["old-files"]] <- opt_args[1]
 if (!is.null(opt[["rfunc"]]) && length(opt_args) > 1) opt[["rfunc"]] <- opt_args[2]
 
-if (opt[["old-files"]] == "" && !opt[["doc"]]) {
+if (opt[["old-files"]] == "" && opt[["extra"]] == "" && !opt[["doc"]]) {
   print_help(opt_parser_obj)
 } else {
-  input_files <- strsplit(opt[["old-files"]], "\n|,|;")[[1]]
-  if (opt[["extra"]] != "") {
+  if (opt[["old-files"]] != "") {input_files <- strsplit(opt[["old-files"]], "\n|,|;")[[1]]}
+  else input_files <- ""
+  if (input_files != "" && opt[["extra"]] != "") {
     cmd_text <- sprintf("params <- list(input_files = input_files, %s)", opt[["extra"]])
-  } else {
+  } else if (input_files != "" && opt[["extra"]] == "") {
     cmd_text <- sprintf("params <- list(input_files = input_files)")
+  } else if (opt[["extra"]] != "") {
+    cmd_text <- sprintf("params <- list(%s)", opt[["extra"]])
   }
   eval(parse(text = cmd_text))
   predefined_funcs <- list("1"="ngstk::format_filenames") 

@@ -2,7 +2,7 @@
 # Author: Jianfeng Li
 # Email: lee_jianfeng@sjtu.edu.cn
 # Year: 2018
-# Homepage: https://github.com/JhuangLab/ngsjs
+# Homepage: https://github.com/ngsjs/ngsjs
 # License: MIT
 # Copyrights 2018 Jianfeng All Rights Reserved.
 suppressMessages(if(!require('pacman')) install.packages('pacman'))
@@ -17,7 +17,7 @@ description <- sprintf("Description:\n%s %s\n%s",
                        "Main interface of ngsjs package tools.",
                        sprintf("Now, total %s subcmds are supported: %s.",
                        length(strsplit(subcmds, ", ")[[1]]), subcmds),
-                       "View the ngsjs homepage https://github.com/JhuangLab/ngsjs for more detail."
+                       "View the ngsjs homepage https://github.com/ngsjs/ngsjs for more detail."
                       )
 usage <- paste(sprintf("%%prog [subcmds: %s]", subcmds),
                 sep = "\n")

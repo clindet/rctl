@@ -2,7 +2,7 @@
 # Author: Jianfeng Li
 # Email: lee_jianfeng@sjtu.edu.cn
 # Year: 2018
-# Homepage: https://github.com/JhuangLab/ngsjs
+# Homepage: https://github.com/ngsjs/ngsjs
 # License: MIT
 # Copyrights 2018 Jianfeng All Rights Reserved.
 suppressMessages(if(!require('pacman')) install.packages('pacman'))

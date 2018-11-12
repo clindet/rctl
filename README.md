@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <p align="center">
-  <a href="https://github/JhuangLab/ngsjs">
+  <a href="https://github/ngsjs/ngsjs">
     <img
       alt="ngsjs"
       src="doc/images/ngsjs-logo.svg"
@@ -12,13 +12,13 @@
 </p>
 
 <p align="center">
-  <a href="https://circleci.com/gh/JhuangLab/ngsjs/tree/master"><img src="https://img.shields.io/circleci/project/github/JhuangLab/ngsjs/master.svg" alt="Build Status"></a>
+  <a href="https://circleci.com/gh/ngsjs/ngsjs/tree/master"><img src="https://img.shields.io/circleci/project/github/ngsjs/ngsjs/master.svg" alt="Build Status"></a>
   <a href="https://npmcharts.com/compare/ngsjs?minimal=true"><img src="https://img.shields.io/npm/dm/ngsjs.svg" alt="Downloads"></a>
   <a href="https://www.npmjs.com/package/ngsjs"><img src="https://img.shields.io/npm/v/ngsjs.svg" alt="Version"></a>
   <a href="https://www.npmjs.com/package/ngsjs"><img src="https://img.shields.io/npm/l/ngsjs.svg" alt="License"></a>
 <p align="center">
 
-[ngsjs](https://github.com/JhuangLab/ngsjs) is a command line scripts
+[ngsjs](https://github.com/ngsjs/ngsjs) is a command line scripts
 library to facilitate the construction, distribution and execution of
 reproducible next-generation sequencing (NGS) data analysis workflows
 including [snakemake](https://snakemake.readthedocs.io/en/stable/),
@@ -77,7 +77,7 @@ framework as shown below:
   - rsession: Get output of `sessionInfo()` and
     `sessioninfo::session\_info()`
   - rinstall: Install R packages and
-    [BioInstaller](https://github.com/JhuangLab/BioInstaller) resources
+    [BioInstaller](https://github.com/ngsjs/BioInstaller) resources
     using `install.packages()` and R packages `devtools`, `BiocManager`
     and `BioInstaller`
   - rbashful: Using the GO program
@@ -109,7 +109,7 @@ framework as shown below:
 
 You need to install the [node](https://nodejs.org/en/),
 [R](https://cran.r-project.org/) and [GO](https://golang.org/) for
-running all [ngsjs](https://github.com/JhuangLab/ngsjs) executable
+running all [ngsjs](https://github.com/ngsjs/ngsjs) executable
 files.
 
 ``` bash
@@ -188,12 +188,12 @@ rinstall -d
 rinstall yaml
 rinstall -f 1 yaml
 
-# Install R package ngstk from GitHub JhuangLab/ngstk (devtools::install_github)
-rinstall -f 2 JhuangLab/ngstk
+# Install R package ngstk from GitHub ngsjs/ngstk (devtools::install_github)
+rinstall -f 2 ngsjs/ngstk
 
-# Install R package ngstk from GitHub JhuangLab/ngstk (install.package)
+# Install R package ngstk from GitHub ngsjs/ngstk (install.package)
 # devtools::install_github with force = TRUE, ref = 'develop'
-rinstall -f 2 -e "force = TRUE, ref = 'develop'" JhuangLab/ngstk
+rinstall -f 2 -e "force = TRUE, ref = 'develop'" ngsjs/ngstk
 
 # Install Bioconductor package ggtree (BiocManager)
 # BiocManager::install('ggtree')
@@ -276,7 +276,7 @@ go get github.com/wagoodman/bashful
 ![](https://raw.githubusercontent.com/wagoodman/bashful/master/doc/demo.gif)
 
 View a `rbashful` demo
-[here](https://github.com/JhuangLab/ngsjs/test/rbashful/rnaseq_splicing).
+[here](https://github.com/ngsjs/ngsjs/test/rbashful/rnaseq_splicing).
 
 ``` r
 source_dir <- "~/Documents/repositories/ljf/github/ngsjs/test/rbashful/rnaseq_splicing"
@@ -531,8 +531,8 @@ rinstall
 #> Examples:
 #> /usr/local/bin/rinstall -p ini
 #> /usr/local/bin/rinstall ini,yaml
-#> /usr/local/bin/rinstall -f 2 JhuangLab/ngstk
-#> /usr/local/bin/rinstall -f 2 -e "force = TRUE, ref = 'develop'" JhuangLab/ngstk
+#> /usr/local/bin/rinstall -f 2 ngsjs/ngstk
+#> /usr/local/bin/rinstall -f 2 -e "force = TRUE, ref = 'develop'" ngsjs/ngstk
 #> /usr/local/bin/rinstall -f 3 ggtree; /usr/local/bin/rinstall rinstall -f 4 ggtree
 #> /usr/local/bin/rinstall -f 5 -e "show.all.names=T"
 #> /usr/local/bin/rinstall -f 5 -e "show.all.versions=T" db_annovar_avsnp
@@ -548,7 +548,7 @@ rinstall
 #>      Index or name of used function [e.g. install.packages (1), devtools::install_github (2), BiocManager::install (3), pacman::p_load (4), BioInstaller::install.bioinfo (5)].
 #> 
 #>  -p PKGS, --pkgs=PKGS
-#>      Package or item names [e.g. ggplot2,stringr or JhuangLab/BioInstaller (mode is devtools::install_github)].
+#>      Package or item names [e.g. ggplot2,stringr or ngsjs/BioInstaller (mode is devtools::install_github)].
 #> 
 #>  -e EXTRA, --extra=EXTRA
 #>       Extra parameters [e.g. ref='develop'].
@@ -757,7 +757,7 @@ rsession -f 2 -e 'include_base=TRUE'
 ## How to contribute?
 
 Please fork the [GitHub ngsjs
-repository](https://github.com/JhuangLab/ngsjs), modify it, and submit a
+repository](https://github.com/ngsjs/ngsjs), modify it, and submit a
 pull request to us.
 
 ## Maintainer
