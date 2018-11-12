@@ -7,3 +7,8 @@
 **New features:**
 
 - support rmv only input the `extra` params
+
+**Minor bug fix:
+
+- rename `./bin/ngstk` subcomd `rcolors` to `rclrs`
+- add `rmv` in `package.json` test

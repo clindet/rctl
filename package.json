@@ -9,7 +9,7 @@
   "dependencies": {},
   "scripts": {
     "gadd": "yarn global add `pwd`",
-    "test": "./bin/rdeps && ./bin/ngsjs && ./bin/rbashful && ./bin/rconfig && ./bin/rinstall && ./bin/rsession && ./bin/rclrs"
+    "test": "./bin/rdeps && ./bin/ngsjs && ./bin/rbashful && ./bin/rconfig && ./bin/rinstall && ./bin/rsession && ./bin/rclrs && ./bin/rmv"
   },
   "bin": {
     "ngsjs": "./bin/ngsjs",
