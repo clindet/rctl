@@ -1,12 +1,45 @@
 {
   "name": "ngsjs",
   "version": "0.1.4",
-  "description": "a command line scripts library to facilitate the construction, distribution and executiton of reproducible next-generation sequencing (NGS) data analysis workflows including [snakemake](https://snakemake.readthedocs.io/en/stable/), [nextflow](https://www.nextflow.io/), [bpipe](https://github.com/ssadedin/bpipe) and [WDL](https://github.com/openwdl/wdl).",
+  "description": "A set of command line tools NGS data analysis workflows [WDL, Nextflow, Snakemake, and Bpipe], and R shiny plugins/R markdown document for exploring next-generation sequencing data.",
   "main": "index.js",
   "repository": "https://github.com/ngsjs/ngsjs.git",
+  "keywords": [
+    "ngsjs",
+    "cli"
+  ],
   "author": "Jianfeng <lee_jianfeng@sjtu.edu.cn>",
+  "bugs": {
+    "url": "https://github.com/ngsjs/ngsjs/issues"
+  },
   "license": "MIT",
   "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-syntax-jsx": "^7.0.0",
+    "@babel/plugin-transform-flow-strip-types": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/register": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.1",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-istanbul": "^5.1.0",
+    "babel-plugin-transform-vue-jsx": "^3.7.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-flow-vue": "^1.0.0",
+    "buble": "^0.19.6",
+    "chai": "^4.2.0",
+    "codecov": "^3.1.0",
+    "eslint": "^5.9.0",
+    "eslint-plugin-flowtype": "^3.2.0",
+    "eslint-plugin-jasmine": "^2.10.1"
+  },
+  "files": [
+    "src/ngsjs"
+  ],
   "scripts": {
     "gadd": "yarn global add `pwd`",
     "test": "./bin/rdeps && ./bin/ngsjs && ./bin/rbashful && ./bin/rconfig && ./bin/rinstall && ./bin/rsession && ./bin/rclrs && ./bin/rmv"
