@@ -1,0 +1,26 @@
+Package: ngsjs
+Type: Package
+Title: R Functions for Command Line Program
+Version: 0.0.1
+Authors@R: person("Jianfeng", "Li", email = "lee_jianfeng@sjtu.edu.cn", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-2349-208X"))
+Description:
+    Can be used to construct the command line tools.
+Depends:
+    R (>= 3.3.0)
+URL: https://github.com/ngsjs/ngsjs
+BugReports: https://github.com/ngsjs/ngsjs/issues
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+  configr (>= 0.3.4.1),
+Remotes:
+  Miachol/configr,
+  JhuangLab/BioInstaller,
+  JhuangLab/ngstk
+RoxygenNote: 6.1.1
+Suggests: testthat,
+    knitr,
+    rmarkdown,
+    prettydoc
+VignetteBuilder: knitr

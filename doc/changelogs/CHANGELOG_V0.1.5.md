@@ -7,6 +7,8 @@
 **New features:**
 
 - support rmv only input the `extra` params
+- add R package `./src/ngsjs` to resolve the R dependence and reduce the redundant R codes
+- add a complete set of RNA splcing analysis pipeline
 
 **Minor bug fix:
 

@@ -1,0 +1,33 @@
+#! /usr/bin/env Rscript
+
+# yarn global add ngsjs
+# system("rdeps")
+pkgs <- c("stringi", "configr")
+pacman::p_load(pkgs, character.only = TRUE)
+
+env_toml = "/u7/home/ljf/projects/eqtf/analysis/rnaseq_splicing/env.toml"
+
+config <- read.config(env_toml, extra.list = list('dqm'='"'), 
+                      global.vars.field = NULL, rcmd.parse = TRUE)
+rm(env_toml)
+for (i in 1:1) config <- parse.extra(config, glue.parse = TRUE, 
+                                     global.vars.field = NULL)
+for (i in 1:1) config <- parse.extra(config, glue.parse = TRUE)
+config$submit_log <- paste0(file.path(config[["workdir"]], "logs", format(Sys.time(), "%Y_%m_%d_%H_%M_%S_")),
+                     stri_rand_strings(1, 20), ".log")
+attach(config)
+x <- write.config(config, env_parsed_yaml, write.type = "yaml", indent = 4)
+if (!x) {stop(sprintf("Generating %s failed.", env_parsed_yaml))}
+
+extra_list <- paste0(global_vars, "='", unname(sapply(config[global_vars],
+                     function(x){return(x)[1]})), "'", collapse = ", ")
+print(extra_list)
+cmd <- sprintf('./rbashful -c %s -e "%s" -p >> %s', submit_yaml, extra_list, submit_log)
+if (!dir.exists(dirname(submit_log))) dir.create(dirname(submit_log))
+cat(cmd, file = submit_log, append = TRUE)
+message(cmd, sep = "\n")
+system(cmd)
+
+cmd <- "bashful run cli.parsed.yaml"
+message(cmd, sep = "\n")
+system(cmd)

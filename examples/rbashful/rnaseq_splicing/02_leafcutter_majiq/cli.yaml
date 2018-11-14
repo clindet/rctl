@@ -1,0 +1,7 @@
+config:
+    log-path: "{{submit_log}}"
+tasks:
+    - name: "RNA-seq splicing analysis step 01: parse the task YAML and link bams"
+      parallel-tasks: 
+      - cmd: ./scripts/01_link_bams.R --env-parsed-yaml "{{env_parsed_yaml}}" --task-name "majiq_splicing_01_link_bams"
+

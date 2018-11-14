@@ -82,3 +82,8 @@ packrat/lib*/
 
 # Mac
 *.DS_Store
+
+# r pkg
+src/*.Rcheck
+src/*.tar.gz
+src/ngsjs.Rcheck

@@ -29,6 +29,7 @@ usage <- paste("%prog [options] [params]",
 opt_parser_obj <- OptionParser(option_list = option_list,
                         usage = usage, description = description) 
 opt <- parse_args(opt_parser_obj) 
+print(opt[['extra-list']])
 eval(parse(text = sprintf("extra.list <- list(%s)", opt[['extra-list']])))
 
 if (length(extra.list) > 0) {
@@ -67,16 +68,17 @@ if (file.exists(opt[['env-toml']])) {
   config <- parse.extra(config, glue.parse = TRUE, rcmd.parse = TRUE)
   config <- parse.extra(config, glue.parse = TRUE)
   attach(config)
-  for(i in c(names(output), names(input))) {
+  for(i in names(output)) {
     cond_1 <- length(grep("dir", i)) > 0
-    cond_2 <- i %in% names(input)
-    cond_3 <- length(grep("/", input[[i]])) > 0
-    cond_4 <- i %in% names(output)
-    cond_5 <- length(grep("/", output[[i]])) > 0
-    if (cond_1 && cond_2 && cond_3 && !dir.exists(input[[i]]) && opt[["auto-create-dir"]]) 
+    cond_2 <- length(grep("/", output[[i]])) > 0
+    if (cond_1 && cond_2  && !dir.exists(output[[i]]) && opt[["auto-create-dir"]]) 
         dir.create(input[[i]], recursive = TRUE)
-    if (cond_1 && cond_4 && cond_5 && !dir.exists(output[[i]]) && opt[["auto-create-dir"]]) 
-        dir.create(output[[i]], recursive = TRUE)
+  }
+  for(i in names(input)) {
+    cond_1 <- length(grep("dir", i)) > 0
+    cond_2 <- length(grep("/", input[[i]])) > 0
+    if (cond_1 && cond_2  && !dir.exists(input[[i]]) && opt[["auto-create-dir"]]) 
+        dir.create(input[[i]], recursive = TRUE)
   }
 } else {
   config <- list()

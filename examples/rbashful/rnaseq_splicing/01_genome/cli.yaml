@@ -26,8 +26,3 @@ tasks:
         - cmd: rbashful -e "genome_version='75'" -n clean_star_2_5_3a_rerffa_index
         - cmd: rbashful -e "genome_version='94'" -n clean_star_2_5_3a_rerffa_index
 
-    - name: STAR alignment hg19 and hg38
-      tags: star_alignment
-      parallel-tasks:
-        - cmd: rbashful -e 'genome_version="75", id="<replace>"' & rbashful -e 'genome_version="94", id="<replace>"'
-          for-each: *ids
