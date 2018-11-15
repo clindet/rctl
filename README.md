@@ -33,6 +33,13 @@ Now, there are several difficulties for next-generation sequencing (NGS) data an
 
 This is an experimental project to providing a set of tools for the exploring next-generation sequencing (NGS) data. We aim to integrate and develop command line tools, NGS data analysis workflows [[WDL](https://github.com/openwdl/wdl), [Nextflow](https://www.nextflow.io/), [snakemake](https://snakemake.readthedocs.io/en/stable/), and [bpipe](https://github.com/ssadedin/bpipe)], and R shiny plugins/R markdown document.
 
+<p align="center">
+  <img 
+      alt="Best practice of reproducible NGS data analysis projects"
+      src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/ngsjs/reproducible_NGS_data_analysis_projects_best_practice.jpg"
+  />
+</p>
+
 We proposed that using [node](https://nodejs.org/en/) to distribute the bioinformatics data analysis required workflows (e.g [Common workflow language (CWL) ](https://www.commonwl.org/)) and user created command line scripts in data analysis process. The creation, update and upload of a node package are very simple. Well-tested and high-performance distribution tools of node packages, such as [npm](https://www.npmjs.com/) and [yarn](https://www.yarnpkg.com), are providing the service for more than 831,195 node packages. 
 
 We are collecting the CWL language created workflows and publish on the [npm](https://www.npmjs.com/): 
