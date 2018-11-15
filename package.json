@@ -42,7 +42,7 @@
   ],
   "scripts": {
     "gadd": "yarn global add `pwd`",
-    "test": "./bin/rdeps && ./bin/ngsjs && ./bin/rbashful && ./bin/rconfig && ./bin/rinstall && ./bin/rsession && ./bin/rclrs && ./bin/rmv && "
+    "test": "./scripts/test/start_cli_test"
   },
   "bin": {
     "ngsjs": "./bin/ngsjs",

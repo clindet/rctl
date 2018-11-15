@@ -9,14 +9,14 @@ suppressMessages(if(!require('pacman')) install.packages('pacman'))
 pkgs <- c("optparse")
 suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
 option_list <- list(
-  make_option(c("--list-all-subcmds"), action = "store_true", default = FALSE, help = "Print all supported subcmds of ngsjs.")
+  make_option(c("-l", "--list-all-subcmds"), action = "store_true", default = FALSE, help = "Print all supported subcmds of ngsjs.")
 )
 
-subcmds <- "rbashful, rconfig, rdeps, rinstall, rsession, rclrs, rmv, rtime_stamp, ranystr, rdownload"
+subcmds <- "rbashful rconfig rdeps rinstall rsession rclrs rmv rtime_stamp ranystr rdownload"
 description <- sprintf("Description:\n%s %s\n%s", 
                        "Main interface of ngsjs package tools.",
                        sprintf("Now, total %s subcmds are supported: %s.",
-                       length(strsplit(subcmds, ", ")[[1]]), subcmds),
+                       length(strsplit(subcmds, " ")[[1]]), subcmds),
                        "View the ngsjs homepage https://github.com/ngsjs/ngsjs for more detail."
                       )
 usage <- paste(sprintf("%%prog [subcmds: %s]", subcmds),
@@ -29,7 +29,7 @@ opt <- opt$option
 if (length(opt_args) == 0 && !opt[['list-all-subcmds']]) {
   print_help(opt_parser_obj)
 } else if (length(opt_args) == 0 && opt[['list-all-subcmds']]) {
-  cat(sprintf("Availabe: %s", subcmds), sep = "\n")
+  cat(sprintf("%s", subcmds), sep = "\n")
 } else {
   if (opt$help) system(sprintf("%s -h", paste(opt_args, collapse = " ")))
   else system(paste(opt_args, collapse = " "))

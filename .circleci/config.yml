@@ -9,7 +9,7 @@ jobs:
       # specify the version you desire here
       - image: bioinstaller/ngsjs:latest
       
-    working_directory: ~/repo
+    working_directory: /tmp/ngsjs
 
     steps:
       - checkout
@@ -21,12 +21,10 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: source /etc/profile && yarn install
-
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
         
       # run tests!
-      - run: source /etc/profile && yarn test
+      - run: source /etc/profile && yarn global add /tmp/ngsjs && yarn test

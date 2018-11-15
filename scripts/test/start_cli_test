@@ -1,0 +1,6 @@
+#!/usr/bin/env Rscript
+subcmds <- system("ngsjs --list-all-subcmds", intern = TRUE)
+subcmds <- strsplit(subcmds, " ")[[1]]
+status <- sapply(subcmds, system)
+if (!all(status == 0))
+  stop("Test error.")

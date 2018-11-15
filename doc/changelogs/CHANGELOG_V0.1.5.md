@@ -17,6 +17,11 @@
 - './bin/rtime_stamp' support to generate time stamp
 - `./bin/ranstr` support to generate random strings
 - `./bin/rdownload` support to parallel download urls
+- `ngsjs --list-all-subcmds` return all sub-commands split by space
+
+**Test related:
+
+- add `./scripts/test/start_cli_test` to test the command line tools default output
 
 **Minor bug fix:
 
