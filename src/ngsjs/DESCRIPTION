@@ -1,10 +1,10 @@
 Package: ngsjs
 Type: Package
-Title: R Functions for Command Line Program
+Title: Only For Command Line Tools Dependences.
 Version: 0.0.1
 Authors@R: person("Jianfeng", "Li", email = "lee_jianfeng@sjtu.edu.cn", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-2349-208X"))
 Description:
-    Can be used to construct the command line tools.
+   Can be used to install all ngsjs command line tools required packages (CRAN, bioconductor and GitHub). 
 Depends:
     R (>= 3.3.0)
 URL: https://github.com/ngsjs/ngsjs

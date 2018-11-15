@@ -1,15 +1,14 @@
-#' Provides R functions imported by command line tools in ngsjs. 
+#' Can be used to install all ngsjs command line tools required packages (CRAN, bioconductor and GitHub). 
 #'
 #' @author
 #' Li Jianfeng \url{lee_jianfeng@sjtu.edu.cn}
 #' @seealso
 #' Useful links:
 #'
-#' \url{https://github.com/JhuangLab/BioInstaller}
+#' \url{https://github.com/ngsjs/ngsjs/src/ngsjs}
 #'
-#' Report bugs at \url{https://github.com/JhuangLab/BioInstaller/issues}
+#' Report bugs at \url{https://github.com/ngsjs/ngsjs/issues}
 #'
 #' @docType package
 #' @name ngsjs
-#' @import configr
 NULL

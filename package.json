@@ -1,7 +1,7 @@
 {
   "name": "ngsjs",
-  "version": "0.1.4",
-  "description": "A set of command line tools NGS data analysis workflows [WDL, Nextflow, Snakemake, and Bpipe], and R shiny plugins/R markdown document for exploring next-generation sequencing data.",
+  "version": "0.1.5",
+  "description": "A set of command line tools, NGS data analysis workflows [WDL, Nextflow, Snakemake, and Bpipe], and R shiny plugins/R markdown document for exploring next-generation sequencing data.",
   "main": "index.js",
   "repository": "https://github.com/ngsjs/ngsjs.git",
   "keywords": [
@@ -52,6 +52,8 @@
     "rconfig": "./bin/rconfig",
     "rdeps": "./bin/rdeps",
     "rclrs": "./bin/rclrs",
-    "rmv": "./bin/rmv"
+    "rmv": "./bin/rmv",
+    "rtime_stamp": "./bin/rtime_stamp",
+    "ranystr": "./bin/ranystr"
   }
 }
