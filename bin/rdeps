@@ -7,7 +7,8 @@
 # Copyrights 2018 Jianfeng All Rights Reserved.
 pkgs <- c("optparse", "devtools", "BiocManager", 
           "sessioninfo", "glue", 
-          "futile.logger")
+          "futile.logger", "stringi",
+          "future")
 suppressMessages(if(!require('pacman')) install.packages('pacman'))
 suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
 pkgs <- c(pkgs, "configr", "ngstk", "BioInstaller", "ngsjs")

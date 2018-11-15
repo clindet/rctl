@@ -34,7 +34,7 @@ opt <- parse_args(opt_parser_obj, positional_arguments = TRUE)
 opt_args <- opt$args
 opt <- opt$option
 if (opt[["pkgs"]] == "" && length(opt_args) > 0) opt[["pkgs"]] <- opt_args[1]
-pkgs <- strsplit(opt[["pkgs"]], ",")[[1]]
+pkgs <- strsplit(opt[["pkgs"]], ",|;")[[1]]
 pkgs <- gsub(" ", "", pkgs, fixed = TRUE)
 if (opt[["extra"]] != "") {
   cmd_text <- sprintf("params <- list(pkgs = pkgs, %s)", opt[["extra"]])

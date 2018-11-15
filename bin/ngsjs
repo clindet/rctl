@@ -12,7 +12,7 @@ option_list <- list(
   make_option(c("--list-all-subcmds"), action = "store_true", default = FALSE, help = "Print all supported subcmds of ngsjs.")
 )
 
-subcmds <- "rbashful, rconfig, rdeps, rinstall, rsession, rclrs, rmv, rtime_stamp, ranystr"
+subcmds <- "rbashful, rconfig, rdeps, rinstall, rsession, rclrs, rmv, rtime_stamp, ranystr, rdownload"
 description <- sprintf("Description:\n%s %s\n%s", 
                        "Main interface of ngsjs package tools.",
                        sprintf("Now, total %s subcmds are supported: %s.",

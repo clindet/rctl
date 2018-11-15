@@ -26,6 +26,8 @@ description <- sprintf("Description:\n%s",
                        "ranystr is an R-based tool to generate any counts and any length random strings.")
 usage <- paste("%prog [options] [params]",
                 "%prog",
+                "%prog -l 30",
+                "%prog -l 20 -n 3",
                 sep = "\n")
 opt_parser_obj <- OptionParser(option_list = option_list,
                         usage = usage, description = description) 

@@ -12,26 +12,45 @@
 </p>
 
 <p align="center">
-  <a href="https://circleci.com/gh/ngsjs/ngsjs/tree/master"><img src="https://img.shields.io/circleci/project/github/ngsjs/ngsjs/master.svg" alt="Build Status"></a>
+   <a href="https://circleci.com/gh/ngsjs/ngsjs/tree/master"><img src="https://img.shields.io/circleci/project/github/ngsjs/ngsjs/master.svg" alt="Build Status"></a>
   <a href="https://npmcharts.com/compare/ngsjs?minimal=true"><img src="https://img.shields.io/npm/dm/ngsjs.svg" alt="Downloads"></a>
   <a href="https://www.npmjs.com/package/ngsjs"><img src="https://img.shields.io/npm/v/ngsjs.svg" alt="Version"></a>
   <a href="https://www.npmjs.com/package/ngsjs"><img src="https://img.shields.io/npm/l/ngsjs.svg" alt="License"></a>
-<p align="center">
+</p>
 
-[ngsjs](https://github.com/ngsjs/ngsjs) is a set of command line tools, NGS data analysis workflows [[WDL](https://github.com/openwdl/wdl), [Nextflow](https://www.nextflow.io/), [snakemake](https://snakemake.readthedocs.io/en/stable/), and [bpipe](https://github.com/ssadedin/bpipe)], and R shiny plugins/R markdown document for exploring next-generation sequencing data.
+[ngsjs](https://github.com/ngsjs/ngsjs) is a set of command line tools,
+NGS data analysis workflows \[[WDL](https://github.com/openwdl/wdl),
+[Nextflow](https://www.nextflow.io/),
+[snakemake](https://snakemake.readthedocs.io/en/stable/), and
+[bpipe](https://github.com/ssadedin/bpipe)\], and R shiny plugins/R
+markdown document for exploring next-generation sequencing data.
 
 # ngsjs
 
-Now, there are several difficulties for next-generation sequencing (NGS) data analysis projects that needs to be solved:
+Now, there are several difficulties for next-generation sequencing (NGS)
+data analysis projects that needs to be solved:
 
-- Standardized project management, directory structured，recording and checking of raw data and analysis result, standardized logging for input, output and commands
-- Construction and redeployment of computing environment including all required tools, databases and other files.
-- Lack of integration and unify of massive data analysis workflows.
-- Lack of the unified distribution platform for various data analysis workflows (e.g. snakemake, nextflow, Galaxy, etc.). 
-- Reuse of workflows language codes (e.g. commands, input and output information) on other programming platform are still complicated.
-- The readability and reusable will also be decreased when massive Python and R codes mixed with the workflows language codes.
+  - Standardized project management, directory structured，recording and
+    checking of raw data and analysis result, standardized logging for
+    input, output and commands
+  - Construction and redeployment of computing environment including all
+    required tools, databases and other files.
+  - Lack of integration and unify of massive data analysis workflows.
+  - Lack of the unified distribution platform for various data analysis
+    workflows (e.g. snakemake, nextflow, Galaxy, etc.).
+  - Reuse of workflows language codes (e.g. commands, input and output
+    information) on other programming platform are still complicated.
+  - The readability and reusable will also be decreased when massive
+    Python and R codes mixed with the workflows language codes.
 
-This is an experimental project to providing a set of tools for the exploring next-generation sequencing (NGS) data. We aim to integrate and develop command line tools, NGS data analysis workflows [[WDL](https://github.com/openwdl/wdl), [Nextflow](https://www.nextflow.io/), [snakemake](https://snakemake.readthedocs.io/en/stable/), and [bpipe](https://github.com/ssadedin/bpipe)], and R shiny plugins/R markdown document.
+This is an experimental project to providing a set of tools for the
+exploring next-generation sequencing (NGS) data. We aim to integrate and
+develop command line tools, NGS data analysis workflows
+\[[WDL](https://github.com/openwdl/wdl),
+[Nextflow](https://www.nextflow.io/),
+[snakemake](https://snakemake.readthedocs.io/en/stable/), and
+[bpipe](https://github.com/ssadedin/bpipe)\], and R shiny plugins/R
+markdown document.
 
 <p align="center">
   <img 
@@ -40,21 +59,14 @@ This is an experimental project to providing a set of tools for the exploring ne
   />
 </p>
 
-We proposed that using [node](https://nodejs.org/en/) to distribute the bioinformatics data analysis required workflows (e.g [Common workflow language (CWL) ](https://www.commonwl.org/)) and user created command line scripts in data analysis process. The creation, update and upload of a node package are very simple. Well-tested and high-performance distribution tools of node packages, such as [npm](https://www.npmjs.com/) and [yarn](https://www.yarnpkg.com), are providing the service for more than 831,195 node packages. 
-
-We are collecting the CWL language created workflows and publish on the [npm](https://www.npmjs.com/): 
-
-- [ngsjs-wkfl-wdl](https://github.com/ngsjs/ngsjs-wkfl-wdl)
-- [ngsjs-wkfl-nextflow](https://github.com/ngsjs/ngsjs-wkfl-nextflow)
-- [ngsjs-wkfl-snakemake](https://github.com/ngsjs/ngsjs-wkfl-snakemake)
-- [ngsjs-wkfl-bpipe](https://github.com/ngsjs/ngsjs-wkfl-bpipe)
-
-Besides, we are developing a framework to integrate various data analysis workflows and command line scripts:
-
-- rbashful: A ngsjs command line tool to dynamically render env.toml and cli.yaml for a unified downstream analysis environment shared between all integrated tools, workflows, scripts.
-- cli.yaml: Process controller with the [bashful](https://github.com/wagoodman/bashful) style.
-- env.toml: Store the fields and values of input and output parameters; the core command line commands indexed by unique keys.
-- others
+We proposed that using [node](https://nodejs.org/en/) to distribute the
+bioinformatics data analysis required workflows (e.g [Common workflow
+language (CWL)](https://www.commonwl.org/)) and user created command
+line scripts in data analysis process. The creation, update and upload
+of a node package are very simple. Well-tested and high-performance
+distribution tools of node packages, such as
+[npm](https://www.npmjs.com/) and [yarn](https://www.yarnpkg.com), are
+providing the service for more than 831,195 node packages.
 
 **Command line scripts supported now:**
 
@@ -74,6 +86,32 @@ Besides, we are developing a framework to integrate various data analysis workfl
   - rclrs: Using the R package `ngstk` to generate colors for
     visulization using a theme key
   - rmv: Using the R package `ngstk` to format the file names.
+  - ranystr: Using the R package `stringi` generate any counts and any
+    length random strings (e.g. Ies1y7fpgMVjsAyBAtTT)
+  - rtime\_stamp: Using the R package `ngstk` generate time stamp
+    (e.g. 2018\_11\_15\_22\_43\_25\_, 2018/11/15/, 2018/11/15/22/).
+  - rdownload: Using the R package `ngstk` to parallel download URLs
+    with logs
+
+We are collecting the CWL language created workflows and publish on the
+[npm](https://www.npmjs.com/):
+
+  - [ngsjs-wkfl-wdl](https://github.com/ngsjs/ngsjs-wkfl-wdl)
+  - [ngsjs-wkfl-nextflow](https://github.com/ngsjs/ngsjs-wkfl-nextflow)
+  - [ngsjs-wkfl-snakemake](https://github.com/ngsjs/ngsjs-wkfl-snakemake)
+  - [ngsjs-wkfl-bpipe](https://github.com/ngsjs/ngsjs-wkfl-bpipe)
+
+Besides, we are developing a framework to integrate various data
+analysis workflows and command line scripts:
+
+  - rbashful: A ngsjs command line tool to dynamically render env.toml
+    and cli.yaml for a unified downstream analysis environment shared
+    between all integrated tools, workflows, scripts.
+  - cli.yaml: Process controller with the
+    [bashful](https://github.com/wagoodman/bashful) style.
+  - env.toml: Store the fields and values of input and output
+    parameters; the core command line commands indexed by unique keys.
+  - others
 
 ## Requirements
 
@@ -85,17 +123,22 @@ Besides, we are developing a framework to integrate various data analysis workfl
 
   - optparse
   - configr
+  - stringi
+  - futile.logger
+  - glue
+  - ngstk
+  - BioInstaller
   - devtools
   - pacman
   - BiocManager
   - sessioninfo
+  - future
 
 ## Installation
 
 You need to install the [node](https://nodejs.org/en/),
 [R](https://cran.r-project.org/) and [GO](https://golang.org/) for
-running all [ngsjs](https://github.com/ngsjs/ngsjs) executable
-files.
+running all [ngsjs](https://github.com/ngsjs/ngsjs) executable files.
 
 ``` bash
 # Use conda to manage the env
@@ -138,6 +181,211 @@ getting all the extra R packages required by `ngsjs`.
 ``` bash
 # install the extra R packages used in `ngsjs` scripts
 rdeps
+#> INFO [2018-11-15 23:23:18] All basic dependences (R packages) were resolved.
+#> INFO [2018-11-15 23:23:18] optparse, devtools, BiocManager, sessioninfo, glue, futile.logger, stringi, future, configr, ngstk, BioInstaller, ngsjs
+```
+
+Then you can use the `ngsjs` to run all sub-commands.
+
+``` bash
+ngsjs -h
+#> Usage: /usr/local/bin/ngsjs [subcmds: rbashful, rconfig, rdeps, rinstall, rsession, rclrs, rmv, rtime_stamp, ranystr, rdownload]
+#> Description:
+#> Main interface of ngsjs package tools. Now, total 10 subcmds are supported: rbashful, rconfig, rdeps, rinstall, rsession, rclrs, rmv, rtime_stamp, ranystr, rdownload.
+#> View the ngsjs homepage https://github.com/ngsjs/ngsjs for more detail.
+#> 
+#> Options:
+#>  --list-all-subcmds
+#>      Print all supported subcmds of ngsjs.
+#> 
+#>  -h, --help
+#>      Show this help message and exit
+```
+
+### rbashful
+
+[bashful](https://github.com/wagoodman/bashful) is a GO program and used
+by `rbashful`, so you need to install it before use the
+`rbashful`.
+
+**Ubuntu/Debian**
+
+``` bash
+wget https://github.com/wagoodman/bashful/releases/download/v0.0.10/bashful_0.0.10_linux_amd64.deb
+sudo apt install ./bashful_0.0.10_linux_amd64.deb
+```
+
+**RHEL/Centos**
+
+``` bash
+wget https://github.com/wagoodman/bashful/releases/download/v0.0.10/bashful_0.0.10_linux_amd64.rpm
+rpm -i bashful_0.0.10_linux_amd64.rpm
+```
+
+**Mac**
+
+``` bash
+brew tap wagoodman/bashful
+brew install bashful
+```
+
+or download a Darwin build from the releases page.
+
+**Go
+tools**
+
+``` bash
+go get github.com/wagoodman/bashful
+```
+
+![](https://raw.githubusercontent.com/wagoodman/bashful/master/doc/demo.gif)
+
+View a `rbashful` demo
+[here](https://github.com/ngsjs/ngsjs/test/rbashful/rnaseq_splicing).
+
+``` r
+source_dir <- "/Users/ljf/Documents/repositories/ljf/github/ngsjs/examples/rbashful/rnaseq_splicing/02_leafcutter_majiq"
+
+# View the cli.yaml
+cat(paste0(readLines(sprintf("%s/cli.yaml", source_dir)), 
+           collapse = "\n"), sep = "\n")
+#> config:
+#>     log-path: "{{submit_log}}"
+#> tasks:
+#>     - name: "RNA-seq splicing analysis step 01: parse the task YAML and link bams"
+#>       parallel-tasks: 
+#>       - cmd: ./scripts/01_link_bams.R --env-parsed-yaml "{{env_parsed_yaml}}" --task-name "majiq_splicing_01_link_bams"
+
+# View the env.toml
+cat(paste0(readLines(sprintf("%s/env.toml", source_dir)), 
+           collapse = "\n"), sep = "\n")
+#> title = "Environment variables for running splicing analysis (from bam start)"
+#> 
+#> global_vars = ["project_dir", "workdir", "submit_yaml", "log_dir", 
+#>                "env_parsed_yaml", "env_toml", "rbashful", "submit_log"]
+#> 
+#> # Global var (Replace all '{{var}}' in cli.yaml).
+#> project_dir = "/home/ljf/projects/eqtf" 
+#> workdir = "!!glue {config$project_dir}/analysis/rnaseq_splicing"
+#> submit_yaml = "!!glue {config$workdir}/cli.yaml"
+#> log_dir = "!!glue {config$workdir}/logs" 
+#> env_toml = "!!glue {config$workdir}/env.toml"
+#> env_parsed_yaml = "!!glue {config$workdir}/env.parsed.yaml"
+#> rbashful = "rbashful"
+#> 
+#> # Sample specific var
+#> id = "{{id}}"
+#> [input]
+#> samples_info_fn = "{{workdir}}/samples"
+#> leafcutter_root = "/opt/bin/caller/leafcutter"
+#> bam2_junc_script = "!!glue {config$input$leafcutter_root}/scripts/bam2junc.sh"
+#> rawbamdir = "{{project_dir}}/analysis/rnaseq/output/bam/merge"
+#> rawbamfile = "!!glue {config$input$rawbamdir}/{config$id}{config$input$bam_suffix}"
+#> bamdir = "{{project_dir}}/analysis/rnaseq_splicing/bam_tmp"
+#> bam_suffix = ".bam_AddGroup.bam_MarkDup.bam_SplitNtrim.bam_IndelRealigner.bam_PrintReads.bam"
+#> bamfile = "!!glue {config$input$bamdir}/{config$id}{config$input$bam_suffix}"
+#> genome = "hg19"
+#> genome_path = "/u4/jhuangdata/reference/ucsc/hg19"
+#> hg19_gtf = "!!glue {config$input$genome_path}/Homo_sapiens.GRCh37.75.gtf"
+#> hg19_gff = "!!glue {config$input$genome_path}/Homo_sapiens.GRCh37.75.gff"
+#> 
+#> [output]
+#> leafcutter_out_dir = "!!glue {config$project_dir}}/analysis/rnaseq_splicing/leafcutter/bamfile_juncs/"
+#> majiq_build_out_dir = "!!glue {config$project_dir}/analysis/rnaseq_splicing/output/majiq_build"
+#> leafcutter_bamfile_junc = "!!glue {config$output$leafcutter_out_dir}/{config$id}.junc"
+#> 
+#> [cmds]
+#> bam2junc = "!!glue sh {config$input$bam2_junc_script} {config$input$bamfile} {config$output$leafcutter_bamfile_junc}"
+#> generate_majiq_conf = """
+#> !!glue rconfig majiq.ini -e {{dqm}}extra.list=list(bamdir='{config$input$bamdir}', \
+#>          genome = '{config$input$genome}', genome_path='{config$input$genome_path}'){{dqm}} \
+#>          -r {{dqm}}write.config(x, 'majiq.parsed.ini'){{dqm}}\
+#> """
+#> majiq_splicing_01_link_bams = """
+#> !!glue rawbam={config$input$rawbamdir}/{config$id}{config$input$bam_suffix}; \
+#> if [ -f $rawbam ]
+#> then
+#>   ln -s $rawbam {config$input$bamdir}
+#> fi
+#> """
+#> 
+#> majiq_builder_step = """
+#> !!glue majiq build {config$input$hg19_gff} -conf majiq.parsed.ini --nthreads 10 --output {config$output$majiq_build_out_dir}
+#> """
+
+# View the submit.sh
+cat(paste0(readLines(sprintf("%s/submit", source_dir)), 
+           collapse = "\n"), sep = "\n")
+#> #! /usr/bin/env Rscript
+#> 
+#> # yarn global add ngsjs
+#> # system("rdeps")
+#> pkgs <- c("stringi", "configr")
+#> pacman::p_load(pkgs, character.only = TRUE)
+#> 
+#> env_toml = "/u7/home/ljf/projects/eqtf/analysis/rnaseq_splicing/env.toml"
+#> 
+#> config <- read.config(env_toml, extra.list = list('dqm'='"'), 
+#>                       global.vars.field = NULL, rcmd.parse = TRUE)
+#> rm(env_toml)
+#> for (i in 1:1) config <- parse.extra(config, glue.parse = TRUE, 
+#>                                      global.vars.field = NULL)
+#> for (i in 1:1) config <- parse.extra(config, glue.parse = TRUE)
+#> config$submit_log <- paste0(file.path(config[["workdir"]], "logs", format(Sys.time(), "%Y_%m_%d_%H_%M_%S_")),
+#>                      stri_rand_strings(1, 20), ".log")
+#> attach(config)
+#> x <- write.config(config, env_parsed_yaml, write.type = "yaml", indent = 4)
+#> if (!x) {stop(sprintf("Generating %s failed.", env_parsed_yaml))}
+#> 
+#> extra_list <- paste0(global_vars, "='", unname(sapply(config[global_vars],
+#>                      function(x){return(x)[1]})), "'", collapse = ", ")
+#> print(extra_list)
+#> cmd <- sprintf('./rbashful -c %s -e "%s" -p >> %s', submit_yaml, extra_list, submit_log)
+#> if (!dir.exists(dirname(submit_log))) dir.create(dirname(submit_log))
+#> cat(cmd, file = submit_log, append = TRUE)
+#> message(cmd, sep = "\n")
+#> system(cmd)
+#> 
+#> cmd <- "bashful run cli.parsed.yaml"
+#> message(cmd, sep = "\n")
+#> system(cmd)
+```
+
+``` bash
+rbashful -h
+#> Usage: /usr/local/bin/rbashful [options] [params]
+#> Examples:
+#> /usr/local/bin/rbashful -c ${workdir}/cli.yaml --env-toml ${workdir}/env.toml --cmd-name default -v
+#> Description:
+#> rbashful is an extend bashful tool for style bash commands.
+#> 
+#> Options:
+#>  -v, --verbose
+#>      Print extra output [FALSE]
+#> 
+#>  -c CLI-YAML, --cli-yaml=CLI-YAML
+#>      bashful used YAML file [cli.yaml]
+#> 
+#>  -t ENV-TOML, --env-toml=ENV-TOML
+#>      TOML file stores environment variables [env.toml]
+#> 
+#>  -e EXTRA-LIST, --extra-list=EXTRA-LIST
+#>      Need to replaced environment variables
+#> 
+#>  -p, --parse-cli-yaml
+#>      Replace cli config keys [FALSE]
+#> 
+#>  -o OUTPUT-CLI-YAML, --output-cli-yaml=OUTPUT-CLI-YAML
+#>      Output file of parsed cli YAML file [*.parsed.yaml]
+#> 
+#>  -n CMD-NAME, --cmd-name=CMD-NAME
+#>      Run CMDs section using name [NULL]
+#> 
+#>  --auto-create-dir
+#>      Auto create dir in env.toml output section [FALSE]
+#> 
+#>  -h, --help
+#>      Show this help message and exit
 ```
 
 ### rsession
@@ -158,6 +406,73 @@ rsession -f sessionInfo
 # The followed two lines are equivalent.
 rsession -f 2 -e 'include_base=TRUE'
 rsession -f sessioninfo::session_info -e 'include_base=TRUE'
+```
+
+``` bash
+rsession -h
+
+rsession -f 2 -e 'include_base=TRUE'
+#> Usage: /usr/local/bin/rsession [options] [params]
+#> Examples:
+#> /usr/local/bin/rsession
+#> /usr/local/bin/rsession -f 1
+#> /usr/local/bin/rsession -f 2 -e 'include_base=TRUE'
+#> /usr/local/bin/rsession -d
+#> Description:
+#> rsession is an R-based tool to show R environment using sessionInfo() and sessioninfo::session_info().
+#> 
+#> Options:
+#>  -v, --verbose
+#>      Print extra output [default FALSE]
+#> 
+#>  -f FUNC, --func=FUNC
+#>      Function name [e.g. sessionInfo (1), sessioninfo::session_info (2)].
+#> 
+#>  -e EXTRA, --extra=EXTRA
+#>       Extra parameters [e.g. include_base=TRUE].
+#> 
+#>  -d, --doc
+#>      Print functions document
+#> 
+#>  -h, --help
+#>      Show this help message and exit
+#> 
+#> 
+#> ─ Session info ───────────────────────────────────────────────────────────────
+#>  setting  value                       
+#>  version  R version 3.5.1 (2018-07-02)
+#>  os       macOS  10.14.1              
+#>  system   x86_64, darwin15.6.0        
+#>  ui       X11                         
+#>  language (EN)                        
+#>  collate  en_US.UTF-8                 
+#>  ctype    en_US.UTF-8                 
+#>  tz       Asia/Shanghai               
+#>  date     2018-11-15                  
+#> 
+#> ─ Packages ───────────────────────────────────────────────────────────────────
+#>  ! package     * version date       lib source        
+#>    assertthat    0.2.0   2017-04-11 [1] CRAN (R 3.5.0)
+#>    base        * 3.5.1   2018-07-05 [?] local         
+#>    cli           1.0.1   2018-09-25 [1] CRAN (R 3.5.0)
+#>  P compiler      3.5.1   2018-07-05 [1] local         
+#>    crayon        1.3.4   2017-09-16 [1] CRAN (R 3.5.0)
+#>  P datasets    * 3.5.1   2018-07-05 [1] local         
+#>    getopt        1.20.2  2018-02-16 [1] CRAN (R 3.5.0)
+#>  P graphics    * 3.5.1   2018-07-05 [1] local         
+#>  P grDevices   * 3.5.1   2018-07-05 [1] local         
+#>  P methods     * 3.5.1   2018-07-05 [1] local         
+#>    optparse    * 1.6.0   2018-06-17 [1] CRAN (R 3.5.0)
+#>    pacman      * 0.5.0   2018-10-22 [1] CRAN (R 3.5.0)
+#>    rstudioapi    0.8     2018-10-02 [1] CRAN (R 3.5.0)
+#>    sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.5.1)
+#>  P stats       * 3.5.1   2018-07-05 [1] local         
+#>  P utils       * 3.5.1   2018-07-05 [1] local         
+#>    withr         2.1.2   2018-03-15 [1] CRAN (R 3.5.0)
+#> 
+#> [1] /Library/Frameworks/R.framework/Versions/3.5/Resources/library
+#> 
+#>  P ── Loaded and on-disk path mismatch.
 ```
 
 ### rinstall
@@ -203,6 +518,91 @@ rinstall -f 5 -e "download.dir='/tmp/refgene', extra.list=list(buildver='hg19')"
 rinstall -f 5 -e "download.dir='/tmp/avsnp', extra.list=list(buildver='hg19')" db_annovar_avsnp
 ```
 
+``` bash
+rinstall -h
+#> Usage: /usr/local/bin/rinstall [options] [params]
+#> Examples:
+#> /usr/local/bin/rinstall -p ini
+#> /usr/local/bin/rinstall ini,yaml
+#> /usr/local/bin/rinstall -f 2 JhuangLab/ngstk
+#> /usr/local/bin/rinstall -f 2 -e "force = TRUE, ref = 'develop'" JhuangLab/ngstk
+#> /usr/local/bin/rinstall -f 3 ggtree; /usr/local/bin/rinstall rinstall -f 4 ggtree
+#> /usr/local/bin/rinstall -f 5 -e "show.all.names=T"
+#> /usr/local/bin/rinstall -f 5 -e "show.all.versions=T" db_annovar_avsnp
+#> /usr/local/bin/rinstall -f 5 -e "download.dir='/tmp/avsnp', extra.list=list(buildver='hg19')" db_annovar_avsnp
+#> Description:
+#> rinstall is an R-based tool to install or download R packages and other resources supported by R package BioInstaller.
+#> 
+#> Options:
+#>  -v, --verbose
+#>      Print extra output [default FALSE]
+#> 
+#>  -f FUNC, --func=FUNC
+#>      Index or name of used function [e.g. install.packages (1), devtools::install_github (2), BiocManager::install (3), pacman::p_load (4), BioInstaller::install.bioinfo (5)].
+#> 
+#>  -p PKGS, --pkgs=PKGS
+#>      Package or item names [e.g. ggplot2,stringr or JhuangLab/BioInstaller (mode is devtools::install_github)].
+#> 
+#>  -e EXTRA, --extra=EXTRA
+#>       Extra parameters [e.g. ref='develop'].
+#> 
+#>  -d, --doc
+#>      Print functions document
+#> 
+#>  -h, --help
+#>      Show this help message and exit
+```
+
+### rdownload
+
+``` bash
+rdownload "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg"
+
+rdownload "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg" --destfiles "/tmp/ngsjs1.svg,ngsjs2.svg,ngsjs3.svg"
+
+rdownload --urls "https://img.shields.io/npm/dm/ngsjs.svg , https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg" \
+          --destfiles "ngsjs1.svg,ngsjs2.svg,ngsjs3.svg" --max-cores 1
+```
+
+``` bash
+rdownload -h
+#> Usage: /usr/local/bin/rdownload [options] [params]
+#> /usr/local/bin/rdownload "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg"
+#> /usr/local/bin/rdownload "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg" --destfiles "ngsjs1.svg,ngsjs2.svg,ngsjs3.svg"
+#> /usr/local/bin/rdownload --urls "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg" --destfiles "ngsjs1.svg,ngsjs2.svg,ngsjs3.svg"
+#> /usr/local/bin/rdownload --urls "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg" --destfiles "ngsjs1.svg,ngsjs2.svg,ngsjs3.svg" --max-cores 1
+#> Description:
+#> ranystr is an R-based tool to generate any counts and any urls random strings.
+#> 
+#> Options:
+#>  -v, --verbose
+#>      Print extra output [default FALSE]
+#> 
+#>  -f FUNC, --func=FUNC
+#>      Index or name of used function [e.g. ngstk::par_download (1).
+#> 
+#>  -u URLS, --urls=URLS
+#>      URLs of of a resource to be downloaded (multiple files split by ',' or ';' e.g. https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg).
+#> 
+#>  --destfiles=DESTFILES
+#>      Filenames of downloaded files, default use the basename(urls).
+#> 
+#>  --max-cores=MAX-CORES
+#>      Define the maxium used cores [future::availableCores()].
+#> 
+#>  -r RFUNC, --rfunc=RFUNC
+#>      R function (input param 'x') to process the returned colors or urls [e.g. function(x){return(x[[2]])} or x[[2]]].
+#> 
+#>  -e EXTRA, --extra=EXTRA
+#>      Extra parameters [...].
+#> 
+#>  -d, --doc
+#>      Print functions document
+#> 
+#>  -h, --help
+#>      Show this help message and exit
+```
+
 ### rconfig
 
 ``` r
@@ -222,142 +622,25 @@ rconfig -f "configr::write.config" test.json -e "config.dat=list(a=1, b=2), writ
 rconfig -f 2 test.json -e "config.dat=list(a=1, b=2), write.type='json'"
 ```
 
-### rbashful
-
-[bashful](https://github.com/wagoodman/bashful) is a GO program and used
-by `rbashful`, so you need to install it before use the
-`rbashful`.
-
-**Ubuntu/Debian**
-
 ``` bash
-wget https://github.com/wagoodman/bashful/releases/download/v0.0.10/bashful_0.0.10_linux_amd64.deb
-sudo apt install ./bashful_0.0.10_linux_amd64.deb
-```
-
-**RHEL/Centos**
-
-``` bash
-wget https://github.com/wagoodman/bashful/releases/download/v0.0.10/bashful_0.0.10_linux_amd64.rpm
-rpm -i bashful_0.0.10_linux_amd64.rpm
-```
-
-**Mac**
-
-``` bash
-brew tap wagoodman/bashful
-brew install bashful
-```
-
-or download a Darwin build from the releases page.
-
-**Go
-tools**
-
-``` bash
-go get github.com/wagoodman/bashful
-```
-
-![](https://raw.githubusercontent.com/wagoodman/bashful/master/doc/demo.gif)
-
-View a `rbashful` demo
-[here](https://github.com/ngsjs/ngsjs/test/rbashful/rnaseq_splicing).
-
-``` r
-source_dir <- "~/Documents/repositories/ljf/github/ngsjs/test/rbashful/rnaseq_splicing"
-
-# View the cli.yaml
-cat(paste0(readLines(sprintf("%s/cli.yaml", source_dir)), 
-           collapse = "\n"), sep = "\n")
-#> config:
-#>     log-path: '{{logfn}}'
-#> x-reference-data:
-#>     all-apps: &ids
-#>         - '{{id}}'
-#> tasks:
-#>     - name: Download genomes (hg38)
-#>       tags: download_hg38
-#>       parallel-tasks: 
-#>         - cmd: rbashful -e "genome_version='94'" -n download_hg38_reffa
+rconfig -f "configr::fetch.config" "https://raw.githubusercontent.com/Miachol/configr/master/inst/extdata/config.global.toml"
+#> trying URL 'https://raw.githubusercontent.com/Miachol/configr/master/inst/extdata/config.global.toml'
+#> Content type 'text/plain; charset=utf-8' length 303 bytes
+#> ==================================================
+#> downloaded 303 bytes
 #> 
-#>     - name: Download genomes (hg19)
-#>       tags: download_hg19
-#>       parallel-tasks: 
-#>         - cmd: rbashful -e "genome_version='75'" -n download_hg19_reffa
-#> 
-#>     - name: STAR Indexing 
-#>       tags: index
-#>       parallel-tasks: 
-#>         - cmd: rbashful -e "genome_version='75'" -n hg19_star_2_5_3a_rerffa_index
-#>         - cmd: rbashful -e "genome_version='94'" -n hg38_star_2_5_3a_rerffa_index
-#> 
-#>     - name: Clean STAR Indexing 
-#>       tags: clean
-#>       parallel-tasks: 
-#>         - cmd: rbashful -e "genome_version='75'" -n clean_star_2_5_3a_rerffa_index
-#>         - cmd: rbashful -e "genome_version='94'" -n clean_star_2_5_3a_rerffa_index
-#> 
-#>     - name: STAR alignment hg19 and hg38
-#>       tags: star_alignment
-#>       parallel-tasks:
-#>         - cmd: rbashful -e 'genome_version="75", id="<replace>"' & rbashful -e 'genome_version="94", id="<replace>"'
-#>           for-each: *ids
-
-# View the env.toml
-cat(paste0(readLines(sprintf("%s/env.toml", source_dir)), 
-           collapse = "\n"), sep = "\n")
-#> title = "Environment variables for genome index (STAR 2.5.3a)"
-#> [input]
-#> star_bin="/opt/bin/aligner/STAR/STAR-2.5.3a/bin/Linux_x86_64/STAR"
-#> hg19_dir="/u4/jhuangdata/reference/ensembl/75"
-#> hg38_dir="/u4/jhuangdata/reference/ensembl/94"
-#> hg19="!!glue {config$input$hg19_dir}/Homo_sapiens.GRCh37.75.dna.primary_assembly.fa"
-#> hg38="!!glue {config$input$hg38_dir}/Homo_sapiens.GRCh38.dna.primary_assembly.fa"
-#> hg19_gtf="!!glue {config$input$hg19_dir}/Homo_sapiens.GRCh37.75.gtf"
-#> hg38_gtf="!!glue {config$input$hg38_dir}/Homo_sapiens.GRCh38.94.gtf"
-#> 
-#> [output]
-#> star_index_out_dir="/u4/jhuangdata/reference/ensembl/{{genome_version}}/star_index"
-#> 
-#> [cmds]
-#> 
-#> # CMDs to download hg19 and hg38 genome
-#> download_hg19_reffa = "!!glue cd {config$input$hg19_dir} && wget ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.75.dna.primary_assembly.fa.gz ftp://ftp.ensembl.org/pub/release-75/gtf/homo_sapiens/Homo_sapiens.GRCh37.75.gtf.gz"
-#> download_hg38_reffa = "!!glue cd {config$input$hg38_dir} && wget ftp://ftp.ensembl.org/pub/release-94/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz ftp://ftp.ensembl.org/pub/release-94/gtf/homo_sapiens/Homo_sapiens.GRCh38.94.gtf.gz"
-#> 
-#> # CMDs to generate hg19 and hg38 genome index
-#> hg19_star_2_5_3a_rerffa_index = "!!glue {config$input$star_bin} --runMode genomeGenerate --genomeDir {config$output$star_index_out_dir} --genomeFastaFiles {config$input$hg19} --sjdbGTFfile {config$input$hg19_gtf} --sjdbOverhang 100 --runThreadN 30"
-#> hg38_star_2_5_3a_rerffa_index = "!!glue {config$input$star_bin} --runMode genomeGenerate --genomeDir {config$output$star_index_out_dir} --genomeFastaFiles {config$input$hg38} --sjdbGTFfile {config$input$hg38_gtf} --sjdbOverhang 100 --runThreadN 30"
-#> 
-#> # CMD to clean genome index
-#> clean_star_2_5_3a_rerffa_index = "!!glue rm -r {config$output$star_index_out_dir}/*"
-
-# View the submit.sh
-cat(paste0(readLines(sprintf("%s/submit.sh", source_dir)), 
-           collapse = "\n"), sep = "\n")
-#> #!/usr/bin/env bash
-#> 
-#> id=12
-#> workdir=~/Documents/repositories/ljf/github/ngsjs/tests/rbashful/rnaseq_splicing
-#> # Run the default cmd in env.toml
-#> rbashful -c ${workdir}/cli.yaml \
-#>     --env-toml ${workdir}/env.toml \
-#>     --cmd-name default \
-#>     -v
-#> 
-#> # Parse the bashful YAML file (Output cli.parsed.yaml) 
-#> # and then run the default cmd in env.toml
-#> rbashful -c ${workdir}/cli.yaml \
-#>     --env-toml ${workdir}/env.toml \
-#>     --extra-list "id=${id},logfn=\"${id}.log\"" \
-#>     --parse-cli-yaml \
-#>     -v
-#> 
-#> # Running the parsed yaml (given tags cmds)
-#> rbashful -c ${workdir}/cli.parsed.yaml \
-#>     --env-toml ${workdir}/env.toml \
-#>     --cmd-name start_tags \
-#>     --extra-list "tags='star_alignment'" -v
+#> List of 7
+#>  $ global_vars: chr [1:4] "gvar_1" "gvar_2" "gvar_3" "gvar_5"
+#>  $ gvar_1     : chr "G1"
+#>  $ gvar_2     : chr "G2"
+#>  $ gvar_3     : chr "G3"
+#>  $ gvar_5     : chr "G5"
+#>  $ subsection :List of 4
+#>   ..$ value_1: chr "G1/value_1"
+#>   ..$ value_2: chr "G2/value_2"
+#>   ..$ value_3: chr "G3/value_3"
+#>   ..$ value_5: chr "G5/value_5"
+#>  $ title      : chr "Demo of global vars of configuration files"
 ```
 
 ### rclrs
@@ -484,149 +767,8 @@ rclrs --show-all-themes
 #>   ..$ colors: chr [1:2] "#c20b01" "#196abd"
 ```
 
-### rmv
-
 ``` bash
-# do.rename is used to preview the new filenames
-# 
-rmv "`ls`" -e "do.rename = F, prefix = 'prefix', suffix = 'suffix'"
-rmv "`ls`" -e "do.rename = F, replace = list(old =c('-', '__'), new = c('_', '_'))"
-rmv "`ls`" -e "do.rename = F, toupper = TRUE"
-rmv "`ls`" -e "do.rename = F, tolower = TRUE"
-
-
-rmv "`ls`" -e "do.rename=T, replace=list(old='new', new='old')"
-```
-
-## Snippets of ngsjs scripts output
-
-### rdeps
-
-``` bash
-rdeps
-#> INFO [2018-11-12 00:14:58] All basic dependences (R packages) were resolved.
-#> INFO [2018-11-12 00:14:58] optparse, devtools, BiocManager, sessioninfo, glue, futile.logger, configr, ngstk, BioInstaller
-```
-
-### rinstall
-
-``` bash
-rinstall
-#> Usage: /usr/local/bin/rinstall [options] [params]
-#> Examples:
-#> /usr/local/bin/rinstall -p ini
-#> /usr/local/bin/rinstall ini,yaml
-#> /usr/local/bin/rinstall -f 2 ngsjs/ngstk
-#> /usr/local/bin/rinstall -f 2 -e "force = TRUE, ref = 'develop'" ngsjs/ngstk
-#> /usr/local/bin/rinstall -f 3 ggtree; /usr/local/bin/rinstall rinstall -f 4 ggtree
-#> /usr/local/bin/rinstall -f 5 -e "show.all.names=T"
-#> /usr/local/bin/rinstall -f 5 -e "show.all.versions=T" db_annovar_avsnp
-#> /usr/local/bin/rinstall -f 5 -e "download.dir='/tmp/avsnp', extra.list=list(buildver='hg19')" db_annovar_avsnp
-#> Description:
-#> rinstall is an R-based tool to install or download R packages and other resources supported by R package BioInstaller.
-#> 
-#> Options:
-#>  -v, --verbose
-#>      Print extra output [default FALSE]
-#> 
-#>  -f FUNC, --func=FUNC
-#>      Index or name of used function [e.g. install.packages (1), devtools::install_github (2), BiocManager::install (3), pacman::p_load (4), BioInstaller::install.bioinfo (5)].
-#> 
-#>  -p PKGS, --pkgs=PKGS
-#>      Package or item names [e.g. ggplot2,stringr or ngsjs/BioInstaller (mode is devtools::install_github)].
-#> 
-#>  -e EXTRA, --extra=EXTRA
-#>       Extra parameters [e.g. ref='develop'].
-#> 
-#>  -d, --doc
-#>      Print functions document
-#> 
-#>  -h, --help
-#>      Show this help message and exit
-```
-
-### rbashful
-
-``` bash
-rbashful
-#> INFO [2018-11-12 00:14:59] No commands were ran.
-#> Usage: /usr/local/bin/rbashful [options] [params]
-#> Examples:
-#> /usr/local/bin/rbashful -c ${workdir}/cli.yaml --env-toml ${workdir}/env.toml --cmd-name default -v
-#> Description:
-#> rbashful is an extend bashful tool for style bash commands.
-#> 
-#> Options:
-#>  -v, --verbose
-#>      Print extra output [FALSE]
-#> 
-#>  -c CLI-YAML, --cli-yaml=CLI-YAML
-#>      bashful used YAML file [cli.yaml]
-#> 
-#>  -t ENV-TOML, --env-toml=ENV-TOML
-#>      TOML file stores environment variables [env.toml]
-#> 
-#>  -e EXTRA-LIST, --extra-list=EXTRA-LIST
-#>      Need to replaced environment variables
-#> 
-#>  -p, --parse-cli-yaml
-#>      Replace cli config keys [FALSE]
-#> 
-#>  -o OUTPUT-CLI-YAML, --output-cli-yaml=OUTPUT-CLI-YAML
-#>      Output file of parsed cli YAML file [*.parsed.yaml]
-#> 
-#>  -n CMD-NAME, --cmd-name=CMD-NAME
-#>      Run CMDs section using name [NULL]
-#> 
-#>  --auto-create-dir
-#>      Auto create dir in env.toml output section [FALSE]
-#> 
-#>  -h, --help
-#>      Show this help message and exit
-```
-
-### rconfig
-
-``` bash
-rconfig
-#> Usage: /usr/local/bin/rconfig [options] [params]
-#> /usr/local/bin/rconfig package.json
-#> /usr/local/bin/rconfig -c package.json
-#> /usr/local/bin/rconfig -f 2 test.json -e "config.dat=list(a=1, b=2), write.type='json'"
-#> /usr/local/bin/rconfig -f "configr::write.config" test.json -e "config.dat=list(a=1, b=2), write.type='json'"
-#> /usr/local/bin/rconfig -i test.json -r 'function(x){x[["a"]] + x[["b"]]}'
-#> /usr/local/bin/rconfig -i test.json -r 'function(x){x[["a"]]}'
-#> /usr/local/bin/rconfig -i test.json -r 'function(x){x[["b"]]}'
-#> Description:
-#> rconfig is an R-based tool to parse and generate configuration file.
-#> 
-#> Options:
-#>  -v, --verbose
-#>      Print extra output [default FALSE]
-#> 
-#>  -f FUNC, --func=FUNC
-#>      Index or name of used function [e.g. configr::read.config (1), configr::write.config (2)].
-#> 
-#>  -c CFG, --cfg=CFG
-#>      Input or output configuationo file.
-#> 
-#>  -e EXTRA, --extra=EXTRA
-#>      Extra parameters [e.g. extra.list=list(key='value')].
-#> 
-#>  -r RFUNC, --rfunc=RFUNC
-#>      R function (input param 'x') to process the parsed configuation file [e.g. function(x){return(x[[1]])} or x[[1]] ].
-#> 
-#>  -d, --doc
-#>      Print functions document
-#> 
-#>  -h, --help
-#>      Show this help message and exit
-```
-
-### rclrs
-
-``` bash
-rclrs
+rclrs -h
 #> Usage: /usr/local/bin/rclrs [options] [params]
 #> /usr/local/bin/rclrs default
 #> /usr/local/bin/rclrs -t default
@@ -653,7 +795,7 @@ rclrs
 #>      R function (input param 'x') to process the returned colors or theme [e.g. function(x){return(x[[2]])} or x[[2]]].
 #> 
 #>  -e EXTRA, --extra=EXTRA
-#>      Extra parameters [e.g. extra.list=list(key='value')].
+#>      Extra parameters [e.g. theme_config_file = 'your_color_cfg.toml'].
 #> 
 #>  -d, --doc
 #>      Print functions document
@@ -665,13 +807,25 @@ rclrs
 ### rmv
 
 ``` bash
-rmv
+# do.rename is used to preview the new filenames
+# 
+rmv "`ls`" -e "do.rename = F, prefix = 'prefix', suffix = 'suffix'"
+rmv "`ls`" -e "do.rename = F, replace = list(old =c('-', '__'), new = c('_', '_'))"
+rmv "`ls`" -e "do.rename = F, toupper = TRUE"
+rmv "`ls`" -e "do.rename = F, tolower = TRUE"
+
+rmv "`ls`" -e "do.rename=T, replace=list(old='new', new='old')"
+```
+
+``` bash
+rmv -h
 #> Usage: /usr/local/bin/rmv [options] [params]
-#> /usr/local/bin/rmv "`ls`" -e "do.rename = FALSE, profix = 'profix', prefix = 'prefix'"
+#> /usr/local/bin/rmv "`ls`" -e "do.rename = FALSE, prefix = 'prefix', suffix = 'suffix'"
 #> /usr/local/bin/rmv "`ls`" -e "do.rename = FALSE, replace = list(old =c('-', '__'), new = c('_', '_'))"
 #> /usr/local/bin/rmv "`ls`" -e "do.rename = FALSE, toupper = TRUE"
 #> /usr/local/bin/rmv "`ls`" -e "do.rename = FALSE, tolower = TRUE"
-#> /usr/local/bin/rmv "`ls`" -e "do.rename=T, replace=list(old='new', new='old')"
+#> /usr/local/bin/rmv -e "files_dir = '.', pattern = '.*.txt', do.rename=F, replace=list(old='old', new='new')"
+#> /usr/local/bin/rmv "`ls`" -e "do.rename=T, replace=list(old='old', new='new')"
 #> Description:
 #> rmv is an R-based tool to format file names.
 #> 
@@ -683,13 +837,13 @@ rmv
 #>      Index or name of used function [e.g. ngstk::format_filenames (1).
 #> 
 #>  -l OLD-FILES, --old-files=OLD-FILES
-#>      Input the files need to be renamed (string will be split by \n, ',' and ';').
+#>      Input the files need to be renamed (string will be split by '\n', ',' and ';').
 #> 
 #>  -r RFUNC, --rfunc=RFUNC
 #>      R function (input param 'x') to process the returned colors or old-files [e.g. function(x){return(x[[2]])} or x[[2]]].
 #> 
 #>  -e EXTRA, --extra=EXTRA
-#>      Extra parameters [e.g. extra.list=list(key='value')].
+#>      Extra parameters [e.g. toupper = TRUE)].
 #> 
 #>  -d, --doc
 #>      Print functions document
@@ -698,45 +852,113 @@ rmv
 #>      Show this help message and exit
 ```
 
-### rsession
+### rtime\_stamp
 
 ``` bash
-rsession -f 2 -e 'include_base=TRUE'
-#> ─ Session info ───────────────────────────────────────────────────────────────
-#>  setting  value                       
-#>  version  R version 3.5.1 (2018-07-02)
-#>  os       macOS  10.14.1              
-#>  system   x86_64, darwin15.6.0        
-#>  ui       X11                         
-#>  language (EN)                        
-#>  collate  en_US.UTF-8                 
-#>  ctype    en_US.UTF-8                 
-#>  tz       Asia/Shanghai               
-#>  date     2018-11-12                  
+rtime_stamp
+
+rtime_stamp -r 'x[[1]]'
+
+rtime_stamp -r 'x[[1]][1]'
+
+rtime_stamp -t '%Y_%d'
+
+rtime_stamp -e "extra_flag=c('*')"
+#> [[1]]
+#> [1] "2018_11_15_23_23_25_" "2018_11_15_23_23_"    "2018_11_15_23_"      
+#> [4] "2018_11_15_"          "2018_11_"             "2018_"               
 #> 
-#> ─ Packages ───────────────────────────────────────────────────────────────────
-#>  ! package     * version date       lib source        
-#>    assertthat    0.2.0   2017-04-11 [1] CRAN (R 3.5.0)
-#>    base        * 3.5.1   2018-07-05 [?] local         
-#>    cli           1.0.1   2018-09-25 [1] CRAN (R 3.5.0)
-#>  P compiler      3.5.1   2018-07-05 [1] local         
-#>    crayon        1.3.4   2017-09-16 [1] CRAN (R 3.5.0)
-#>  P datasets    * 3.5.1   2018-07-05 [1] local         
-#>    getopt        1.20.2  2018-02-16 [1] CRAN (R 3.5.0)
-#>  P graphics    * 3.5.1   2018-07-05 [1] local         
-#>  P grDevices   * 3.5.1   2018-07-05 [1] local         
-#>  P methods     * 3.5.1   2018-07-05 [1] local         
-#>    optparse    * 1.6.0   2018-06-17 [1] CRAN (R 3.5.0)
-#>    pacman      * 0.5.0   2018-10-22 [1] CRAN (R 3.5.0)
-#>    rstudioapi    0.8     2018-10-02 [1] CRAN (R 3.5.0)
-#>    sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.5.1)
-#>  P stats       * 3.5.1   2018-07-05 [1] local         
-#>  P utils       * 3.5.1   2018-07-05 [1] local         
-#>    withr         2.1.2   2018-03-15 [1] CRAN (R 3.5.0)
+#> [[2]]
+#> [1] "2018-11-15-23-23-25-" "2018-11-15-23-23-"    "2018-11-15-23-"      
+#> [4] "2018-11-15-"          "2018-11-"             "2018-"               
 #> 
-#> [1] /Library/Frameworks/R.framework/Versions/3.5/Resources/library
+#> [[3]]
+#> [1] "2018/11/15/23/23/25/" "2018/11/15/23/23/"    "2018/11/15/23/"      
+#> [4] "2018/11/15/"          "2018/11/"             "2018/"               
 #> 
-#>  P ── Loaded and on-disk path mismatch.
+#> [[4]]
+#> [1] "2018@11@15@23@23@25@" "2018@11@15@23@23@"    "2018@11@15@23@"      
+#> [4] "2018@11@15@"          "2018@11@"             "2018@"               
+#> 
+#> 2018_11_15_23_23_26_
+#> 2018_11_15_23_23_
+#> 2018_11_15_23_
+#> 2018_11_15_
+#> 2018_11_
+#> 2018_
+#> 2018_11_15_23_23_26_
+#> [[1]]
+#> [1] "2018_15"
+#> 
+#> [[2]]
+#> [1] "2018-15"
+#> 
+#> [[3]]
+#> [1] "2018/15"
+#> 
+#> [[4]]
+#> [1] "2018@15"
+#> 
+#> [[1]]
+#> [1] "2018_11_15_23_23_27_" "2018_11_15_23_23_"    "2018_11_15_23_"      
+#> [4] "2018_11_15_"          "2018_11_"             "2018_"               
+#> 
+#> [[2]]
+#> [1] "2018*11*15*23*23*27*" "2018*11*15*23*23*"    "2018*11*15*23*"      
+#> [4] "2018*11*15*"          "2018*11*"             "2018*"
+```
+
+### ranystr
+
+``` bash
+./bin/ranystr
+
+./bin/ranystr -l 30
+
+./bin/ranystr -l 20 -n 3
+#> rVwBDGJqm1eqwa32oq1t
+#> sR8dAWwO1tqBwu9NGg4GOgavbNO99B
+#> QRXKF2trUVmdZaPZhfHd
+#> eSL9T3XpJk7DZpVvwM6N
+#> hxeN7KYLgLf93MvPBSvg
+```
+
+``` bash
+ranystr -h
+#> Usage: /usr/local/bin/ranystr [options] [params]
+#> /usr/local/bin/ranystr
+#> /usr/local/bin/ranystr -l 30
+#> /usr/local/bin/ranystr -l 20 -n 3
+#> Description:
+#> ranystr is an R-based tool to generate any counts and any length random strings.
+#> 
+#> Options:
+#>  -v, --verbose
+#>      Print extra output [default FALSE]
+#> 
+#>  -f FUNC, --func=FUNC
+#>      Index or name of used function [e.g. stringi::stri_rand_strings (1).
+#> 
+#>  -n NUM, --num=NUM
+#>      Counts of random strings [1].
+#> 
+#>  -l LENGTH, --length=LENGTH
+#>      Length of one of random string [20].
+#> 
+#>  -p PATTERN, --pattern=PATTERN
+#>      Character vector specifying character classes to draw elements ['[A-Za-z0-9]'].
+#> 
+#>  -r RFUNC, --rfunc=RFUNC
+#>      R function (input param 'x') to process the returned colors or length [e.g. function(x){return(x[[2]])} or x[[2]]].
+#> 
+#>  -e EXTRA, --extra=EXTRA
+#>      Extra parameters [...].
+#> 
+#>  -d, --doc
+#>      Print functions document
+#> 
+#>  -h, --help
+#>      Show this help message and exit
 ```
 
 ## How to contribute?

@@ -1,0 +1,79 @@
+#!/usr/bin/env Rscript
+# Author: Jianfeng Li
+# Email: lee_jianfeng@sjtu.edu.cn
+# Year: 2018
+# Homepage: https://github.com/ngsjs/ngsjs
+# License: MIT
+# Copyrights 2018 Jianfeng All Rights Reserved.
+suppressMessages(if(!require('pacman')) install.packages('pacman'))
+pkgs <- c("optparse", "ngstk", "future")
+suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
+
+option_list <- list(
+  make_option(c("-v", "--verbose"), action = "store_true", default = FALSE, help = "Print extra output [default FALSE]"), 
+  make_option(c("-f", "--func"), help = "Index or name of used function [e.g. ngstk::par_download (1).", 
+              default = "ngstk::par_download"),
+  make_option(c("-u", "--urls"), help = "URLs of of a resource to be downloaded (multiple files split by ',' or ';' e.g. https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg).", default = ""), 
+  make_option(c("--destfiles"), help = "Filenames of downloaded files, default use the basename(urls).", default = NULL), 
+  make_option(c("--max-cores"), help = "Define the maxium used cores [future::availableCores()].", default = availableCores(), type = "numeric"), 
+  make_option(c("-r", "--rfunc"), help = "R function (input param 'x') to process the returned colors or urls [e.g. function(x){return(x[[2]])} or x[[2]]].", 
+  default = NULL),
+  make_option(c("-e", "--extra"), help = "Extra parameters [...].", default = ""),
+  make_option(c("-d", "--doc"), action = "store_true", default = FALSE, help = "Print functions document")
+)
+
+description <- sprintf("Description:\n%s", 
+                       "ranystr is an R-based tool to generate any counts and any urls random strings.")
+usage <- paste("%prog [options] [params]",
+               "%prog \"https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg\"",
+               "%prog \"https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg\" --destfiles \"ngsjs1.svg,ngsjs2.svg,ngsjs3.svg\"",
+               "%prog --urls \"https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg\" --destfiles \"ngsjs1.svg,ngsjs2.svg,ngsjs3.svg\"",
+               "%prog --urls \"https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg\" --destfiles \"ngsjs1.svg,ngsjs2.svg,ngsjs3.svg\" --max-cores 1",
+                sep = "\n")
+opt_parser_obj <- OptionParser(option_list = option_list,
+                        usage = usage, description = description) 
+opt <- parse_args(opt_parser_obj, positional_arguments = TRUE) 
+opt_args <- opt$args
+opt <- opt$option
+if (opt[["urls"]] == "" && length(opt_args) > 0) opt[["urls"]] <- opt_args[1]
+if (!is.null(opt[["rfunc"]]) && length(opt_args) > 1) opt[["rfunc"]] <- opt_args[2]
+
+if (opt[["urls"]] == "" && !opt[["doc"]]) {
+  print_help(opt_parser_obj)
+} else {
+  urls <- strsplit(opt[["urls"]], "[ ]*,[ ]*|[ ]*;[ ]*")[[1]]
+  destfiles <- opt[["destfiles"]]
+  if (is.character(destfiles)) {destfiles <- strsplit(destfiles, "[ ]*,[ ]*|[ ]*;[ ]*")[[1]]}
+  if (opt[["extra"]] != "") {
+    cmd_text <- sprintf("params <- list(urls = urls, destfiles = destfiles, %s)", opt[["extra"]])
+  } else {
+    cmd_text <- sprintf("params <- list(urls = urls, destfiles = destfiles)")
+  }
+  eval(parse(text = cmd_text))
+  if (opt[["max-cores"]] != availableCores())
+    parallel_method <- sprintf("cl = parallel::makeCluster(%s); plan(list(cluster, sequential), workers = cl)", 1:opt[["max-cores"]])
+    params[["parallel_method"]] <- parallel_method
+    
+  predefined_funcs <- list("1"="ngstk::par_download") 
+  if (opt[["func"]] %in% names(predefined_funcs)) {
+    predefined_func <- predefined_funcs[[ opt[["func"]] ]]
+    if (length(grep("::|:::", opt[["func"]])) > 0) {
+      dep_pkg <- strsplit(predefined_func, "::|:::")[[1]][1]
+      suppressWarnings(suppressMessages(pacman::p_load(dep_pkg, character.only = TRUE)))
+    }
+    opt[["func"]] <- predefined_func
+  }
+  if (opt[["doc"]]) {
+    eval(parse(text = sprintf("?%s", opt[["func"]])))
+  } else {
+    eval(parse(text = sprintf("x <- do.call(%s, params)", opt[["func"]])))
+    is.function <- length(grep("function", opt[["rfunc"]])) > 0
+    if (is.character(opt[["rfunc"]]) && !is.function) {
+      opt[["rfunc"]] <- sprintf("function(x) {%s}", opt[["rfunc"]])
+    }
+    if (is.character(opt[["rfunc"]]))
+      x <- do.call(eval(parse(text = opt$rfunc)), list(x=x))
+    if (is.character(x) || is.numeric(x)) cat(paste(x, collapse = "\n"), sep = "\n")
+    else x
+  }
+}

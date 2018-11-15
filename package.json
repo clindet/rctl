@@ -42,7 +42,7 @@
   ],
   "scripts": {
     "gadd": "yarn global add `pwd`",
-    "test": "./bin/rdeps && ./bin/ngsjs && ./bin/rbashful && ./bin/rconfig && ./bin/rinstall && ./bin/rsession && ./bin/rclrs && ./bin/rmv"
+    "test": "./bin/rdeps && ./bin/ngsjs && ./bin/rbashful && ./bin/rconfig && ./bin/rinstall && ./bin/rsession && ./bin/rclrs && ./bin/rmv && "
   },
   "bin": {
     "ngsjs": "./bin/ngsjs",
@@ -54,6 +54,7 @@
     "rclrs": "./bin/rclrs",
     "rmv": "./bin/rmv",
     "rtime_stamp": "./bin/rtime_stamp",
-    "ranystr": "./bin/ranystr"
+    "ranystr": "./bin/ranystr",
+    "rdownload": "./bin/rdownload"
   }
 }
