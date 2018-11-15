@@ -1,6 +1,6 @@
 # ngsjs 0.1.5 ChangeLog
 
-## 2018-11-12, Version 0.1.5 (Current)
+## 2018-11-16, Version 0.1.5
 
 **New scripts:**  
 
@@ -19,11 +19,11 @@
 - `./bin/rdownload` support to parallel download urls
 - `ngsjs --list-all-subcmds` return all sub-commands split by space
 
-**Test related:
+**Test related:**
 
 - add `./scripts/test/start_cli_test` to test the command line tools default output
 
-**Minor bug fix:
+**Minor bug fix:**
 
 - rename `./bin/ngstk` subcomd `rcolors` to `rclrs`
 - add `rmv` in `package.json` test
