@@ -1,6 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+
 <p align="center">
   <a href="https://github/ngsjs/ngsjs">
     <img
@@ -182,25 +183,39 @@ getting all the extra R packages required by `ngsjs`.
 ``` bash
 # install the extra R packages used in `ngsjs` scripts
 rdeps
-#> INFO [2018-11-15 23:23:18] All basic dependences (R packages) were resolved.
-#> INFO [2018-11-15 23:23:18] optparse, devtools, BiocManager, sessioninfo, glue, futile.logger, stringi, future, configr, ngstk, BioInstaller, ngsjs
+#> INFO [2018-11-17 19:31:24] All basic dependences (R packages) were resolved.
+#> INFO [2018-11-17 19:31:24] devtools, BiocManager, sessioninfo, glue, futile.logger, stringi, future, configr, ngstk, BioInstaller, ngsjs
 ```
 
 Then you can use the `ngsjs` to run all sub-commands.
 
 ``` bash
 ngsjs -h
-#> Usage: /usr/local/bin/ngsjs [subcmds: rbashful, rconfig, rdeps, rinstall, rsession, rclrs, rmv, rtime_stamp, ranystr, rdownload]
 #> Description:
-#> Main interface of ngsjs package tools. Now, total 10 subcmds are supported: rbashful, rconfig, rdeps, rinstall, rsession, rclrs, rmv, rtime_stamp, ranystr, rdownload.
-#> View the ngsjs homepage https://github.com/ngsjs/ngsjs for more detail.
+#>  Main interface of ngsjs package tools. View the ngsjs homepage https://github.com/ngsjs/ngsjs for more detail.
+#>  Now, total 10 subcmds are supported: rbashful rconfig rdeps rinstall rsession rclrs rmv rtime_stamp ranystr rdownload.
+#> 
+#> Usage: 
+#>  /usr/local/bin/ngsjs [subcmds] [options]
+#>  /usr/local/bin/ngsjs rconfig -h
 #> 
 #> Options:
-#>  --list-all-subcmds
-#>      Print all supported subcmds of ngsjs.
-#> 
+#>  -l, --list-all-subcmds
+#>                Print all supported subcmds of ngsjs.
 #>  -h, --help
-#>      Show this help message and exit
+#>                Show this help message and exit
+#> 
+#> Commands:
+#>  rbashful      An extend GO bashful tool for style bash commands
+#>  rconfig       An R-based tool to parse and generate configuration file
+#>  rdeps         Install ngsjs command line tools required R packages.
+#>  rinstall      An R-based tool to install or download R packages and other resources supported by R package BioInstaller.
+#>  rsession      An R-based tool to show R environment using sessionInfo() and sessioninfo::session_info()
+#>  rclrs         An R-based tool to generate colors for visulization using a theme key
+#>  rmv           An R-based tool to format file names
+#>  rtime_stamp   An R-based tool to generate time stamp
+#>  ranystr       An R-based tool to generate any counts and any urls random strings
+#>  rdownload     An R-based tool to concurrently download urls with logging.
 ```
 
 ### rbashful
@@ -354,39 +369,32 @@ cat(paste0(readLines(sprintf("%s/submit", source_dir)),
 
 ``` bash
 rbashful -h
-#> Usage: /usr/local/bin/rbashful [options] [params]
-#> Examples:
-#> /usr/local/bin/rbashful -c ${workdir}/cli.yaml --env-toml ${workdir}/env.toml --cmd-name default -v
 #> Description:
-#> rbashful is an extend bashful tool for style bash commands.
+#>  rbashful is an extend bashful tool for style bash commands.
+#> 
+#> Usage: 
+#>  /usr/local/bin/rbashful [options] [params]
+#>  /usr/local/bin/rbashful -c ${workdir}/cli.yaml --env-toml ${workdir}/env.toml --cmd-name default -v
 #> 
 #> Options:
 #>  -v, --verbose
-#>      Print extra output [FALSE]
-#> 
+#>                Print extra output [FALSE]
 #>  -c CLI-YAML, --cli-yaml=CLI-YAML
-#>      bashful used YAML file [cli.yaml]
-#> 
+#>                bashful used YAML file [cli.yaml]
 #>  -t ENV-TOML, --env-toml=ENV-TOML
-#>      TOML file stores environment variables [env.toml]
-#> 
+#>                TOML file stores environment variables [env.toml]
 #>  -e EXTRA-LIST, --extra-list=EXTRA-LIST
-#>      Need to replaced environment variables
-#> 
+#>                Need to replaced environment variables
 #>  -p, --parse-cli-yaml
-#>      Replace cli config keys [FALSE]
-#> 
+#>                Replace cli config keys [FALSE]
 #>  -o OUTPUT-CLI-YAML, --output-cli-yaml=OUTPUT-CLI-YAML
-#>      Output file of parsed cli YAML file [*.parsed.yaml]
-#> 
+#>                Output file of parsed cli YAML file [*.parsed.yaml]
 #>  -n CMD-NAME, --cmd-name=CMD-NAME
-#>      Run CMDs section using name [NULL]
-#> 
+#>                Run CMDs section using name [NULL]
 #>  --auto-create-dir
-#>      Auto create dir in env.toml output section [FALSE]
-#> 
+#>                Auto create dir in env.toml output section [FALSE]
 #>  -h, --help
-#>      Show this help message and exit
+#>                Show this help message and exit
 ```
 
 ### rsession
@@ -410,35 +418,9 @@ rsession -f sessioninfo::session_info -e 'include_base=TRUE'
 ```
 
 ``` bash
-rsession -h
-
 rsession -f 2 -e 'include_base=TRUE'
-#> Usage: /usr/local/bin/rsession [options] [params]
-#> Examples:
-#> /usr/local/bin/rsession
-#> /usr/local/bin/rsession -f 1
-#> /usr/local/bin/rsession -f 2 -e 'include_base=TRUE'
-#> /usr/local/bin/rsession -d
-#> Description:
-#> rsession is an R-based tool to show R environment using sessionInfo() and sessioninfo::session_info().
-#> 
-#> Options:
-#>  -v, --verbose
-#>      Print extra output [default FALSE]
-#> 
-#>  -f FUNC, --func=FUNC
-#>      Function name [e.g. sessionInfo (1), sessioninfo::session_info (2)].
-#> 
-#>  -e EXTRA, --extra=EXTRA
-#>       Extra parameters [e.g. include_base=TRUE].
-#> 
-#>  -d, --doc
-#>      Print functions document
-#> 
-#>  -h, --help
-#>      Show this help message and exit
-#> 
-#> 
+
+rsession -h
 #> ─ Session info ───────────────────────────────────────────────────────────────
 #>  setting  value                       
 #>  version  R version 3.5.1 (2018-07-02)
@@ -449,31 +431,71 @@ rsession -f 2 -e 'include_base=TRUE'
 #>  collate  en_US.UTF-8                 
 #>  ctype    en_US.UTF-8                 
 #>  tz       Asia/Shanghai               
-#>  date     2018-11-15                  
+#>  date     2018-11-17                  
 #> 
 #> ─ Packages ───────────────────────────────────────────────────────────────────
-#>  ! package     * version date       lib source        
-#>    assertthat    0.2.0   2017-04-11 [1] CRAN (R 3.5.0)
-#>    base        * 3.5.1   2018-07-05 [?] local         
-#>    cli           1.0.1   2018-09-25 [1] CRAN (R 3.5.0)
-#>  P compiler      3.5.1   2018-07-05 [1] local         
-#>    crayon        1.3.4   2017-09-16 [1] CRAN (R 3.5.0)
-#>  P datasets    * 3.5.1   2018-07-05 [1] local         
-#>    getopt        1.20.2  2018-02-16 [1] CRAN (R 3.5.0)
-#>  P graphics    * 3.5.1   2018-07-05 [1] local         
-#>  P grDevices   * 3.5.1   2018-07-05 [1] local         
-#>  P methods     * 3.5.1   2018-07-05 [1] local         
-#>    optparse    * 1.6.0   2018-06-17 [1] CRAN (R 3.5.0)
-#>    pacman      * 0.5.0   2018-10-22 [1] CRAN (R 3.5.0)
-#>    rstudioapi    0.8     2018-10-02 [1] CRAN (R 3.5.0)
-#>    sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.5.1)
-#>  P stats       * 3.5.1   2018-07-05 [1] local         
-#>  P utils       * 3.5.1   2018-07-05 [1] local         
-#>    withr         2.1.2   2018-03-15 [1] CRAN (R 3.5.0)
+#>  ! package     * version date       lib source                          
+#>    assertthat    0.2.0   2017-04-11 [1] CRAN (R 3.5.0)                  
+#>    base        * 3.5.1   2018-07-05 [?] local                           
+#>    cli           1.0.1   2018-09-25 [1] CRAN (R 3.5.0)                  
+#>    codetools     0.2-15  2016-10-05 [1] CRAN (R 3.5.1)                  
+#>  P compiler      3.5.1   2018-07-05 [1] local                           
+#>    configr       0.3.4.1 2018-11-14 [1] Github (Miachol/configr@0df7b68)
+#>    crayon        1.3.4   2017-09-16 [1] CRAN (R 3.5.0)                  
+#>    data.table    1.11.8  2018-09-30 [1] CRAN (R 3.5.0)                  
+#>  P datasets    * 3.5.1   2018-07-05 [1] local                           
+#>    digest        0.6.18  2018-10-10 [1] CRAN (R 3.5.0)                  
+#>    future        1.10.0  2018-10-17 [1] CRAN (R 3.5.0)                  
+#>    getopt        1.20.2  2018-02-16 [1] CRAN (R 3.5.0)                  
+#>    globals       0.12.4  2018-10-11 [1] CRAN (R 3.5.0)                  
+#>    glue          1.3.0   2018-07-17 [1] CRAN (R 3.5.0)                  
+#>  P graphics    * 3.5.1   2018-07-05 [1] local                           
+#>  P grDevices   * 3.5.1   2018-07-05 [1] local                           
+#>    ini           0.3.1   2018-05-20 [1] CRAN (R 3.5.0)                  
+#>    jsonlite      1.5     2017-06-01 [1] CRAN (R 3.5.0)                  
+#>    listenv       0.7.0   2018-01-21 [1] CRAN (R 3.5.0)                  
+#>    magrittr      1.5     2014-11-22 [1] CRAN (R 3.5.0)                  
+#>  P methods     * 3.5.1   2018-07-05 [1] local                           
+#>    ngstk       * 0.2.2.3 2018-11-17 [1] local                           
+#>    optparse      1.6.0   2018-06-17 [1] CRAN (R 3.5.0)                  
+#>    pacman      * 0.5.0   2018-10-22 [1] CRAN (R 3.5.0)                  
+#>  P parallel      3.5.1   2018-07-05 [1] local                           
+#>    Rcpp          1.0.0   2018-11-07 [1] CRAN (R 3.5.0)                  
+#>    RcppTOML      0.1.5   2018-10-31 [1] CRAN (R 3.5.0)                  
+#>    rstudioapi    0.8     2018-10-02 [1] CRAN (R 3.5.0)                  
+#>    sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.5.1)                  
+#>  P stats       * 3.5.1   2018-07-05 [1] local                           
+#>    stringi       1.2.4   2018-07-20 [1] CRAN (R 3.5.0)                  
+#>    stringr       1.3.1   2018-05-10 [1] CRAN (R 3.5.0)                  
+#>  P tools         3.5.1   2018-07-05 [1] local                           
+#>  P utils       * 3.5.1   2018-07-05 [1] local                           
+#>    withr         2.1.2   2018-03-15 [1] CRAN (R 3.5.0)                  
+#>    yaml          2.2.0   2018-07-25 [1] CRAN (R 3.5.0)                  
 #> 
 #> [1] /Library/Frameworks/R.framework/Versions/3.5/Resources/library
 #> 
 #>  P ── Loaded and on-disk path mismatch.
+#> Description:
+#>  rsession is an R-based tool to show R environment using sessionInfo() and sessioninfo::session_info().
+#> 
+#> Usage: 
+#>  /usr/local/bin/rsession [options] [params]
+#>  /usr/local/bin/rsession
+#>  /usr/local/bin/rsession -f 1
+#>  /usr/local/bin/rsession -f 2 -e 'include_base=TRUE'
+#>  /usr/local/bin/rsession -d
+#> 
+#> Options:
+#>  -v, --verbose
+#>                Print extra output [default FALSE]
+#>  -f FUNC, --func=FUNC
+#>                Function name [e.g. sessionInfo (1), sessioninfo::session_info (2)]
+#>  -e EXTRA, --extra=EXTRA
+#>                Extra parameters [e.g. include_base=TRUE]
+#>  -d, --doc
+#>                Print functions document
+#>  -h, --help
+#>                Show this help message and exit
 ```
 
 ### rinstall
@@ -521,37 +543,34 @@ rinstall -f 5 -e "download.dir='/tmp/avsnp', extra.list=list(buildver='hg19')" d
 
 ``` bash
 rinstall -h
-#> Usage: /usr/local/bin/rinstall [options] [params]
-#> Examples:
-#> /usr/local/bin/rinstall -p ini
-#> /usr/local/bin/rinstall ini,yaml
-#> /usr/local/bin/rinstall -f 2 JhuangLab/ngstk
-#> /usr/local/bin/rinstall -f 2 -e "force = TRUE, ref = 'develop'" JhuangLab/ngstk
-#> /usr/local/bin/rinstall -f 3 ggtree; /usr/local/bin/rinstall rinstall -f 4 ggtree
-#> /usr/local/bin/rinstall -f 5 -e "show.all.names=T"
-#> /usr/local/bin/rinstall -f 5 -e "show.all.versions=T" db_annovar_avsnp
-#> /usr/local/bin/rinstall -f 5 -e "download.dir='/tmp/avsnp', extra.list=list(buildver='hg19')" db_annovar_avsnp
 #> Description:
-#> rinstall is an R-based tool to install or download R packages and other resources supported by R package BioInstaller.
+#>  rinstall is an R-based tool to install or download R packages and other resources supported by R package BioInstaller.
+#> 
+#> Usage: 
+#>  /usr/local/bin/rinstall [options] [params]
+#>  Examples:
+#>  /usr/local/bin/rinstall -p ini
+#>  /usr/local/bin/rinstall ini,yaml
+#>  /usr/local/bin/rinstall -f 2 JhuangLab/ngstk
+#>  /usr/local/bin/rinstall -f 2 -e "force = TRUE, ref = 'develop'" JhuangLab/ngstk
+#>  /usr/local/bin/rinstall -f 3 ggtree; /usr/local/bin/rinstall rinstall -f 4 ggtree
+#>  /usr/local/bin/rinstall -f 5 -e "show.all.names=T"
+#>  /usr/local/bin/rinstall -f 5 -e "show.all.versions=T" db_annovar_avsnp
+#>  /usr/local/bin/rinstall -f 5 -e "download.dir='/tmp/avsnp', extra.list=list(buildver='hg19')" db_annovar_avsnp
 #> 
 #> Options:
 #>  -v, --verbose
-#>      Print extra output [default FALSE]
-#> 
+#>                Print extra output [default FALSE]
 #>  -f FUNC, --func=FUNC
-#>      Index or name of used function [e.g. install.packages (1), devtools::install_github (2), BiocManager::install (3), pacman::p_load (4), BioInstaller::install.bioinfo (5)].
-#> 
+#>                Index or name of used function [e.g. install.packages (1), devtools::install_github (2), BiocManager::install (3), pacman::p_load (4), BioInstaller::install.bioinfo (5)].
 #>  -p PKGS, --pkgs=PKGS
-#>      Package or item names [e.g. ggplot2,stringr or JhuangLab/BioInstaller (mode is devtools::install_github)].
-#> 
+#>                Package or item names [e.g. ggplot2,stringr or JhuangLab/BioInstaller (mode is devtools::install_github)].
 #>  -e EXTRA, --extra=EXTRA
-#>       Extra parameters [e.g. ref='develop'].
-#> 
+#>                 Extra parameters [e.g. ref='develop'].
 #>  -d, --doc
-#>      Print functions document
-#> 
+#>                Print functions document
 #>  -h, --help
-#>      Show this help message and exit
+#>                Show this help message and exit
 ```
 
 ### rdownload
@@ -567,41 +586,38 @@ rdownload --urls "https://img.shields.io/npm/dm/ngsjs.svg , https://img.shields.
 
 ``` bash
 rdownload -h
-#> Usage: /usr/local/bin/rdownload [options] [params]
-#> /usr/local/bin/rdownload "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg"
-#> /usr/local/bin/rdownload "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg" --destfiles "ngsjs1.svg,ngsjs2.svg,ngsjs3.svg"
-#> /usr/local/bin/rdownload --urls "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg" --destfiles "ngsjs1.svg,ngsjs2.svg,ngsjs3.svg"
-#> /usr/local/bin/rdownload --urls "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg" --destfiles "ngsjs1.svg,ngsjs2.svg,ngsjs3.svg" --max-cores 1
 #> Description:
-#> ranystr is an R-based tool to generate any counts and any urls random strings.
+#>  rdownload is an R-based tool to concurrently download urls with logging.
+#> 
+#> Usage: 
+#>  /usr/local/bin/rdownload [options] [params]
+#>  /usr/local/bin/rdownload "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg"
+#>  /usr/local/bin/rdownload "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg" \ 
+#>          --destfiles "ngsjs1.svg,ngsjs2.svg"
+#>  /usr/local/bin/rdownload --urls "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg" \ 
+#>          --destfiles "ngsjs1.svg,ngsjs2.svg"
+#>  /usr/local/bin/rdownload --urls "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg" \ 
+#>          --destfiles "ngsjs1.svg,ngsjs2.svg" --max-cores 1
 #> 
 #> Options:
 #>  -v, --verbose
-#>      Print extra output [default FALSE]
-#> 
+#>                Print extra output [default FALSE]
 #>  -f FUNC, --func=FUNC
-#>      Index or name of used function [e.g. ngstk::par_download (1).
-#> 
+#>                Index or name of used function [e.g. ngstk::par_download (1).
 #>  -u URLS, --urls=URLS
-#>      URLs of of a resource to be downloaded (multiple files split by ',' or ';' e.g. https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg).
-#> 
+#>                URLs of of a resource to be downloaded (multiple files split by ',' or ';'
 #>  --destfiles=DESTFILES
-#>      Filenames of downloaded files, default use the basename(urls).
-#> 
+#>                Filenames of downloaded files, default use the basename(urls)
 #>  --max-cores=MAX-CORES
-#>      Define the maxium used cores [future::availableCores()].
-#> 
+#>                Define the maxium used cores [future::availableCores()]
 #>  -r RFUNC, --rfunc=RFUNC
-#>      R function (input param 'x') to process the returned colors or urls [e.g. function(x){return(x[[2]])} or x[[2]]].
-#> 
+#>                R function (input param 'x') to process the returned colors or urls [e.g. function(x){return(x[[2]])} or x[[2]]]
 #>  -e EXTRA, --extra=EXTRA
-#>      Extra parameters [...].
-#> 
+#>                Extra parameters [...]
 #>  -d, --doc
-#>      Print functions document
-#> 
+#>                Print functions document
 #>  -h, --help
-#>      Show this help message and exit
+#>                Show this help message and exit
 ```
 
 ### rconfig
@@ -625,6 +641,8 @@ rconfig -f 2 test.json -e "config.dat=list(a=1, b=2), write.type='json'"
 
 ``` bash
 rconfig -f "configr::fetch.config" "https://raw.githubusercontent.com/Miachol/configr/master/inst/extdata/config.global.toml"
+
+rconfig -h
 #> trying URL 'https://raw.githubusercontent.com/Miachol/configr/master/inst/extdata/config.global.toml'
 #> Content type 'text/plain; charset=utf-8' length 303 bytes
 #> ==================================================
@@ -642,6 +660,34 @@ rconfig -f "configr::fetch.config" "https://raw.githubusercontent.com/Miachol/co
 #>   ..$ value_3: chr "G3/value_3"
 #>   ..$ value_5: chr "G5/value_5"
 #>  $ title      : chr "Demo of global vars of configuration files"
+#> Description:
+#>  rconfig is an R-based tool to parse and generate configuration file.
+#> 
+#> Usage: 
+#>  /usr/local/bin/rconfig [options] [params]
+#>  /usr/local/bin/rconfig package.json
+#>  /usr/local/bin/rconfig -c package.json
+#>  /usr/local/bin/rconfig -f 2 test.json -e "config.dat=list(a=1, b=2), write.type='json'"
+#>  /usr/local/bin/rconfig -f "configr::write.config" test.json -e "config.dat=list(a=1, b=2), write.type='json'"
+#>  /usr/local/bin/rconfig -i test.json -r 'function(x){x[["a"]] + x[["b"]]}'
+#>  /usr/local/bin/rconfig -i test.json -r 'function(x){x[["a"]]}'
+#>  /usr/local/bin/rconfig -i test.json -r 'function(x){x[["b"]]}'
+#> 
+#> Options:
+#>  -v, --verbose
+#>                Print extra output [default FALSE]
+#>  -f FUNC, --func=FUNC
+#>                Index or name of used function [e.g. configr::read.config (1), configr::fetch.config (2), configr::write.config (3)].
+#>  -c CFG, --cfg=CFG
+#>                Input or output configuationo file.
+#>  -e EXTRA, --extra=EXTRA
+#>                Extra parameters [e.g. extra.list=list(key='value')].
+#>  -r RFUNC, --rfunc=RFUNC
+#>                R function (input param 'x') to process the parsed configuation file [e.g. function(x){return(x[[1]])} or x[[1]] ].
+#>  -d, --doc
+#>                Print functions document
+#>  -h, --help
+#>                Show this help message and exit
 ```
 
 ### rclrs
@@ -770,39 +816,34 @@ rclrs --show-all-themes
 
 ``` bash
 rclrs -h
-#> Usage: /usr/local/bin/rclrs [options] [params]
-#> /usr/local/bin/rclrs default
-#> /usr/local/bin/rclrs -t default
-#> /usr/local/bin/rclrs -t default -r 'x[1]'
-#> /usr/local/bin/rclrs -t red_blue
-#> /usr/local/bin/rclrs --show-all-themes
 #> Description:
-#> rclrs is an R-based tool to generate colors for visulization using a theme key.
+#>  rclrs is an R-based tool to generate colors for visulization using a theme key.
+#> 
+#> Usage: 
+#>  /usr/local/bin/rclrs [options] [params]
+#>  /usr/local/bin/rclrs default
+#>  /usr/local/bin/rclrs -t default
+#>  /usr/local/bin/rclrs -t default -r 'x[1]'
+#>  /usr/local/bin/rclrs -t red_blue
+#>  /usr/local/bin/rclrs --show-all-themes
 #> 
 #> Options:
 #>  -v, --verbose
-#>      Print extra output [default FALSE]
-#> 
+#>                Print extra output [default FALSE]
 #>  -f FUNC, --func=FUNC
-#>      Index or name of used function [e.g. ngstk::set_colors (1).
-#> 
+#>                Index or name of used function [e.g. ngstk::set_colors (1).
 #>  -t THEME, --theme=THEME
-#>      Input the theme name and return the colors.
-#> 
+#>                Input the theme name and return the colors.
 #>  -s, --show-all-themes
-#>      Show all included themes.
-#> 
+#>                Show all included themes.
 #>  -r RFUNC, --rfunc=RFUNC
-#>      R function (input param 'x') to process the returned colors or theme [e.g. function(x){return(x[[2]])} or x[[2]]].
-#> 
+#>                R function (input param 'x') to process the returned colors or theme [e.g. function(x){return(x[[2]])} or x[[2]]].
 #>  -e EXTRA, --extra=EXTRA
-#>      Extra parameters [e.g. theme_config_file = 'your_color_cfg.toml'].
-#> 
+#>                Extra parameters [e.g. theme_config_file = 'your_color_cfg.toml'].
 #>  -d, --doc
-#>      Print functions document
-#> 
+#>                Print functions document
 #>  -h, --help
-#>      Show this help message and exit
+#>                Show this help message and exit
 ```
 
 ### rmv
@@ -820,37 +861,33 @@ rmv "`ls`" -e "do.rename=T, replace=list(old='new', new='old')"
 
 ``` bash
 rmv -h
-#> Usage: /usr/local/bin/rmv [options] [params]
-#> /usr/local/bin/rmv "`ls`" -e "do.rename = FALSE, prefix = 'prefix', suffix = 'suffix'"
-#> /usr/local/bin/rmv "`ls`" -e "do.rename = FALSE, replace = list(old =c('-', '__'), new = c('_', '_'))"
-#> /usr/local/bin/rmv "`ls`" -e "do.rename = FALSE, toupper = TRUE"
-#> /usr/local/bin/rmv "`ls`" -e "do.rename = FALSE, tolower = TRUE"
-#> /usr/local/bin/rmv -e "files_dir = '.', pattern = '.*.txt', do.rename=F, replace=list(old='old', new='new')"
-#> /usr/local/bin/rmv "`ls`" -e "do.rename=T, replace=list(old='old', new='new')"
 #> Description:
-#> rmv is an R-based tool to format file names.
+#>  rmv is an R-based tool to format file names.
+#> 
+#> Usage: 
+#>  /usr/local/bin/rmv [options] [params]
+#>  /usr/local/bin/rmv "`ls`" -e "do.rename = FALSE, prefix = 'prefix', suffix = 'suffix'"
+#>  /usr/local/bin/rmv "`ls`" -e "do.rename = FALSE, replace = list(old =c('-', '__'), new = c('_', '_'))"
+#>  /usr/local/bin/rmv "`ls`" -e "do.rename = FALSE, toupper = TRUE"
+#>  /usr/local/bin/rmv "`ls`" -e "do.rename = FALSE, tolower = TRUE"
+#>  /usr/local/bin/rmv -e "files_dir = '.', pattern = '.*.txt', do.rename=F, replace=list(old='old', new='new')"
+#>  /usr/local/bin/rmv "`ls`" -e "do.rename=T, replace=list(old='old', new='new')"
 #> 
 #> Options:
 #>  -v, --verbose
-#>      Print extra output [default FALSE]
-#> 
+#>                Print extra output [default FALSE]
 #>  -f FUNC, --func=FUNC
-#>      Index or name of used function [e.g. ngstk::format_filenames (1).
-#> 
+#>                Index or name of used function [e.g. ngstk::format_filenames (1).
 #>  -l OLD-FILES, --old-files=OLD-FILES
-#>      Input the files need to be renamed (string will be split by '\n', ',' and ';').
-#> 
+#>                Input the files need to be renamed (string will be split by '\n', ',' and ';').
 #>  -r RFUNC, --rfunc=RFUNC
-#>      R function (input param 'x') to process the returned colors or old-files [e.g. function(x){return(x[[2]])} or x[[2]]].
-#> 
+#>                R function (input param 'x') to process the returned colors or old-files [e.g. function(x){return(x[[2]])} or x[[2]]].
 #>  -e EXTRA, --extra=EXTRA
-#>      Extra parameters [e.g. toupper = TRUE)].
-#> 
+#>                Extra parameters [e.g. toupper = TRUE)].
 #>  -d, --doc
-#>      Print functions document
-#> 
+#>                Print functions document
 #>  -h, --help
-#>      Show this help message and exit
+#>                Show this help message and exit
 ```
 
 ### rtime\_stamp
@@ -865,48 +902,77 @@ rtime_stamp -r 'x[[1]][1]'
 rtime_stamp -t '%Y_%d'
 
 rtime_stamp -e "extra_flag=c('*')"
+
+rtime_stamp -h
 #> [[1]]
-#> [1] "2018_11_15_23_23_25_" "2018_11_15_23_23_"    "2018_11_15_23_"      
-#> [4] "2018_11_15_"          "2018_11_"             "2018_"               
+#> [1] "2018_11_17_19_31_33_" "2018_11_17_19_31_"    "2018_11_17_19_"      
+#> [4] "2018_11_17_"          "2018_11_"             "2018_"               
 #> 
 #> [[2]]
-#> [1] "2018-11-15-23-23-25-" "2018-11-15-23-23-"    "2018-11-15-23-"      
-#> [4] "2018-11-15-"          "2018-11-"             "2018-"               
+#> [1] "2018-11-17-19-31-33-" "2018-11-17-19-31-"    "2018-11-17-19-"      
+#> [4] "2018-11-17-"          "2018-11-"             "2018-"               
 #> 
 #> [[3]]
-#> [1] "2018/11/15/23/23/25/" "2018/11/15/23/23/"    "2018/11/15/23/"      
-#> [4] "2018/11/15/"          "2018/11/"             "2018/"               
+#> [1] "2018/11/17/19/31/33/" "2018/11/17/19/31/"    "2018/11/17/19/"      
+#> [4] "2018/11/17/"          "2018/11/"             "2018/"               
 #> 
 #> [[4]]
-#> [1] "2018@11@15@23@23@25@" "2018@11@15@23@23@"    "2018@11@15@23@"      
-#> [4] "2018@11@15@"          "2018@11@"             "2018@"               
+#> [1] "2018@11@17@19@31@33@" "2018@11@17@19@31@"    "2018@11@17@19@"      
+#> [4] "2018@11@17@"          "2018@11@"             "2018@"               
 #> 
-#> 2018_11_15_23_23_26_
-#> 2018_11_15_23_23_
-#> 2018_11_15_23_
-#> 2018_11_15_
+#> 2018_11_17_19_31_34_
+#> 2018_11_17_19_31_
+#> 2018_11_17_19_
+#> 2018_11_17_
 #> 2018_11_
 #> 2018_
-#> 2018_11_15_23_23_26_
+#> 2018_11_17_19_31_34_
 #> [[1]]
-#> [1] "2018_15"
+#> [1] "2018_17"
 #> 
 #> [[2]]
-#> [1] "2018-15"
+#> [1] "2018-17"
 #> 
 #> [[3]]
-#> [1] "2018/15"
+#> [1] "2018/17"
 #> 
 #> [[4]]
-#> [1] "2018@15"
+#> [1] "2018@17"
 #> 
 #> [[1]]
-#> [1] "2018_11_15_23_23_27_" "2018_11_15_23_23_"    "2018_11_15_23_"      
-#> [4] "2018_11_15_"          "2018_11_"             "2018_"               
+#> [1] "2018_11_17_19_31_35_" "2018_11_17_19_31_"    "2018_11_17_19_"      
+#> [4] "2018_11_17_"          "2018_11_"             "2018_"               
 #> 
 #> [[2]]
-#> [1] "2018*11*15*23*23*27*" "2018*11*15*23*23*"    "2018*11*15*23*"      
-#> [4] "2018*11*15*"          "2018*11*"             "2018*"
+#> [1] "2018*11*17*19*31*35*" "2018*11*17*19*31*"    "2018*11*17*19*"      
+#> [4] "2018*11*17*"          "2018*11*"             "2018*"               
+#> 
+#> Description:
+#>  rtime_stamp is an R-based tool to generate time stamp.
+#> 
+#> Usage: 
+#>  /usr/local/bin/rtime_stamp [options] [params]
+#>  /usr/local/bin/rtime_stamp
+#>  /usr/local/bin/rtime_stamp -r 'x[[1]]'
+#>  /usr/local/bin/rtime_stamp -r 'x[[1]][1]'
+#>  /usr/local/bin/rtime_stamp -t '%Y_%d'
+#>  /usr/local/bin/rtime_stamp -e "extra_flat=c('-')"
+#> 
+#> Options:
+#>  -v, --verbose
+#>                Print extra output [default FALSE]
+#>  -f FUNC, --func=FUNC
+#>                Index or name of used function [e.g. ngstk::time_stamp (1).
+#>  -t TEMPLATE, --template=TEMPLATE
+#>                Input the template and return the time stamps.
+#>  -r RFUNC, --rfunc=RFUNC
+#>                R function (input param 'x') to process the returned colors or template [e.g. function(x){return(x[[2]])} or x[[2]]].
+#>  -e EXTRA, --extra=EXTRA
+#>                Extra parameters [e.g. extra_flag = c('-', '/')].
+#>  -d, --doc
+#>                Print functions document
+#>  -h, --help
+#>                Show this help message and exit
 ```
 
 ### ranystr
@@ -917,49 +983,43 @@ rtime_stamp -e "extra_flag=c('*')"
 ./bin/ranystr -l 30
 
 ./bin/ranystr -l 20 -n 3
-#> rVwBDGJqm1eqwa32oq1t
-#> sR8dAWwO1tqBwu9NGg4GOgavbNO99B
-#> QRXKF2trUVmdZaPZhfHd
-#> eSL9T3XpJk7DZpVvwM6N
-#> hxeN7KYLgLf93MvPBSvg
+#> LYQ3GgChnLwiMN3nn4SP
+#> eugWOhLeFaFZzwULx7Xvl3Lrm3g3Eu
+#> Go4fYtS2839dLj9aHbP3
+#> cLgYY6H7obR6wnzM9YUC
+#> SRvA3g7pQcgnKl3DsH0z
 ```
 
 ``` bash
 ranystr -h
-#> Usage: /usr/local/bin/ranystr [options] [params]
-#> /usr/local/bin/ranystr
-#> /usr/local/bin/ranystr -l 30
-#> /usr/local/bin/ranystr -l 20 -n 3
 #> Description:
-#> ranystr is an R-based tool to generate any counts and any length random strings.
+#>  ranystr is an R-based tool to generate any counts and any length random strings.
+#> 
+#> Usage: 
+#>  /usr/local/bin/ranystr [options] [params]
+#>  /usr/local/bin/ranystr
+#>  /usr/local/bin/ranystr -l 30
+#>  /usr/local/bin/ranystr -l 20 -n 3
 #> 
 #> Options:
 #>  -v, --verbose
-#>      Print extra output [default FALSE]
-#> 
+#>                Print extra output [default FALSE]
 #>  -f FUNC, --func=FUNC
-#>      Index or name of used function [e.g. stringi::stri_rand_strings (1).
-#> 
+#>                Index or name of used function [e.g. stringi::stri_rand_strings (1).
 #>  -n NUM, --num=NUM
-#>      Counts of random strings [1].
-#> 
+#>                Counts of random strings [1].
 #>  -l LENGTH, --length=LENGTH
-#>      Length of one of random string [20].
-#> 
+#>                Length of one of random string [20].
 #>  -p PATTERN, --pattern=PATTERN
-#>      Character vector specifying character classes to draw elements ['[A-Za-z0-9]'].
-#> 
+#>                Character vector specifying character classes to draw elements ['[A-Za-z0-9]'].
 #>  -r RFUNC, --rfunc=RFUNC
-#>      R function (input param 'x') to process the returned colors or length [e.g. function(x){return(x[[2]])} or x[[2]]].
-#> 
+#>                R function (input param 'x') to process the returned colors or length [e.g. function(x){return(x[[2]])} or x[[2]]].
 #>  -e EXTRA, --extra=EXTRA
-#>      Extra parameters [...].
-#> 
+#>                Extra parameters [...].
 #>  -d, --doc
-#>      Print functions document
-#> 
+#>                Print functions document
 #>  -h, --help
-#>      Show this help message and exit
+#>                Show this help message and exit
 ```
 
 ## How to contribute?

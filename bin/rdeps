@@ -5,7 +5,7 @@
 # Homepage: https://github.com/ngsjs/ngsjs
 # License: MIT
 # Copyrights 2018 Jianfeng All Rights Reserved.
-pkgs <- c("optparse", "devtools", "BiocManager", 
+pkgs <- c("devtools", "BiocManager", 
           "sessioninfo", "glue", 
           "futile.logger", "stringi",
           "future")

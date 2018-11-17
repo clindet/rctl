@@ -230,9 +230,9 @@ rsession -f 2 -e 'include_base=TRUE'
 rsession -f sessioninfo::session_info -e 'include_base=TRUE'
 ```
 ```{bash}
-rsession -h
-
 rsession -f 2 -e 'include_base=TRUE'
+
+rsession -h
 ```
 
 ### rinstall
@@ -315,6 +315,8 @@ rconfig -f 2 test.json -e "config.dat=list(a=1, b=2), write.type='json'"
 ```
 ```{bash}
 rconfig -f "configr::fetch.config" "https://raw.githubusercontent.com/Miachol/configr/master/inst/extdata/config.global.toml"
+
+rconfig -h
 ```
 
 ### rclrs
@@ -363,6 +365,8 @@ rtime_stamp -r 'x[[1]][1]'
 rtime_stamp -t '%Y_%d'
 
 rtime_stamp -e "extra_flag=c('*')"
+
+rtime_stamp -h
 ```
 
 ### ranystr

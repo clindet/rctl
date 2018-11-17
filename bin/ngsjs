@@ -6,23 +6,38 @@
 # License: MIT
 # Copyrights 2018 Jianfeng All Rights Reserved.
 suppressMessages(if(!require('pacman')) install.packages('pacman'))
-pkgs <- c("optparse")
+pkgs <- c("ngstk")
 suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
 option_list <- list(
   make_option(c("-l", "--list-all-subcmds"), action = "store_true", default = FALSE, help = "Print all supported subcmds of ngsjs.")
 )
 
-subcmds <- "rbashful rconfig rdeps rinstall rsession rclrs rmv rtime_stamp ranystr rdownload"
-description <- sprintf("Description:\n%s %s\n%s", 
-                       "Main interface of ngsjs package tools.",
+subcmds_list <- list(
+                     rbashful = "An extend GO bashful tool for style bash commands", 
+                     rconfig = "An R-based tool to parse and generate configuration file",
+                     rdeps = "Install ngsjs command line tools required R packages.",
+                     rinstall = "An R-based tool to install or download R packages and other resources supported by R package BioInstaller.",
+                     rsession = "An R-based tool to show R environment using sessionInfo() and sessioninfo::session_info()",
+                     rclrs = "An R-based tool to generate colors for visulization using a theme key",
+                     rmv = "An R-based tool to format file names",
+                     rtime_stamp = "An R-based tool to generate time stamp",
+                     ranystr = "An R-based tool to generate any counts and any urls random strings",
+                     rdownload = "An R-based tool to concurrently download urls with logging."
+                    )
+subcmds <- paste0(names(subcmds_list), collapse = " ")
+description <- paste(
+                      sprintf("\tMain interface of ngsjs package tools. %s",
+                       "View the ngsjs homepage https://github.com/ngsjs/ngsjs for more detail."),
                        sprintf("Now, total %s subcmds are supported: %s.",
                        length(strsplit(subcmds, " ")[[1]]), subcmds),
-                       "View the ngsjs homepage https://github.com/ngsjs/ngsjs for more detail."
-                      )
-usage <- paste(sprintf("%%prog [subcmds: %s]", subcmds),
-                sep = "\n")
-opt_parser_obj <- OptionParser(option_list = option_list,
-                        usage = usage, description = description) 
+                       sep = "\n\t")
+usage <- paste("",
+               "%prog [subcmds] [options]",
+               "%prog rconfig -h",
+                sep = "\n\t")
+opt_parser_obj <- opt_parser(option_list = option_list,
+                        usage = usage, description = description, 
+                        subcmds_list = subcmds_list) 
 opt <- parse_args(opt_parser_obj, positional_arguments = TRUE, print_help_and_exit = FALSE) 
 opt_args <- opt$args
 opt <- opt$option

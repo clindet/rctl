@@ -15,7 +15,7 @@ LazyData: true
 Imports:
   configr (>= 0.3.4.1),
   BioInstaller (>= 0.3.6.3001),
-  ngstk (>= 0.2.2.2)
+  ngstk (>= 0.2.2.3)
 Remotes:
   Miachol/configr,
   JhuangLab/BioInstaller,

@@ -6,7 +6,7 @@
 # License: MIT
 # Copyrights 2018 Jianfeng All Rights Reserved.
 suppressMessages(if(!require('pacman')) install.packages('pacman'))
-pkgs <- c("optparse", "configr", "futile.logger")
+pkgs <- c("ngstk", "configr", "futile.logger")
 suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
 option_list <- list(
   make_option(c("-v", "--verbose"), action = "store_true", default = FALSE, help = "Print extra output [default FALSE]"), 
@@ -19,9 +19,10 @@ option_list <- list(
   make_option(c("-d", "--doc"), action = "store_true", default = FALSE, help = "Print functions document")
 )
 
-description <- sprintf("Description:\n%s", 
-                       "rconfig is an R-based tool to parse and generate configuration file.")
-usage <- paste("%prog [options] [params]",
+description <- paste("\trconfig is an R-based tool to parse and generate configuration file.",
+                     sep = "\n\t")
+usage <- paste("",
+                "%prog [options] [params]",
                 "%prog package.json",
                 "%prog -c package.json",
                 "%prog -f 2 test.json -e \"config.dat=list(a=1, b=2), write.type='json'\"", 
@@ -29,52 +30,56 @@ usage <- paste("%prog [options] [params]",
                 "%prog -i test.json -r 'function(x){x[[\"a\"]] + x[[\"b\"]]}'",
                 "%prog -i test.json -r 'function(x){x[[\"a\"]]}'",
                 "%prog -i test.json -r 'function(x){x[[\"b\"]]}'",
-                sep = "\n")
-opt_parser_obj <- OptionParser(option_list = option_list,
+                sep = "\n\t")
+opt_parser_obj <- opt_parser(option_list = option_list,
                         usage = usage, description = description) 
-opt <- parse_args(opt_parser_obj, positional_arguments = TRUE) 
+opt <- parse_args(opt_parser_obj, positional_arguments = TRUE, print_help_and_exit = FALSE) 
 opt_args <- opt$args
 opt <- opt$option
-if (opt[["cfg"]] == "" && length(opt_args) > 0) opt[["cfg"]] <- opt_args[1]
-if (!is.null(opt[["rfunc"]]) && length(opt_args) > 1) opt[["rfunc"]] <- opt_args[2]
-
-if (opt[["cfg"]] == "" && !opt[["doc"]]) {
+if (opt$help) {
   print_help(opt_parser_obj)
-}  else {
-  cfg <- opt[['cfg']]
-  if (opt[["extra"]] != "") {
-    cmd_text <- sprintf("params <- list(file = cfg, %s)", opt[["extra"]])
-  } else {
-    cmd_text <- sprintf("params <- list(file = cfg)")
-  }
-  eval(parse(text = cmd_text))
+} else {
+  if (opt[["cfg"]] == "" && length(opt_args) > 0) opt[["cfg"]] <- opt_args[1]
+  if (!is.null(opt[["rfunc"]]) && length(opt_args) > 1) opt[["rfunc"]] <- opt_args[2]
   
-  predefined_funcs <- list("1"="configr::read.config", "2"="configr::fetch.config", "2"="configr::write.config") 
-  if (opt[["func"]] %in% names(predefined_funcs)) {
-    predefined_func <- predefined_funcs[[ opt[["func"]] ]]
-    if (length(grep("::|:::", opt[["func"]])) > 0) {
-      dep_pkg <- strsplit(predefined_func, "::|:::")[[1]][1]
-      suppressWarnings(suppressMessages(pacman::p_load(dep_pkg, character.only = TRUE)))
+  if (opt[["cfg"]] == "" && !opt[["doc"]]) {
+    print_help(opt_parser_obj)
+  }  else {
+    cfg <- opt[['cfg']]
+    if (opt[["extra"]] != "") {
+      cmd_text <- sprintf("params <- list(file = cfg, %s)", opt[["extra"]])
+    } else {
+      cmd_text <- sprintf("params <- list(file = cfg)")
     }
-    opt[["func"]] <- predefined_func
-  }
-  if (opt[["doc"]]) {
-    eval(parse(text = sprintf("?%s", opt[["func"]])))
-  } else {
-    if (length(grep("write.config", opt[["func"]])) > 0) names(params)[which(names(params) == "file")] <- "file.path"
-    if (length(grep("fetch.config", opt[["func"]])) > 0) names(params)[which(names(params) == "file")] <- "links"
-  
-    if (opt[["cfg"]] != "") {
-      eval(parse(text = sprintf("x <- do.call(%s, params)", opt[["func"]])))
-
-      is.function <- length(grep("function", opt[["rfunc"]])) > 0
-      if (is.character(opt[["rfunc"]]) && !is.function) {
-        opt[["rfunc"]] <- sprintf("function(x) {%s}", opt[["rfunc"]])
+    eval(parse(text = cmd_text))
+    
+    predefined_funcs <- list("1"="configr::read.config", "2"="configr::fetch.config", "2"="configr::write.config") 
+    if (opt[["func"]] %in% names(predefined_funcs)) {
+      predefined_func <- predefined_funcs[[ opt[["func"]] ]]
+      if (length(grep("::|:::", opt[["func"]])) > 0) {
+        dep_pkg <- strsplit(predefined_func, "::|:::")[[1]][1]
+        suppressWarnings(suppressMessages(pacman::p_load(dep_pkg, character.only = TRUE)))
       }
-      if (is.character(opt[["rfunc"]])) 
-        x <- do.call(eval(parse(text = opt$rfunc)), list(x=x))
-      if (is.character(x) || is.numeric(x)) cat(paste(x, collapse = "\n"), sep = "\n")
-      else x
+      opt[["func"]] <- predefined_func
+    }
+    if (opt[["doc"]]) {
+      eval(parse(text = sprintf("?%s", opt[["func"]])))
+    } else {
+      if (length(grep("write.config", opt[["func"]])) > 0) names(params)[which(names(params) == "file")] <- "file.path"
+      if (length(grep("fetch.config", opt[["func"]])) > 0) names(params)[which(names(params) == "file")] <- "links"
+    
+      if (opt[["cfg"]] != "") {
+        eval(parse(text = sprintf("x <- do.call(%s, params)", opt[["func"]])))
+  
+        is.function <- length(grep("function", opt[["rfunc"]])) > 0
+        if (is.character(opt[["rfunc"]]) && !is.function) {
+          opt[["rfunc"]] <- sprintf("function(x) {%s}", opt[["rfunc"]])
+        }
+        if (is.character(opt[["rfunc"]])) 
+          x <- do.call(eval(parse(text = opt$rfunc)), list(x=x))
+        if (is.character(x) || is.numeric(x)) cat(paste(x, collapse = "\n"), sep = "\n")
+        else x
+      }
     }
   }
 }

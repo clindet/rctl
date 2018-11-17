@@ -6,7 +6,7 @@
 # License: MIT
 # Copyrights 2018 Jianfeng All Rights Reserved.
 suppressMessages(if(!require('pacman')) install.packages('pacman'))
-pkgs <- c("optparse", "ngstk")
+pkgs <- c("ngstk")
 suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
 
 option_list <- list(
@@ -22,22 +22,25 @@ option_list <- list(
   make_option(c("-d", "--doc"), action = "store_true", default = FALSE, help = "Print functions document")
 )
 
-description <- sprintf("Description:\n%s", 
-                       "ranystr is an R-based tool to generate any counts and any length random strings.")
-usage <- paste("%prog [options] [params]",
-                "%prog",
-                "%prog -l 30",
-                "%prog -l 20 -n 3",
-                sep = "\n")
-opt_parser_obj <- OptionParser(option_list = option_list,
+description <- paste(
+                     "\tranystr is an R-based tool to generate any counts and any length random strings.", 
+                     sep = "\n\t"
+                    )
+usage <- paste("",
+               "%prog [options] [params]",
+               "%prog",
+               "%prog -l 30",
+               "%prog -l 20 -n 3",
+               sep = "\n\t")
+opt_parser_obj <- opt_parser(option_list = option_list,
                         usage = usage, description = description) 
-opt <- parse_args(opt_parser_obj, positional_arguments = TRUE) 
+opt <- parse_args(opt_parser_obj, positional_arguments = TRUE, print_help_and_exit = FALSE) 
 opt_args <- opt$args
 opt <- opt$option
 if (opt[["length"]] == "" && length(opt_args) > 0) opt[["length"]] <- opt_args[1]
 if (!is.null(opt[["rfunc"]]) && length(opt_args) > 1) opt[["rfunc"]] <- opt_args[2]
 
-if (opt[["length"]] == "" && !opt[["doc"]]) {
+if ((opt[["length"]] == "" && !opt[["doc"]] ) || opt$help) {
   print_help(opt_parser_obj)
 } else {
   length <- as.numeric(opt[["length"]])

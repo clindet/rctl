@@ -5,3 +5,10 @@
 **New scripts:**  
 
 **New features:**
+
+- prettify command line default ouput.
+- add subcommands description in `./bin/ngsjs` 
+
+**Minor bug fix:**
+
+- fix `rdownload` not work
