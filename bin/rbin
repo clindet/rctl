@@ -6,30 +6,24 @@
 # License: MIT
 # Copyrights 2018 Jianfeng All Rights Reserved.
 suppressMessages(if(!require('pacman')) install.packages('pacman'))
-pkgs <- c("ngstk", "configr")
+pkgs <- c("ngstk", "configr", "futile.logger")
 suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
 option_list <- list(
   make_option(c("-v", "--verbose"), action = "store_true", default = FALSE, help = "Print extra output [default FALSE]"), 
-  make_option(c("-f", "--func"), help = "Index or name of used function [e.g. configr::read.config (1), configr::fetch.config (2), configr::write.config (3)].", 
-              default = "configr::read.config"),
-  make_option(c("-c", "--cfg"), help = "Input or output configuationo file.", default = ""), 
+  make_option(c("-f", "--func"), help = "Index or name of used function [e.g. ngstk::bin (1)].", 
+              default = "ngstk::rbin"),
+  make_option(c("-c", "--pkgs"), help = "Package names used to copy inst/bin directory files to PATH.", default = ""), 
+  make_option(c("--destdir"), help = "Destination directory to store the inst/bin files [~/.ngstk/bin].", default = "~/.ngstk/bin"), 
   make_option(c("-e", "--extra"), help = "Extra parameters [e.g. extra.list=list(key='value')].", default = ""),
   make_option(c("-r", "--rfunc"), help = "R function (input param 'x') to process the parsed configuation file [e.g. function(x){return(x[[1]])} or x[[1]] ].", 
   default = NULL),
   make_option(c("-d", "--doc"), action = "store_true", default = FALSE, help = "Print functions document")
 )
 
-description <- paste("\trconfig is an R-based tool to parse and generate configuration file.",
+description <- paste("\trbin is an R-based tool to collect R packages bin files.",
                      sep = "\n\t")
 usage <- paste("",
                 "%prog [options] [params]",
-                "%prog package.json",
-                "%prog -c package.json",
-                "%prog -f 2 test.json -e \"config.dat=list(a=1, b=2), write.type='json'\"", 
-                "%prog -f \"configr::write.config\" test.json -e \"config.dat=list(a=1, b=2), write.type='json'\"", 
-                "%prog -i test.json -r 'function(x){x[[\"a\"]] + x[[\"b\"]]}'",
-                "%prog -i test.json -r 'function(x){x[[\"a\"]]}'",
-                "%prog -i test.json -r 'function(x){x[[\"b\"]]}'",
                 sep = "\n\t")
 opt_parser_obj <- opt_parser(option_list = option_list,
                         usage = usage, description = description) 
@@ -39,21 +33,23 @@ opt <- opt$option
 if (opt$help) {
   print_help(opt_parser_obj)
 } else {
-  if (opt[["cfg"]] == "" && length(opt_args) > 0) opt[["cfg"]] <- opt_args[1]
+  if (opt[["pkgs"]] == "" && length(opt_args) > 0) opt[["pkgs"]] <- opt_args[1]
   if (!is.null(opt[["rfunc"]]) && length(opt_args) > 1) opt[["rfunc"]] <- opt_args[2]
   
-  if (opt[["cfg"]] == "" && !opt[["doc"]]) {
+  if (opt[["pkgs"]] == "" && !opt[["doc"]]) {
     print_help(opt_parser_obj)
   }  else {
-    cfg <- opt[['cfg']]
+    pkgs <- strsplit(opt[["pkgs"]], ",|;")[[1]]
+    pkgs <- gsub(" ", "", pkgs, fixed = TRUE)
+    destdir <- opt[["destdir"]]
     if (opt[["extra"]] != "") {
-      cmd_text <- sprintf("params <- list(file = cfg, %s)", opt[["extra"]])
+      cmd_text <- sprintf("params <- list(pkgs = pkgs, destdir = destdir, %s)", opt[["extra"]])
     } else {
-      cmd_text <- sprintf("params <- list(file = cfg)")
+      cmd_text <- sprintf("params <- list(pkgs = pkgs, destdir = destdir)")
     }
     eval(parse(text = cmd_text))
     
-    predefined_funcs <- list("1"="configr::read.config", "2"="configr::fetch.config", "2"="configr::write.config") 
+    predefined_funcs <- list("1"="ngstk::rbin") 
     if (opt[["func"]] %in% names(predefined_funcs)) {
       predefined_func <- predefined_funcs[[ opt[["func"]] ]]
       if (length(grep("::|:::", opt[["func"]])) > 0) {
@@ -65,10 +61,8 @@ if (opt$help) {
     if (opt[["doc"]]) {
       eval(parse(text = sprintf("?%s", opt[["func"]])))
     } else {
-      if (length(grep("write.config", opt[["func"]])) > 0) names(params)[which(names(params) == "file")] <- "file.path"
-      if (length(grep("fetch.config", opt[["func"]])) > 0) names(params)[which(names(params) == "file")] <- "links"
     
-      if (opt[["cfg"]] != "") {
+      if (opt[["pkgs"]] != "") {
         eval(parse(text = sprintf("x <- do.call(%s, params)", opt[["func"]])))
   
         is.function <- length(grep("function", opt[["rfunc"]])) > 0

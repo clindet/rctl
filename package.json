@@ -53,6 +53,7 @@
     "rdeps": "./bin/rdeps",
     "rclrs": "./bin/rclrs",
     "rmv": "./bin/rmv",
+    "rbin": "./bin/rbin",
     "rtime_stamp": "./bin/rtime_stamp",
     "ranystr": "./bin/ranystr",
     "rdownload": "./bin/rdownload"

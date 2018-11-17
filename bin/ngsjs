@@ -13,16 +13,17 @@ option_list <- list(
 )
 
 subcmds_list <- list(
-                     rbashful = "An extend GO bashful tool for style bash commands", 
+                     rbashful = "An R-based tool to extend GO bashful tool for style bash commands", 
                      rconfig = "An R-based tool to parse and generate configuration file",
-                     rdeps = "Install ngsjs command line tools required R packages.",
+                     rdeps = "An R-based tool to install ngsjs command line tools required R packages.",
                      rinstall = "An R-based tool to install or download R packages and other resources supported by R package BioInstaller.",
                      rsession = "An R-based tool to show R environment using sessionInfo() and sessioninfo::session_info()",
                      rclrs = "An R-based tool to generate colors for visulization using a theme key",
                      rmv = "An R-based tool to format file names",
                      rtime_stamp = "An R-based tool to generate time stamp",
                      ranystr = "An R-based tool to generate any counts and any urls random strings",
-                     rdownload = "An R-based tool to concurrently download urls with logging."
+                     rdownload = "An R-based tool to concurrently download urls with logging.",
+                     rbin = "An R-based tool to collect R packages bin files."
                     )
 subcmds <- paste0(names(subcmds_list), collapse = " ")
 description <- paste(

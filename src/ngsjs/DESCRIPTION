@@ -1,7 +1,7 @@
 Package: ngsjs
 Type: Package
-Title: Only For Command Line Tools Dependences.
-Version: 0.0.1
+Title: Only For Ngsjs Command Line Tools Dependences.
+Version: 0.0.2
 Authors@R: person("Jianfeng", "Li", email = "lee_jianfeng@sjtu.edu.cn", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-2349-208X"))
 Description:
    Can be used to install all ngsjs command line tools required packages (CRAN, bioconductor and GitHub). 
@@ -15,7 +15,7 @@ LazyData: true
 Imports:
   configr (>= 0.3.4.1),
   BioInstaller (>= 0.3.6.3001),
-  ngstk (>= 0.2.2.3)
+  ngstk (>= 0.2.2.4)
 Remotes:
   Miachol/configr,
   JhuangLab/BioInstaller,

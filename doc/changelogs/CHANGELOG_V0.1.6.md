@@ -4,10 +4,13 @@
 
 **New scripts:**  
 
+- `bin/rbin`
+
 **New features:**
 
 - prettify command line default ouput.
 - add subcommands description in `./bin/ngsjs` 
+- support `bin/rbin` to collect R packages bin files
 
 **Minor bug fix:**
 
