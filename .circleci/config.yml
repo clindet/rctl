@@ -27,4 +27,4 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
         
       # run tests!
-      - run: source /etc/profile && yarn global add /tmp/ngsjs && yarn test
+      - run: source /etc/profile && yarn global add /tmp/ngsjs && rdeps && yarn test
