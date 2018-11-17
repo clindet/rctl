@@ -13,7 +13,7 @@ option_list <- list(
   make_option(c("-f", "--func"), help = "Index or name of used function [e.g. ngstk::bin (1)].", 
               default = "ngstk::rbin"),
   make_option(c("-c", "--pkgs"), help = "Package names used to copy inst/bin directory files to PATH.", default = ""), 
-  make_option(c("--destdir"), help = "Destination directory to store the inst/bin files [~/.ngstk/bin].", default = "~/.ngstk/bin"), 
+  make_option(c("-o", "--destdir"), help = "Destination directory to store the inst/bin files [~/.ngstk/bin].", default = "~/.ngstk/bin"), 
   make_option(c("-e", "--extra"), help = "Extra parameters [e.g. extra.list=list(key='value')].", default = ""),
   make_option(c("-r", "--rfunc"), help = "R function (input param 'x') to process the parsed configuation file [e.g. function(x){return(x[[1]])} or x[[1]] ].", 
   default = NULL),
@@ -24,6 +24,8 @@ description <- paste("\trbin is an R-based tool to collect R packages bin files.
                      sep = "\n\t")
 usage <- paste("",
                 "%prog [options] [params]",
+                "%prog ngstk",
+                "%prog --destdir /usr/local/bin/ ngstk",
                 sep = "\n\t")
 opt_parser_obj <- opt_parser(option_list = option_list,
                         usage = usage, description = description) 
@@ -34,7 +36,7 @@ if (opt$help) {
   print_help(opt_parser_obj)
 } else {
   if (opt[["pkgs"]] == "" && length(opt_args) > 0) opt[["pkgs"]] <- opt_args[1]
-  if (!is.null(opt[["rfunc"]]) && length(opt_args) > 1) opt[["rfunc"]] <- opt_args[2]
+  if (!is.null(opt[["rfunc"]]) && length(opt_args) > 1) opt[["rfunc"]] <- opt_args[3]
   
   if (opt[["pkgs"]] == "" && !opt[["doc"]]) {
     print_help(opt_parser_obj)

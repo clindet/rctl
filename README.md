@@ -1,7 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-
 <p align="center">
   <a href="https://github/ngsjs/ngsjs">
     <img
@@ -70,30 +69,22 @@ distribution tools of node packages, such as
 [npm](https://www.npmjs.com/) and [yarn](https://www.yarnpkg.com), are
 providing the service for more than 831,195 node packages.
 
-**Command line scripts supported now:**
+**Command line scripts supported
+now:**
 
-  - rdeps: Install `ngsjs` required R packages
-  - rsession: Get output of `sessionInfo()` and
-    `sessioninfo::session\_info()`
-  - rinstall: Install R packages and
-    [BioInstaller](https://github.com/ngsjs/BioInstaller) resources
-    using `install.packages()` and R packages `devtools`, `BiocManager`
-    and `BioInstaller`
-  - rbashful: Using the GO program
-    [bashful](https://github.com/wagoodman/bashful), yaml and toml and R
-    scripts to stitch together commands and bash snippits and run them
-    with a bit of style
-  - rconfig: Using the R package `configr` to parse and generate json,
-    ini, yaml, and toml format configuration files
-  - rclrs: Using the R package `ngstk` to generate colors for
-    visulization using a theme key
-  - rmv: Using the R package `ngstk` to format the file names.
-  - ranystr: Using the R package `stringi` generate any counts and any
-    length random strings (e.g. Ies1y7fpgMVjsAyBAtTT)
-  - rtime\_stamp: Using the R package `ngstk` generate time stamp
-    (e.g. 2018\_11\_15\_22\_43\_25\_, 2018/11/15/, 2018/11/15/22/).
-  - rdownload: Using the R package `ngstk` to parallel download URLs
-    with logs
+| tool         | function                                                                                                                                                                         |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| rdeps        | Getting all `ngsjs` required R packages                                                                                                                                          |
+| rsession     | `sessionInfo()` and `sessioninfo::session\_info()`                                                                                                                               |
+| rinstall     | Install R packages and [BioInstaller](https://github.com/ngsjs/BioInstaller) resources using `install.packages()` and R packages `devtools`, `BiocManager` and `BioInstaller`    |
+| rbashful     | Using the GO program [bashful](https://github.com/wagoodman/bashful), yaml and toml and R scripts to stitch together commands and bash snippits and run them with a bit of style |
+| rconfig      | Parsing and generating json, ini, yaml, and toml format configuration files                                                                                                      |
+| rclrs        | Generating colors for visulization using a theme key                                                                                                                             |
+| rmv          | Formating the file names.                                                                                                                                                        |
+| ranystr      | Generating any counts and any length random strings (e.g. Ies1y7fpgMVjsAyBAtTT)                                                                                                  |
+| rtime\_stamp | Generating time stamp (e.g. 2018\_11\_15\_22\_43\_25\_, 2018/11/15/, 2018/11/15/22/).                                                                                            |
+| rdownload    | Parallel download URLs with logs                                                                                                                                                 |
+| rbin         | Collecting R packages inst/bin files to a directory, e.g. PATH                                                                                                                   |
 
 We are collecting the CWL language created workflows and publish on the
 [npm](https://www.npmjs.com/):
@@ -183,8 +174,8 @@ getting all the extra R packages required by `ngsjs`.
 ``` bash
 # install the extra R packages used in `ngsjs` scripts
 rdeps
-#> INFO [2018-11-17 19:31:24] All basic dependences (R packages) were resolved.
-#> INFO [2018-11-17 19:31:24] devtools, BiocManager, sessioninfo, glue, futile.logger, stringi, future, configr, ngstk, BioInstaller, ngsjs
+#> INFO [2018-11-17 22:50:04] All basic dependences (R packages) were resolved.
+#> INFO [2018-11-17 22:50:04] devtools, BiocManager, sessioninfo, glue, futile.logger, stringi, future, configr, ngstk, BioInstaller, ngsjs
 ```
 
 Then you can use the `ngsjs` to run all sub-commands.
@@ -193,7 +184,7 @@ Then you can use the `ngsjs` to run all sub-commands.
 ngsjs -h
 #> Description:
 #>  Main interface of ngsjs package tools. View the ngsjs homepage https://github.com/ngsjs/ngsjs for more detail.
-#>  Now, total 10 subcmds are supported: rbashful rconfig rdeps rinstall rsession rclrs rmv rtime_stamp ranystr rdownload.
+#>  Now, total 11 subcmds are supported: rbashful rconfig rdeps rinstall rsession rclrs rmv rtime_stamp ranystr rdownload rbin.
 #> 
 #> Usage: 
 #>  /usr/local/bin/ngsjs [subcmds] [options]
@@ -206,9 +197,9 @@ ngsjs -h
 #>                Show this help message and exit
 #> 
 #> Commands:
-#>  rbashful      An extend GO bashful tool for style bash commands
+#>  rbashful      An R-based tool to extend GO bashful tool for style bash commands
 #>  rconfig       An R-based tool to parse and generate configuration file
-#>  rdeps         Install ngsjs command line tools required R packages.
+#>  rdeps         An R-based tool to install ngsjs command line tools required R packages.
 #>  rinstall      An R-based tool to install or download R packages and other resources supported by R package BioInstaller.
 #>  rsession      An R-based tool to show R environment using sessionInfo() and sessioninfo::session_info()
 #>  rclrs         An R-based tool to generate colors for visulization using a theme key
@@ -216,6 +207,7 @@ ngsjs -h
 #>  rtime_stamp   An R-based tool to generate time stamp
 #>  ranystr       An R-based tool to generate any counts and any urls random strings
 #>  rdownload     An R-based tool to concurrently download urls with logging.
+#>  rbin          An R-based tool to collect R packages bin files.
 ```
 
 ### rbashful
@@ -456,7 +448,7 @@ rsession -h
 #>    listenv       0.7.0   2018-01-21 [1] CRAN (R 3.5.0)                  
 #>    magrittr      1.5     2014-11-22 [1] CRAN (R 3.5.0)                  
 #>  P methods     * 3.5.1   2018-07-05 [1] local                           
-#>    ngstk       * 0.2.2.3 2018-11-17 [1] local                           
+#>    ngstk       * 0.2.2.4 2018-11-17 [1] Github (JhuangLab/ngstk@2548f83)
 #>    optparse      1.6.0   2018-06-17 [1] CRAN (R 3.5.0)                  
 #>    pacman      * 0.5.0   2018-10-22 [1] CRAN (R 3.5.0)                  
 #>  P parallel      3.5.1   2018-07-05 [1] local                           
@@ -905,28 +897,28 @@ rtime_stamp -e "extra_flag=c('*')"
 
 rtime_stamp -h
 #> [[1]]
-#> [1] "2018_11_17_19_31_33_" "2018_11_17_19_31_"    "2018_11_17_19_"      
+#> [1] "2018_11_17_22_50_12_" "2018_11_17_22_50_"    "2018_11_17_22_"      
 #> [4] "2018_11_17_"          "2018_11_"             "2018_"               
 #> 
 #> [[2]]
-#> [1] "2018-11-17-19-31-33-" "2018-11-17-19-31-"    "2018-11-17-19-"      
+#> [1] "2018-11-17-22-50-12-" "2018-11-17-22-50-"    "2018-11-17-22-"      
 #> [4] "2018-11-17-"          "2018-11-"             "2018-"               
 #> 
 #> [[3]]
-#> [1] "2018/11/17/19/31/33/" "2018/11/17/19/31/"    "2018/11/17/19/"      
+#> [1] "2018/11/17/22/50/12/" "2018/11/17/22/50/"    "2018/11/17/22/"      
 #> [4] "2018/11/17/"          "2018/11/"             "2018/"               
 #> 
 #> [[4]]
-#> [1] "2018@11@17@19@31@33@" "2018@11@17@19@31@"    "2018@11@17@19@"      
+#> [1] "2018@11@17@22@50@12@" "2018@11@17@22@50@"    "2018@11@17@22@"      
 #> [4] "2018@11@17@"          "2018@11@"             "2018@"               
 #> 
-#> 2018_11_17_19_31_34_
-#> 2018_11_17_19_31_
-#> 2018_11_17_19_
+#> 2018_11_17_22_50_13_
+#> 2018_11_17_22_50_
+#> 2018_11_17_22_
 #> 2018_11_17_
 #> 2018_11_
 #> 2018_
-#> 2018_11_17_19_31_34_
+#> 2018_11_17_22_50_13_
 #> [[1]]
 #> [1] "2018_17"
 #> 
@@ -940,11 +932,11 @@ rtime_stamp -h
 #> [1] "2018@17"
 #> 
 #> [[1]]
-#> [1] "2018_11_17_19_31_35_" "2018_11_17_19_31_"    "2018_11_17_19_"      
+#> [1] "2018_11_17_22_50_14_" "2018_11_17_22_50_"    "2018_11_17_22_"      
 #> [4] "2018_11_17_"          "2018_11_"             "2018_"               
 #> 
 #> [[2]]
-#> [1] "2018*11*17*19*31*35*" "2018*11*17*19*31*"    "2018*11*17*19*"      
+#> [1] "2018*11*17*22*50*14*" "2018*11*17*22*50*"    "2018*11*17*22*"      
 #> [4] "2018*11*17*"          "2018*11*"             "2018*"               
 #> 
 #> Description:
@@ -983,11 +975,11 @@ rtime_stamp -h
 ./bin/ranystr -l 30
 
 ./bin/ranystr -l 20 -n 3
-#> LYQ3GgChnLwiMN3nn4SP
-#> eugWOhLeFaFZzwULx7Xvl3Lrm3g3Eu
-#> Go4fYtS2839dLj9aHbP3
-#> cLgYY6H7obR6wnzM9YUC
-#> SRvA3g7pQcgnKl3DsH0z
+#> UnHysWEDkaqDsWE0xW7Z
+#> Vw61Zwck8WzsquXlmPX134Qmec7ehp
+#> FftocIUgArDT5o8K77Fq
+#> kNclR3FdmxUGxALDqd1E
+#> HsOXKVMZjDcpGpLnV066
 ```
 
 ``` bash
@@ -1016,6 +1008,51 @@ ranystr -h
 #>                R function (input param 'x') to process the returned colors or length [e.g. function(x){return(x[[2]])} or x[[2]]].
 #>  -e EXTRA, --extra=EXTRA
 #>                Extra parameters [...].
+#>  -d, --doc
+#>                Print functions document
+#>  -h, --help
+#>                Show this help message and exit
+```
+
+``` bash
+# Collect system.files("extdata", "bin", package = "ngstk")
+# multiple packages (i.e. ngstk,configr) 
+rbin ngstk
+
+rbin --destdir /tmp/path ngstk
+
+rbin -h
+#> Copying ngstk bin/ demo_bin.sh to /Users/ljf/.ngstk/bin
+#> Please set /Users/ljf/.ngstk/bin in your PATH to use the bin files.
+#> Linux/Mac OS X: echo 'export PATH=$PATH:/Users/ljf/.ngstk/bin\n' >> ~/.bashrc
+#> R users: echo 'Sys.setenv(PATH="/usr/local/Cellar/hugo/0.48/bin:/Users/ljf/Bioinfo/miniconda3/bin:/usr/local/Cellar/gnu-sed/4.4/bin:/Library/Frameworks/R.framework/Versions/3.5/Resources/library/ngstk/extdata/tools/rbash:/Users/ljf/Bioinfo/spack/bin:/Users/ljf/Bioinfo/miniconda3/bin:/usr/local/Cellar/gnu-sed/4.4/bin:/Library/Frameworks/R.framework/Versions/3.5/Resources/library/ngstk/extdata/tools/rbash:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/go/bin:/opt/X11/bin:/Users/ljf/.ngstk/bin")\n' >> ~/.Rprofile
+#> ngstk.demo_bin.sh 
+#>              TRUE 
+#> Copying ngstk bin/ demo_bin.sh to /private/tmp/path
+#> Please set /private/tmp/path in your PATH to use the bin files.
+#> Linux/Mac OS X: echo 'export PATH=$PATH:/private/tmp/path\n' >> ~/.bashrc
+#> R users: echo 'Sys.setenv(PATH="/usr/local/Cellar/hugo/0.48/bin:/Users/ljf/Bioinfo/miniconda3/bin:/usr/local/Cellar/gnu-sed/4.4/bin:/Library/Frameworks/R.framework/Versions/3.5/Resources/library/ngstk/extdata/tools/rbash:/Users/ljf/Bioinfo/spack/bin:/Users/ljf/Bioinfo/miniconda3/bin:/usr/local/Cellar/gnu-sed/4.4/bin:/Library/Frameworks/R.framework/Versions/3.5/Resources/library/ngstk/extdata/tools/rbash:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/go/bin:/opt/X11/bin:/private/tmp/path")\n' >> ~/.Rprofile
+#> ngstk.demo_bin.sh 
+#>              TRUE 
+#> Description:
+#>  rbin is an R-based tool to collect R packages bin files.
+#> 
+#> Usage: 
+#>  /usr/local/bin/rbin [options] [params]
+#> 
+#> Options:
+#>  -v, --verbose
+#>                Print extra output [default FALSE]
+#>  -f FUNC, --func=FUNC
+#>                Index or name of used function [e.g. ngstk::bin (1)].
+#>  -c PKGS, --pkgs=PKGS
+#>                Package names used to copy inst/bin directory files to PATH.
+#>  --destdir=DESTDIR
+#>                Destination directory to store the inst/bin files [~/.ngstk/bin].
+#>  -e EXTRA, --extra=EXTRA
+#>                Extra parameters [e.g. extra.list=list(key='value')].
+#>  -r RFUNC, --rfunc=RFUNC
+#>                R function (input param 'x') to process the parsed configuation file [e.g. function(x){return(x[[1]])} or x[[1]] ].
 #>  -d, --doc
 #>                Print functions document
 #>  -h, --help

@@ -56,16 +56,19 @@ We proposed that using [node](https://nodejs.org/en/) to distribute the bioinfor
 
 **Command line scripts supported now:**
 
-- rdeps: Install `ngsjs` required R packages
-- rsession: Get output of `sessionInfo()` and `sessioninfo::session\_info()`
-- rinstall: Install R packages and [BioInstaller](https://github.com/ngsjs/BioInstaller) resources using `install.packages()` and R packages `devtools`, `BiocManager` and `BioInstaller`
-- rbashful: Using the GO program [bashful](https://github.com/wagoodman/bashful), yaml and toml and R scripts to stitch together commands and bash snippits and run them with a bit of style
-- rconfig: Using the R package `configr` to parse and generate json, ini, yaml, and toml format configuration files
-- rclrs: Using the R package `ngstk` to generate colors for visulization using a theme key
-- rmv: Using the R package `ngstk` to format the file names.
-- ranystr: Using the R package `stringi` generate any counts and any length random strings (e.g. Ies1y7fpgMVjsAyBAtTT)
-- rtime_stamp: Using the R package `ngstk` generate time stamp (e.g. 2018_11_15_22_43_25_, 2018/11/15/, 2018/11/15/22/).
-- rdownload: Using the R package `ngstk` to parallel download URLs with logs
+tool | function
+---|---
+rdeps | Getting all `ngsjs` required R packages
+rsession | `sessionInfo()` and `sessioninfo::session\_info()`
+rinstall | Install R packages and [BioInstaller](https://github.com/ngsjs/BioInstaller) resources using `install.packages()` and R packages `devtools`, `BiocManager` and `BioInstaller`
+rbashful | Using the GO program [bashful](https://github.com/wagoodman/bashful), yaml and toml and R scripts to stitch together commands and bash snippits and run them with a bit of style
+rconfig | Parsing and generating json, ini, yaml, and toml format configuration files
+rclrs | Generating colors for visulization using a theme key
+rmv | Formating the file names.
+ranystr | Generating any counts and any length random strings (e.g. Ies1y7fpgMVjsAyBAtTT)
+rtime_stamp | Generating time stamp (e.g. 2018_11_15_22_43_25_, 2018/11/15/, 2018/11/15/22/).
+rdownload | Parallel download URLs with logs
+rbin | Collecting R packages inst/bin files to a directory, e.g. PATH
 
 We are collecting the CWL language created workflows and publish on the [npm](https://www.npmjs.com/): 
 
@@ -380,6 +383,16 @@ rtime_stamp -h
 ```
 ```{bash}
 ranystr -h
+```
+
+```{bash}
+# Collect system.files("extdata", "bin", package = "ngstk")
+# multiple packages (i.e. ngstk,configr) 
+rbin ngstk
+
+rbin --destdir /tmp/path ngstk
+
+rbin -h
 ```
 
 ## How to contribute?
