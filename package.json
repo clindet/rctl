@@ -1,6 +1,6 @@
 {
   "name": "ngsjs",
-  "version": "0.1.6",
+  "version": "0.1.6-3",
   "description": "A set of command line tools, NGS data analysis workflows [WDL, Nextflow, Snakemake, and Bpipe], and R shiny plugins/R markdown document for exploring next-generation sequencing data.",
   "main": "index.js",
   "repository": "https://github.com/ngsjs/ngsjs.git",
@@ -37,9 +37,6 @@
     "eslint-plugin-flowtype": "^3.2.0",
     "eslint-plugin-jasmine": "^2.10.1"
   },
-  "files": [
-    "src/ngsjs"
-  ],
   "scripts": {
     "gadd": "yarn global add `pwd`",
     "test": "./scripts/test/start_cli_test"

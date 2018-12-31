@@ -9,10 +9,14 @@ pkgs <- c("devtools", "BiocManager",
           "sessioninfo", "glue", 
           "futile.logger", "stringi",
           "future")
-suppressMessages(if(!require('pacman')) install.packages('pacman'))
+tryCatch({if (!requireNamespace("pacman")) install.packages("pacman")}, warning = function(w) {
+  if (!requireNamespace("devtools"))
+    install.packages("devtools")
+  devtools::install_url("https://cran.r-project.org/src/contrib/Archive/pacman/pacman_0.4.6.tar.gz")
+})
 suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
 pkgs <- c(pkgs, "configr", "ngstk", "BioInstaller", "ngsjs")
-suppressMessages(devtools::install_github("ngsjs/ngsjs/src/ngsjs"))
+suppressMessages(devtools::install_github("ngsjs/ngsjs/src/ngsjs", upgrade = "never"))
 
 flog.info("All basic dependences (R packages) were resolved.")
 flog.info(paste0(pkgs, collapse = ", "))

@@ -1,6 +1,6 @@
 # ngsjs 0.1.6 ChangeLog
 
-## 2018-11, Version 0.1.6 (Current)
+## 2018-11-17, Version 0.1.6
 
 **New scripts:**  
 
@@ -15,3 +15,11 @@
 **Minor bug fix:**
 
 - fix `rdownload` not work
+
+## 2018-11-19, Version 0.1.6-1
+
+**Minor bug fix:**
+
+- delete package.json files
+- set `rdeps` devtools upgrade = "never"
+

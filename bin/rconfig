@@ -10,7 +10,7 @@ pkgs <- c("ngstk", "configr")
 suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
 option_list <- list(
   make_option(c("-v", "--verbose"), action = "store_true", default = FALSE, help = "Print extra output [default FALSE]"), 
-  make_option(c("-f", "--func"), help = "Index or name of used function [e.g. configr::read.config (1), configr::fetch.config (2), configr::write.config (3)].", 
+  make_option(c("-f", "--func"), help = "Index or name of used function [e.g. configr::read.config (1), configr::fetch.config (2), configr::write.config (3), configr::get.config.type (4)].", 
               default = "configr::read.config"),
   make_option(c("-c", "--cfg"), help = "Input or output configuationo file.", default = ""), 
   make_option(c("-e", "--extra"), help = "Extra parameters [e.g. extra.list=list(key='value')].", default = ""),
@@ -53,7 +53,8 @@ if (opt$help) {
     }
     eval(parse(text = cmd_text))
     
-    predefined_funcs <- list("1"="configr::read.config", "2"="configr::fetch.config", "2"="configr::write.config") 
+    predefined_funcs <- list("1"="configr::read.config", "2"="configr::fetch.config", "3"="configr::write.config", 
+    "4"="configr::get.config.type") 
     if (opt[["func"]] %in% names(predefined_funcs)) {
       predefined_func <- predefined_funcs[[ opt[["func"]] ]]
       if (length(grep("::|:::", opt[["func"]])) > 0) {
