@@ -86,4 +86,4 @@ packrat/lib*/
 # r pkg
 src/*.Rcheck
 src/*.tar.gz
-src/ngsjs.Rcheck
+src/rctl.Rcheck

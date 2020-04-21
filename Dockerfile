@@ -3,7 +3,7 @@ FROM bioinstaller/bioinstaller
 ## This handle reaches Jianfeng
 MAINTAINER "Jianfeng Li" lee_jianfeng@life2cloud.com
 
-Add  . /tmp/ngsjs
+Add  . /tmp/rctl
 
 RUN su opencpu \
     && /bin/bash \
@@ -16,8 +16,8 @@ RUN su opencpu \
     && npm install -g npm \
     && npm install -g yarn \
     && echo 'export PATH=$PATH:~/.yarn/bin/\n' >> /etc/profile \
-    && yarn global add /tmp/ngsjs \
-    && rm -rf /tmp/ngsjs\
+    && yarn global add /tmp/rctl \
+    && rm -rf /tmp/rctl\
     && rdeps
 
-CMD runuser -s /bin/bash -l opencpu -c '. /etc/profile; ngsjs'
+CMD runuser -s /bin/bash -l opencpu -c '. /etc/profile; rctl'

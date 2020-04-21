@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-workdir=~/Documents/repositories/ljf/github/ngsjs/tests/rbashful/rnaseq_splicing
+workdir=~/Documents/repositories/ljf/github/rctl/tests/rbashful/rnaseq_splicing
 
 id=reffa
 # Parse the bashful YAML file (Output cli.parsed.yaml) 

@@ -1,6 +1,6 @@
 #! /usr/bin/env Rscript
 
-# yarn global add ngsjs
+# yarn global add rctl
 # system("rdeps")
 pkgs <- c("stringi", "configr")
 pacman::p_load(pkgs, character.only = TRUE)

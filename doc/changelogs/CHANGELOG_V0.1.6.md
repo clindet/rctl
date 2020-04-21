@@ -1,4 +1,4 @@
-# ngsjs 0.1.6 ChangeLog
+# rctl 0.1.6 ChangeLog
 
 ## 2018-11-17, Version 0.1.6
 
@@ -9,7 +9,7 @@
 **New features:**
 
 - prettify command line default ouput.
-- add subcommands description in `./bin/ngsjs` 
+- add subcommands description in `./bin/rctl` 
 - support `bin/rbin` to collect R packages bin files
 
 **Minor bug fix:**

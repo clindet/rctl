@@ -17,7 +17,7 @@ build2:
 
 install:
 	cd ..;\
-    Rscript -e "devtools::install('ngsjs')"
+    Rscript -e "devtools::install('rctl')"
 
 check: build
 	cd ..;\

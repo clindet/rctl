@@ -1,4 +1,4 @@
-# ngsjs 0.1.4 ChangeLog
+# rctl 0.1.4 ChangeLog
 
 ## 2018-11-11, Version 0.1.4
 

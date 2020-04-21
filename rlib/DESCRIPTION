@@ -1,21 +1,21 @@
-Package: ngsjs
+Package: rctl
 Type: Package
-Title: Only For Ngsjs Command Line Tools Dependences.
+Title: Only For rctl Command Line Tools Dependences.
 Version: 0.0.2
 Authors@R: person("Jianfeng", "Li", email = "lee_jianfeng@sjtu.edu.cn", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-2349-208X"))
 Description:
-   Can be used to install all ngsjs command line tools required packages (CRAN, bioconductor and GitHub). 
+   Can be used to install all rctl command line tools required packages (CRAN, bioconductor and GitHub). 
 Depends:
     R (>= 3.3.0)
-URL: https://github.com/ngsjs/ngsjs
-BugReports: https://github.com/ngsjs/ngsjs/issues
+URL: https://github.com/openanno/rctl
+BugReports: https://github.com/openanno/rctl/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
-  configr (>= 0.3.4.1),
-  BioInstaller (>= 0.3.6.3001),
-  ngstk (>= 0.2.2.4)
+  configr,
+  BioInstaller,
+  ngstk
 Remotes:
   Miachol/configr,
   JhuangLab/BioInstaller,

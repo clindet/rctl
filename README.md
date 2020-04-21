@@ -2,31 +2,15 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <p align="center">
-  <a href="https://github/ngsjs/ngsjs">
-    <img
-      alt="ngsjs"
-      src="doc/images/ngsjs-logo.svg"
-      width="400"
-    />
-  </a>
+
+<a href="https://www.npmjs.com/package/rctl"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Life cycle: experimental">
+<a href="https://npmcharts.com/compare/rctl?minimal=true"><img src="https://img.shields.io/npm/dm/rctl.svg" alt="Downloads"></a>
+<a href="https://www.npmjs.com/package/rctl"><img src="https://img.shields.io/npm/v/rctl.svg" alt="Version"></a>
+<a href="https://www.npmjs.com/package/rctl"><img src="https://img.shields.io/npm/l/rctl.svg" alt="License"></a>
+
 </p>
 
-<p align="center">
-  <a href="https://www.npmjs.com/package/ngsjs"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Life cycle: experimental">
-  <a href="https://circleci.com/gh/ngsjs/ngsjs/tree/master"><img src="https://img.shields.io/circleci/project/github/ngsjs/ngsjs/master.svg" alt="Build Status"></a>
-  <a href="https://npmcharts.com/compare/ngsjs?minimal=true"><img src="https://img.shields.io/npm/dm/ngsjs.svg" alt="Downloads"></a>
-  <a href="https://www.npmjs.com/package/ngsjs"><img src="https://img.shields.io/npm/v/ngsjs.svg" alt="Version"></a>
-  <a href="https://www.npmjs.com/package/ngsjs"><img src="https://img.shields.io/npm/l/ngsjs.svg" alt="License"></a>
-</p>
-
-[ngsjs](https://github.com/ngsjs/ngsjs) is a set of command line tools,
-NGS data analysis workflows \[[WDL](https://github.com/openwdl/wdl),
-[Nextflow](https://www.nextflow.io/),
-[snakemake](https://snakemake.readthedocs.io/en/stable/), and
-[bpipe](https://github.com/ssadedin/bpipe)\], and R shiny plugins/R
-markdown document for exploring next-generation sequencing data.
-
-# ngsjs
+# rctl
 
 Now, there are several difficulties for next-generation sequencing (NGS)
 data analysis projects that needs to be solved:
@@ -44,73 +28,43 @@ data analysis projects that needs to be solved:
   - The readability and reusable will also be decreased when massive
     Python and R codes mixed with the workflows language codes.
 
-This is an experimental project to providing a set of tools for the
-exploring next-generation sequencing (NGS) data. We aim to integrate and
-develop command line tools, NGS data analysis workflows
-\[[WDL](https://github.com/openwdl/wdl),
-[Nextflow](https://www.nextflow.io/),
-[snakemake](https://snakemake.readthedocs.io/en/stable/), and
-[bpipe](https://github.com/ssadedin/bpipe)\], and R shiny plugins/R
-markdown document.
+This project is part of [openanno](https://github.com/openanno), and aim
+to integrate and develop command line tools based on R and JavaScript
+ecosystem.
 
 <p align="center">
-  <img 
+
+<img 
       alt="Best practice of reproducible NGS data analysis projects"
-      src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/ngsjs/reproducible_NGS_data_analysis_projects_best_practice.jpg"
+      src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/rctl/reproducible_NGS_data_analysis_projects_best_practice.jpg"
   />
+
 </p>
 
 We proposed that using [node](https://nodejs.org/en/) to distribute the
 bioinformatics data analysis required workflows (e.g [Common workflow
-language (CWL)](https://www.commonwl.org/)) and user created command
-line scripts in data analysis process. The creation, update and upload
-of a node package are very simple. Well-tested and high-performance
-distribution tools of node packages, such as
-[npm](https://www.npmjs.com/) and [yarn](https://www.yarnpkg.com), are
-providing the service for more than 831,195 node packages.
+language (CWL)](https://www.commonwl.org/)) or the command line scripts
+that created by users. The creation, update and upload of a node package
+are very simple. Well-tested and high-performance distribution tools of
+node packages, such as [npm](https://www.npmjs.com/) and
+[yarn](https://www.yarnpkg.com), are providing the service for more than
+1,264,413 packages.
 
-**Command line scripts supported
-now:**
+**Command line scripts supported now:**
 
-| tool         | function                                                                                                                                                                         |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| rdeps        | Getting all `ngsjs` required R packages                                                                                                                                          |
-| rsession     | `sessionInfo()` and `sessioninfo::session\_info()`                                                                                                                               |
-| rinstall     | Install R packages and [BioInstaller](https://github.com/ngsjs/BioInstaller) resources using `install.packages()` and R packages `devtools`, `BiocManager` and `BioInstaller`    |
-| rbashful     | Using the GO program [bashful](https://github.com/wagoodman/bashful), yaml and toml and R scripts to stitch together commands and bash snippits and run them with a bit of style |
-| rconfig      | Parsing and generating json, ini, yaml, and toml format configuration files                                                                                                      |
-| rclrs        | Generating colors for visulization using a theme key                                                                                                                             |
-| rmv          | Formating the file names.                                                                                                                                                        |
-| ranystr      | Generating any counts and any length random strings (e.g. Ies1y7fpgMVjsAyBAtTT)                                                                                                  |
-| rtime\_stamp | Generating time stamp (e.g. 2018\_11\_15\_22\_43\_25\_, 2018/11/15/, 2018/11/15/22/).                                                                                            |
-| rdownload    | Parallel download URLs with logs                                                                                                                                                 |
-| rbin         | Collecting R packages inst/bin files to a directory, e.g. PATH                                                                                                                   |
-
-We are collecting the CWL language created workflows and publish on the
-[npm](https://www.npmjs.com/):
-
-  - [ngsjs-wkfl-wdl](https://github.com/ngsjs/ngsjs-wkfl-wdl)
-  - [ngsjs-wkfl-nextflow](https://github.com/ngsjs/ngsjs-wkfl-nextflow)
-  - [ngsjs-wkfl-snakemake](https://github.com/ngsjs/ngsjs-wkfl-snakemake)
-  - [ngsjs-wkfl-bpipe](https://github.com/ngsjs/ngsjs-wkfl-bpipe)
-
-Besides, we are developing a framework to integrate various data
-analysis workflows and command line scripts:
-
-  - rbashful: A ngsjs command line tool to dynamically render env.toml
-    and cli.yaml for a unified downstream analysis environment shared
-    between all integrated tools, workflows, scripts.
-  - cli.yaml: Process controller with the
-    [bashful](https://github.com/wagoodman/bashful) style.
-  - env.toml: Store the fields and values of input and output
-    parameters; the core command line commands indexed by unique keys.
-  - others
-
-## Requirements
-
-  - [node](https://nodejs.org/en/)
-  - [R](https://cran.r-project.org/)
-  - [GO](https://golang.org/)
+| tool         | function                                                                                                                                                                     |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| rdeps        | Getting all `rctl` required R packages                                                                                                                                       |
+| rsession     | `sessionInfo()` and `sessioninfo::session\_info()`                                                                                                                           |
+| rinstall     | Install R packages and [BioInstaller](https://github.com/rctl/BioInstaller) resources using `install.packages()` and R packages `devtools`, `BiocManager` and `BioInstaller` |
+| rconfig      | Parsing and generating json, ini, yaml, and toml format configuration files                                                                                                  |
+| rbashful     | run bashful                                                                                                                                                                  |
+| rclrs        | Generating colors for visulization using a theme key                                                                                                                         |
+| rmv          | Formating the file names.                                                                                                                                                    |
+| ranystr      | Generating any counts and any length random strings (e.g. Ies1y7fpgMVjsAyBAtTT)                                                                                              |
+| rtime\_stamp | Generating time stamp (e.g. 2018\_11\_15\_22\_43\_25\_, 2018/11/15/, 2018/11/15/22/).                                                                                        |
+| rdownload    | Parallel download URLs with logs                                                                                                                                             |
+| rbin         | Collecting R packages inst/bin files to a directory, e.g. PATH                                                                                                               |
 
 ### R packages
 
@@ -129,77 +83,70 @@ analysis workflows and command line scripts:
 
 ## Installation
 
-You need to install the [node](https://nodejs.org/en/),
-[R](https://cran.r-project.org/) and [GO](https://golang.org/) for
-running all [ngsjs](https://github.com/ngsjs/ngsjs) executable files.
-
 ``` bash
 # Use conda to manage the env
 conda install go nodejs \
 echo 'export NODE_PATH="/path/miniconda2/lib/node_modules/"\n' >> ~/.bashrc \
-&& npm install -g npm \
 && npm install -g yarn \
 && echo 'export PATH=$PATH:~/.yarn/bin/\n' >> ~/.bashrc
 
 # Other see https://nodejs.org/en/download/package-manager/
 # For: Ubuntu
 apt update
-apt install -y npm golang
+apt install -y npm
 
 # For MacOS
-brew install node go
+brew install node
 ```
 
 ``` bash
-npm install -g ngsjs
+npm install -g rctl
 # or
-yarn global add ngsjs
+yarn global add rctl
 
-# If you not to globaly install ngsjs 
+# If you not to globaly install rctl 
 # You need to set the PATH
-echo "export NGSJS_ROOT=/path/node_modules/nodejs" >> ~/.bashrc
-echo "export PATH=$PATH:${NGSJS_ROOT}/bin" >> ~/.bashrc
+echo "export rctl_ROOT=/path/node_modules/nodejs" >> ~/.bashrc
+echo "export PATH=$PATH:${rctl_ROOT}/bin" >> ~/.bashrc
 
 # Current dir is /path
-npm install ngsjs
+npm install rctl
 # or
-yarn add ngsjs
+yarn add rctl
 ```
 
 ## Usage
 
-Before try your `ngsjs` command line tools, you need run the `rdeps`
-getting all the extra R packages required by `ngsjs`.
+Before try your `rctl` command line tools, you need run the `rdeps`
+getting all the extra R packages required by `rctl`.
 
 ``` bash
-# install the extra R packages used in `ngsjs` scripts
+# install the extra R packages used in `rctl` scripts
 rdeps
-#> INFO [2018-11-17 22:50:04] All basic dependences (R packages) were resolved.
-#> INFO [2018-11-17 22:50:04] devtools, BiocManager, sessioninfo, glue, futile.logger, stringi, future, configr, ngstk, BioInstaller, ngsjs
 ```
 
-Then you can use the `ngsjs` to run all sub-commands.
+Then you can use the `rctl` to run all sub-commands.
 
 ``` bash
-ngsjs -h
+rctl -h
 #> Description:
-#>  Main interface of ngsjs package tools. View the ngsjs homepage https://github.com/ngsjs/ngsjs for more detail.
+#>  Main interface of rctl package tools. View the rctl homepage https://github.com/openanno/rctl for more detail.
 #>  Now, total 11 subcmds are supported: rbashful rconfig rdeps rinstall rsession rclrs rmv rtime_stamp ranystr rdownload rbin.
 #> 
 #> Usage: 
-#>  /usr/local/bin/ngsjs [subcmds] [options]
-#>  /usr/local/bin/ngsjs rconfig -h
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rctl [subcmds] [options]
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rctl rconfig -h
 #> 
 #> Options:
 #>  -l, --list-all-subcmds
-#>                Print all supported subcmds of ngsjs.
+#>                Print all supported subcmds of rctl.
 #>  -h, --help
 #>                Show this help message and exit
 #> 
 #> Commands:
 #>  rbashful      An R-based tool to extend GO bashful tool for style bash commands
 #>  rconfig       An R-based tool to parse and generate configuration file
-#>  rdeps         An R-based tool to install ngsjs command line tools required R packages.
+#>  rdeps         An R-based tool to install rctl command line tools required R packages.
 #>  rinstall      An R-based tool to install or download R packages and other resources supported by R package BioInstaller.
 #>  rsession      An R-based tool to show R environment using sessionInfo() and sessioninfo::session_info()
 #>  rclrs         An R-based tool to generate colors for visulization using a theme key
@@ -213,8 +160,7 @@ ngsjs -h
 ### rbashful
 
 [bashful](https://github.com/wagoodman/bashful) is a GO program and used
-by `rbashful`, so you need to install it before use the
-`rbashful`.
+by `rbashful`, so you need to install it before use the `rbashful`.
 
 **Ubuntu/Debian**
 
@@ -239,8 +185,7 @@ brew install bashful
 
 or download a Darwin build from the releases page.
 
-**Go
-tools**
+**Go tools**
 
 ``` bash
 go get github.com/wagoodman/bashful
@@ -249,10 +194,10 @@ go get github.com/wagoodman/bashful
 ![](https://raw.githubusercontent.com/wagoodman/bashful/master/doc/demo.gif)
 
 View a `rbashful` demo
-[here](https://github.com/ngsjs/ngsjs/test/rbashful/rnaseq_splicing).
+[here](https://github.com/openanno/rctl/test/rbashful/rnaseq_splicing).
 
 ``` r
-source_dir <- "/Users/ljf/Documents/repositories/ljf/github/ngsjs/examples/rbashful/rnaseq_splicing/02_leafcutter_majiq"
+source_dir <- "/Users/apple/Documents/repositories/rctl/examples/rbashful/rnaseq_splicing/02_leafcutter_majiq"
 
 # View the cli.yaml
 cat(paste0(readLines(sprintf("%s/cli.yaml", source_dir)), 
@@ -326,7 +271,7 @@ cat(paste0(readLines(sprintf("%s/submit", source_dir)),
            collapse = "\n"), sep = "\n")
 #> #! /usr/bin/env Rscript
 #> 
-#> # yarn global add ngsjs
+#> # yarn global add rctl
 #> # system("rdeps")
 #> pkgs <- c("stringi", "configr")
 #> pacman::p_load(pkgs, character.only = TRUE)
@@ -365,8 +310,8 @@ rbashful -h
 #>  rbashful is an extend bashful tool for style bash commands.
 #> 
 #> Usage: 
-#>  /usr/local/bin/rbashful [options] [params]
-#>  /usr/local/bin/rbashful -c ${workdir}/cli.yaml --env-toml ${workdir}/env.toml --cmd-name default -v
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rbashful [options] [params]
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rbashful -c ${workdir}/cli.yaml --env-toml ${workdir}/env.toml --cmd-name default -v
 #> 
 #> Options:
 #>  -v, --verbose
@@ -415,67 +360,69 @@ rsession -f 2 -e 'include_base=TRUE'
 rsession -h
 #> ─ Session info ───────────────────────────────────────────────────────────────
 #>  setting  value                       
-#>  version  R version 3.5.1 (2018-07-02)
-#>  os       macOS  10.14.1              
+#>  version  R version 3.6.3 (2020-02-29)
+#>  os       macOS Catalina 10.15.4      
 #>  system   x86_64, darwin15.6.0        
 #>  ui       X11                         
 #>  language (EN)                        
 #>  collate  en_US.UTF-8                 
 #>  ctype    en_US.UTF-8                 
 #>  tz       Asia/Shanghai               
-#>  date     2018-11-17                  
+#>  date     2020-04-21                  
 #> 
 #> ─ Packages ───────────────────────────────────────────────────────────────────
 #>  ! package     * version date       lib source                          
-#>    assertthat    0.2.0   2017-04-11 [1] CRAN (R 3.5.0)                  
-#>    base        * 3.5.1   2018-07-05 [?] local                           
-#>    cli           1.0.1   2018-09-25 [1] CRAN (R 3.5.0)                  
-#>    codetools     0.2-15  2016-10-05 [1] CRAN (R 3.5.1)                  
-#>  P compiler      3.5.1   2018-07-05 [1] local                           
-#>    configr       0.3.4.1 2018-11-14 [1] Github (Miachol/configr@0df7b68)
-#>    crayon        1.3.4   2017-09-16 [1] CRAN (R 3.5.0)                  
-#>    data.table    1.11.8  2018-09-30 [1] CRAN (R 3.5.0)                  
-#>  P datasets    * 3.5.1   2018-07-05 [1] local                           
-#>    digest        0.6.18  2018-10-10 [1] CRAN (R 3.5.0)                  
-#>    future        1.10.0  2018-10-17 [1] CRAN (R 3.5.0)                  
-#>    getopt        1.20.2  2018-02-16 [1] CRAN (R 3.5.0)                  
-#>    globals       0.12.4  2018-10-11 [1] CRAN (R 3.5.0)                  
-#>    glue          1.3.0   2018-07-17 [1] CRAN (R 3.5.0)                  
-#>  P graphics    * 3.5.1   2018-07-05 [1] local                           
-#>  P grDevices   * 3.5.1   2018-07-05 [1] local                           
-#>    ini           0.3.1   2018-05-20 [1] CRAN (R 3.5.0)                  
-#>    jsonlite      1.5     2017-06-01 [1] CRAN (R 3.5.0)                  
-#>    listenv       0.7.0   2018-01-21 [1] CRAN (R 3.5.0)                  
-#>    magrittr      1.5     2014-11-22 [1] CRAN (R 3.5.0)                  
-#>  P methods     * 3.5.1   2018-07-05 [1] local                           
-#>    ngstk       * 0.2.2.4 2018-11-17 [1] Github (JhuangLab/ngstk@2548f83)
-#>    optparse      1.6.0   2018-06-17 [1] CRAN (R 3.5.0)                  
-#>    pacman      * 0.5.0   2018-10-22 [1] CRAN (R 3.5.0)                  
-#>  P parallel      3.5.1   2018-07-05 [1] local                           
-#>    Rcpp          1.0.0   2018-11-07 [1] CRAN (R 3.5.0)                  
-#>    RcppTOML      0.1.5   2018-10-31 [1] CRAN (R 3.5.0)                  
-#>    rstudioapi    0.8     2018-10-02 [1] CRAN (R 3.5.0)                  
-#>    sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.5.1)                  
-#>  P stats       * 3.5.1   2018-07-05 [1] local                           
-#>    stringi       1.2.4   2018-07-20 [1] CRAN (R 3.5.0)                  
-#>    stringr       1.3.1   2018-05-10 [1] CRAN (R 3.5.0)                  
-#>  P tools         3.5.1   2018-07-05 [1] local                           
-#>  P utils       * 3.5.1   2018-07-05 [1] local                           
-#>    withr         2.1.2   2018-03-15 [1] CRAN (R 3.5.0)                  
-#>    yaml          2.2.0   2018-07-25 [1] CRAN (R 3.5.0)                  
+#>    assertthat    0.2.1   2019-03-21 [1] CRAN (R 3.6.0)                  
+#>  R base        * 3.6.3   <NA>       [?] <NA>                            
+#>    cli           2.0.2   2020-02-28 [1] CRAN (R 3.6.3)                  
+#>  R codetools     0.2-16  <NA>       [2] <NA>                            
+#>  R compiler      3.6.3   <NA>       [2] <NA>                            
+#>    configr       0.3.4.1 2019-11-12 [1] Github (Miachol/configr@0df7b68)
+#>    crayon        1.3.4   2017-09-16 [1] CRAN (R 3.6.0)                  
+#>    data.table    1.12.8  2019-12-09 [1] CRAN (R 3.6.0)                  
+#>  R datasets    * 3.6.3   <NA>       [2] <NA>                            
+#>    digest        0.6.25  2020-02-23 [1] CRAN (R 3.6.3)                  
+#>    fansi         0.4.1   2020-01-08 [1] CRAN (R 3.6.0)                  
+#>    future        1.16.0  2020-01-16 [1] CRAN (R 3.6.3)                  
+#>    getopt        1.20.3  2019-03-22 [1] CRAN (R 3.6.0)                  
+#>    globals       0.12.5  2019-12-07 [1] CRAN (R 3.6.0)                  
+#>    glue          1.3.2   2020-03-12 [1] CRAN (R 3.6.3)                  
+#>  R graphics    * 3.6.3   <NA>       [2] <NA>                            
+#>  R grDevices   * 3.6.3   <NA>       [2] <NA>                            
+#>    ini           0.3.1   2018-05-20 [1] CRAN (R 3.6.0)                  
+#>    jsonlite      1.6.1   2020-02-02 [1] CRAN (R 3.6.3)                  
+#>    listenv       0.8.0   2019-12-05 [1] CRAN (R 3.6.0)                  
+#>    magrittr      1.5     2014-11-22 [1] CRAN (R 3.6.0)                  
+#>  R methods     * 3.6.3   <NA>       [2] <NA>                            
+#>    ngstk       * 0.2.3   2019-11-12 [1] Github (JhuangLab/ngstk@e5953e3)
+#>    optparse      1.6.4   2019-09-16 [1] CRAN (R 3.6.0)                  
+#>    pacman      * 0.5.1   2019-03-11 [1] CRAN (R 3.6.0)                  
+#>  R parallel      3.6.3   <NA>       [2] <NA>                            
+#>    Rcpp          1.0.4   2020-03-17 [1] CRAN (R 3.6.3)                  
+#>    RcppTOML      0.1.6   2019-06-25 [1] CRAN (R 3.6.0)                  
+#>    rstudioapi    0.11    2020-02-07 [1] CRAN (R 3.6.3)                  
+#>    sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.6.0)                  
+#>  R stats       * 3.6.3   <NA>       [2] <NA>                            
+#>    stringi       1.4.6   2020-02-17 [1] CRAN (R 3.6.3)                  
+#>    stringr       1.4.0   2019-02-10 [1] CRAN (R 3.6.0)                  
+#>  R tools         3.6.3   <NA>       [2] <NA>                            
+#>  R utils       * 3.6.3   <NA>       [2] <NA>                            
+#>    withr         2.1.2   2018-03-15 [1] CRAN (R 3.6.0)                  
+#>    yaml          2.2.1   2020-02-01 [1] CRAN (R 3.6.3)                  
 #> 
-#> [1] /Library/Frameworks/R.framework/Versions/3.5/Resources/library
+#> [1] /Users/apple/.R/library/3.6
+#> [2] /Library/Frameworks/R.framework/Versions/3.6/Resources/library
 #> 
-#>  P ── Loaded and on-disk path mismatch.
+#>  R ── Package was removed from disk.
 #> Description:
 #>  rsession is an R-based tool to show R environment using sessionInfo() and sessioninfo::session_info().
 #> 
 #> Usage: 
-#>  /usr/local/bin/rsession [options] [params]
-#>  /usr/local/bin/rsession
-#>  /usr/local/bin/rsession -f 1
-#>  /usr/local/bin/rsession -f 2 -e 'include_base=TRUE'
-#>  /usr/local/bin/rsession -d
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rsession [options] [params]
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rsession
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rsession -f 1
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rsession -f 2 -e 'include_base=TRUE'
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rsession -d
 #> 
 #> Options:
 #>  -v, --verbose
@@ -503,12 +450,12 @@ rinstall -d
 rinstall yaml
 rinstall -f 1 yaml
 
-# Install R package ngstk from GitHub ngsjs/ngstk (devtools::install_github)
-rinstall -f 2 ngsjs/ngstk
+# Install R package ngstk from GitHub rctl/ngstk (devtools::install_github)
+rinstall -f 2 rctl/ngstk
 
-# Install R package ngstk from GitHub ngsjs/ngstk (install.package)
+# Install R package ngstk from GitHub rctl/ngstk (install.package)
 # devtools::install_github with force = TRUE, ref = 'develop'
-rinstall -f 2 -e "force = TRUE, ref = 'develop'" ngsjs/ngstk
+rinstall -f 2 -e "force = TRUE, ref = 'develop'" rctl/ngstk
 
 # Install Bioconductor package ggtree (BiocManager)
 # BiocManager::install('ggtree')
@@ -539,16 +486,16 @@ rinstall -h
 #>  rinstall is an R-based tool to install or download R packages and other resources supported by R package BioInstaller.
 #> 
 #> Usage: 
-#>  /usr/local/bin/rinstall [options] [params]
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rinstall [options] [params]
 #>  Examples:
-#>  /usr/local/bin/rinstall -p ini
-#>  /usr/local/bin/rinstall ini,yaml
-#>  /usr/local/bin/rinstall -f 2 JhuangLab/ngstk
-#>  /usr/local/bin/rinstall -f 2 -e "force = TRUE, ref = 'develop'" JhuangLab/ngstk
-#>  /usr/local/bin/rinstall -f 3 ggtree; /usr/local/bin/rinstall rinstall -f 4 ggtree
-#>  /usr/local/bin/rinstall -f 5 -e "show.all.names=T"
-#>  /usr/local/bin/rinstall -f 5 -e "show.all.versions=T" db_annovar_avsnp
-#>  /usr/local/bin/rinstall -f 5 -e "download.dir='/tmp/avsnp', extra.list=list(buildver='hg19')" db_annovar_avsnp
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rinstall -p ini
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rinstall ini,yaml
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rinstall -f 2 JhuangLab/ngstk
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rinstall -f 2 -e "force = TRUE, ref = 'develop'" JhuangLab/ngstk
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rinstall -f 3 ggtree; /Users/apple/.config/yarn/global/node_modules/.bin/rinstall rinstall -f 4 ggtree
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rinstall -f 5 -e "show.all.names=T"
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rinstall -f 5 -e "show.all.versions=T" db_annovar_avsnp
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rinstall -f 5 -e "download.dir='/tmp/avsnp', extra.list=list(buildver='hg19')" db_annovar_avsnp
 #> 
 #> Options:
 #>  -v, --verbose
@@ -568,12 +515,12 @@ rinstall -h
 ### rdownload
 
 ``` bash
-rdownload "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg"
+rdownload "https://img.shields.io/npm/dm/rctl.svg,https://img.shields.io/npm/v/rctl.svg,https://img.shields.io/npm/l/rctl.svg"
 
-rdownload "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg" --destfiles "/tmp/ngsjs1.svg,ngsjs2.svg,ngsjs3.svg"
+rdownload "https://img.shields.io/npm/dm/rctl.svg,https://img.shields.io/npm/v/rctl.svg,https://img.shields.io/npm/l/rctl.svg" --destfiles "/tmp/rctl1.svg,rctl2.svg,rctl3.svg"
 
-rdownload --urls "https://img.shields.io/npm/dm/ngsjs.svg , https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg" \
-          --destfiles "ngsjs1.svg,ngsjs2.svg,ngsjs3.svg" --max-cores 1
+rdownload --urls "https://img.shields.io/npm/dm/rctl.svg , https://img.shields.io/npm/v/rctl.svg,https://img.shields.io/npm/l/rctl.svg" \
+          --destfiles "rctl1.svg,rctl2.svg,rctl3.svg" --max-cores 1
 ```
 
 ``` bash
@@ -582,14 +529,14 @@ rdownload -h
 #>  rdownload is an R-based tool to concurrently download urls with logging.
 #> 
 #> Usage: 
-#>  /usr/local/bin/rdownload [options] [params]
-#>  /usr/local/bin/rdownload "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg"
-#>  /usr/local/bin/rdownload "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg" \ 
-#>          --destfiles "ngsjs1.svg,ngsjs2.svg"
-#>  /usr/local/bin/rdownload --urls "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg" \ 
-#>          --destfiles "ngsjs1.svg,ngsjs2.svg"
-#>  /usr/local/bin/rdownload --urls "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg" \ 
-#>          --destfiles "ngsjs1.svg,ngsjs2.svg" --max-cores 1
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rdownload [options] [params]
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rdownload "https://img.shields.io/npm/dm/rctl.svg,https://img.shields.io/npm/l/rctl.svg"
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rdownload "https://img.shields.io/npm/dm/rctl.svg,https://img.shields.io/npm/l/rctl.svg" \ 
+#>          --destfiles "rctl1.svg,rctl2.svg"
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rdownload --urls "https://img.shields.io/npm/dm/rctl.svg,https://img.shields.io/npm/l/rctl.svg" \ 
+#>          --destfiles "rctl1.svg,rctl2.svg"
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rdownload --urls "https://img.shields.io/npm/dm/rctl.svg,https://img.shields.io/npm/l/rctl.svg" \ 
+#>          --destfiles "rctl1.svg,rctl2.svg" --max-cores 1
 #> 
 #> Options:
 #>  -v, --verbose
@@ -636,40 +583,31 @@ rconfig -f "configr::fetch.config" "https://raw.githubusercontent.com/Miachol/co
 
 rconfig -h
 #> trying URL 'https://raw.githubusercontent.com/Miachol/configr/master/inst/extdata/config.global.toml'
-#> Content type 'text/plain; charset=utf-8' length 303 bytes
-#> ==================================================
-#> downloaded 303 bytes
-#> 
-#> List of 7
-#>  $ global_vars: chr [1:4] "gvar_1" "gvar_2" "gvar_3" "gvar_5"
-#>  $ gvar_1     : chr "G1"
-#>  $ gvar_2     : chr "G2"
-#>  $ gvar_3     : chr "G3"
-#>  $ gvar_5     : chr "G5"
-#>  $ subsection :List of 4
-#>   ..$ value_1: chr "G1/value_1"
-#>   ..$ value_2: chr "G2/value_2"
-#>   ..$ value_3: chr "G3/value_3"
-#>   ..$ value_5: chr "G5/value_5"
-#>  $ title      : chr "Demo of global vars of configuration files"
+#> Error in download.file(link, config.download.tmp) : 
+#>   cannot open URL 'https://raw.githubusercontent.com/Miachol/configr/master/inst/extdata/config.global.toml'
+#> Calls: eval -> eval -> do.call -> <Anonymous> -> download.file
+#> In addition: Warning message:
+#> In download.file(link, config.download.tmp) :
+#>   URL 'https://raw.githubusercontent.com/Miachol/configr/master/inst/extdata/config.global.toml': status was 'Couldn't connect to server'
+#> Execution halted
 #> Description:
 #>  rconfig is an R-based tool to parse and generate configuration file.
 #> 
 #> Usage: 
-#>  /usr/local/bin/rconfig [options] [params]
-#>  /usr/local/bin/rconfig package.json
-#>  /usr/local/bin/rconfig -c package.json
-#>  /usr/local/bin/rconfig -f 2 test.json -e "config.dat=list(a=1, b=2), write.type='json'"
-#>  /usr/local/bin/rconfig -f "configr::write.config" test.json -e "config.dat=list(a=1, b=2), write.type='json'"
-#>  /usr/local/bin/rconfig -i test.json -r 'function(x){x[["a"]] + x[["b"]]}'
-#>  /usr/local/bin/rconfig -i test.json -r 'function(x){x[["a"]]}'
-#>  /usr/local/bin/rconfig -i test.json -r 'function(x){x[["b"]]}'
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rconfig [options] [params]
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rconfig package.json
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rconfig -c package.json
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rconfig -f 2 test.json -e "config.dat=list(a=1, b=2), write.type='json'"
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rconfig -f "configr::write.config" test.json -e "config.dat=list(a=1, b=2), write.type='json'"
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rconfig -i test.json -r 'function(x){x[["a"]] + x[["b"]]}'
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rconfig -i test.json -r 'function(x){x[["a"]]}'
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rconfig -i test.json -r 'function(x){x[["b"]]}'
 #> 
 #> Options:
 #>  -v, --verbose
 #>                Print extra output [default FALSE]
 #>  -f FUNC, --func=FUNC
-#>                Index or name of used function [e.g. configr::read.config (1), configr::fetch.config (2), configr::write.config (3)].
+#>                Index or name of used function [e.g. configr::read.config (1), configr::fetch.config (2), configr::write.config (3), configr::get.config.type (4)].
 #>  -c CFG, --cfg=CFG
 #>                Input or output configuationo file.
 #>  -e EXTRA, --extra=EXTRA
@@ -812,12 +750,12 @@ rclrs -h
 #>  rclrs is an R-based tool to generate colors for visulization using a theme key.
 #> 
 #> Usage: 
-#>  /usr/local/bin/rclrs [options] [params]
-#>  /usr/local/bin/rclrs default
-#>  /usr/local/bin/rclrs -t default
-#>  /usr/local/bin/rclrs -t default -r 'x[1]'
-#>  /usr/local/bin/rclrs -t red_blue
-#>  /usr/local/bin/rclrs --show-all-themes
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rclrs [options] [params]
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rclrs default
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rclrs -t default
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rclrs -t default -r 'x[1]'
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rclrs -t red_blue
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rclrs --show-all-themes
 #> 
 #> Options:
 #>  -v, --verbose
@@ -857,13 +795,13 @@ rmv -h
 #>  rmv is an R-based tool to format file names.
 #> 
 #> Usage: 
-#>  /usr/local/bin/rmv [options] [params]
-#>  /usr/local/bin/rmv "`ls`" -e "do.rename = FALSE, prefix = 'prefix', suffix = 'suffix'"
-#>  /usr/local/bin/rmv "`ls`" -e "do.rename = FALSE, replace = list(old =c('-', '__'), new = c('_', '_'))"
-#>  /usr/local/bin/rmv "`ls`" -e "do.rename = FALSE, toupper = TRUE"
-#>  /usr/local/bin/rmv "`ls`" -e "do.rename = FALSE, tolower = TRUE"
-#>  /usr/local/bin/rmv -e "files_dir = '.', pattern = '.*.txt', do.rename=F, replace=list(old='old', new='new')"
-#>  /usr/local/bin/rmv "`ls`" -e "do.rename=T, replace=list(old='old', new='new')"
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rmv [options] [params]
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rmv "`ls`" -e "do.rename = FALSE, prefix = 'prefix', suffix = 'suffix'"
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rmv "`ls`" -e "do.rename = FALSE, replace = list(old =c('-', '__'), new = c('_', '_'))"
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rmv "`ls`" -e "do.rename = FALSE, toupper = TRUE"
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rmv "`ls`" -e "do.rename = FALSE, tolower = TRUE"
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rmv -e "files_dir = '.', pattern = '.*.txt', do.rename=F, replace=list(old='old', new='new')"
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rmv "`ls`" -e "do.rename=T, replace=list(old='old', new='new')"
 #> 
 #> Options:
 #>  -v, --verbose
@@ -897,58 +835,58 @@ rtime_stamp -e "extra_flag=c('*')"
 
 rtime_stamp -h
 #> [[1]]
-#> [1] "2018_11_17_22_50_12_" "2018_11_17_22_50_"    "2018_11_17_22_"      
-#> [4] "2018_11_17_"          "2018_11_"             "2018_"               
+#> [1] "2020_04_21_20_06_47_" "2020_04_21_20_06_"    "2020_04_21_20_"      
+#> [4] "2020_04_21_"          "2020_04_"             "2020_"               
 #> 
 #> [[2]]
-#> [1] "2018-11-17-22-50-12-" "2018-11-17-22-50-"    "2018-11-17-22-"      
-#> [4] "2018-11-17-"          "2018-11-"             "2018-"               
+#> [1] "2020-04-21-20-06-47-" "2020-04-21-20-06-"    "2020-04-21-20-"      
+#> [4] "2020-04-21-"          "2020-04-"             "2020-"               
 #> 
 #> [[3]]
-#> [1] "2018/11/17/22/50/12/" "2018/11/17/22/50/"    "2018/11/17/22/"      
-#> [4] "2018/11/17/"          "2018/11/"             "2018/"               
+#> [1] "2020/04/21/20/06/47/" "2020/04/21/20/06/"    "2020/04/21/20/"      
+#> [4] "2020/04/21/"          "2020/04/"             "2020/"               
 #> 
 #> [[4]]
-#> [1] "2018@11@17@22@50@12@" "2018@11@17@22@50@"    "2018@11@17@22@"      
-#> [4] "2018@11@17@"          "2018@11@"             "2018@"               
+#> [1] "2020@04@21@20@06@47@" "2020@04@21@20@06@"    "2020@04@21@20@"      
+#> [4] "2020@04@21@"          "2020@04@"             "2020@"               
 #> 
-#> 2018_11_17_22_50_13_
-#> 2018_11_17_22_50_
-#> 2018_11_17_22_
-#> 2018_11_17_
-#> 2018_11_
-#> 2018_
-#> 2018_11_17_22_50_13_
+#> 2020_04_21_20_06_49_
+#> 2020_04_21_20_06_
+#> 2020_04_21_20_
+#> 2020_04_21_
+#> 2020_04_
+#> 2020_
+#> 2020_04_21_20_06_51_
 #> [[1]]
-#> [1] "2018_17"
+#> [1] "2020_21"
 #> 
 #> [[2]]
-#> [1] "2018-17"
+#> [1] "2020-21"
 #> 
 #> [[3]]
-#> [1] "2018/17"
+#> [1] "2020/21"
 #> 
 #> [[4]]
-#> [1] "2018@17"
+#> [1] "2020@21"
 #> 
 #> [[1]]
-#> [1] "2018_11_17_22_50_14_" "2018_11_17_22_50_"    "2018_11_17_22_"      
-#> [4] "2018_11_17_"          "2018_11_"             "2018_"               
+#> [1] "2020_04_21_20_06_53_" "2020_04_21_20_06_"    "2020_04_21_20_"      
+#> [4] "2020_04_21_"          "2020_04_"             "2020_"               
 #> 
 #> [[2]]
-#> [1] "2018*11*17*22*50*14*" "2018*11*17*22*50*"    "2018*11*17*22*"      
-#> [4] "2018*11*17*"          "2018*11*"             "2018*"               
+#> [1] "2020*04*21*20*06*53*" "2020*04*21*20*06*"    "2020*04*21*20*"      
+#> [4] "2020*04*21*"          "2020*04*"             "2020*"               
 #> 
 #> Description:
 #>  rtime_stamp is an R-based tool to generate time stamp.
 #> 
 #> Usage: 
-#>  /usr/local/bin/rtime_stamp [options] [params]
-#>  /usr/local/bin/rtime_stamp
-#>  /usr/local/bin/rtime_stamp -r 'x[[1]]'
-#>  /usr/local/bin/rtime_stamp -r 'x[[1]][1]'
-#>  /usr/local/bin/rtime_stamp -t '%Y_%d'
-#>  /usr/local/bin/rtime_stamp -e "extra_flat=c('-')"
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rtime_stamp [options] [params]
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rtime_stamp
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rtime_stamp -r 'x[[1]]'
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rtime_stamp -r 'x[[1]][1]'
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rtime_stamp -t '%Y_%d'
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rtime_stamp -e "extra_flat=c('-')"
 #> 
 #> Options:
 #>  -v, --verbose
@@ -975,11 +913,11 @@ rtime_stamp -h
 ./bin/ranystr -l 30
 
 ./bin/ranystr -l 20 -n 3
-#> UnHysWEDkaqDsWE0xW7Z
-#> Vw61Zwck8WzsquXlmPX134Qmec7ehp
-#> FftocIUgArDT5o8K77Fq
-#> kNclR3FdmxUGxALDqd1E
-#> HsOXKVMZjDcpGpLnV066
+#> B6LkGM4RYuXnkwu0ECwE
+#> G9q20T6T7pWuNp8YRjK6zOgbUAWyGh
+#> CNiG1JomKCZySyc6MZJZ
+#> lwpwBCEMnZAZiZbo9rB5
+#> WWfgOA50HVPCQs63jteL
 ```
 
 ``` bash
@@ -988,10 +926,10 @@ ranystr -h
 #>  ranystr is an R-based tool to generate any counts and any length random strings.
 #> 
 #> Usage: 
-#>  /usr/local/bin/ranystr [options] [params]
-#>  /usr/local/bin/ranystr
-#>  /usr/local/bin/ranystr -l 30
-#>  /usr/local/bin/ranystr -l 20 -n 3
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/ranystr [options] [params]
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/ranystr
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/ranystr -l 30
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/ranystr -l 20 -n 3
 #> 
 #> Options:
 #>  -v, --verbose
@@ -1022,23 +960,25 @@ rbin ngstk
 rbin --destdir /tmp/path ngstk
 
 rbin -h
-#> Copying ngstk bin/ demo_bin.sh to /Users/ljf/.ngstk/bin
-#> Please set /Users/ljf/.ngstk/bin in your PATH to use the bin files.
-#> Linux/Mac OS X: echo 'export PATH=$PATH:/Users/ljf/.ngstk/bin\n' >> ~/.bashrc
-#> R users: echo 'Sys.setenv(PATH="/usr/local/Cellar/hugo/0.48/bin:/Users/ljf/Bioinfo/miniconda3/bin:/usr/local/Cellar/gnu-sed/4.4/bin:/Library/Frameworks/R.framework/Versions/3.5/Resources/library/ngstk/extdata/tools/rbash:/Users/ljf/Bioinfo/spack/bin:/Users/ljf/Bioinfo/miniconda3/bin:/usr/local/Cellar/gnu-sed/4.4/bin:/Library/Frameworks/R.framework/Versions/3.5/Resources/library/ngstk/extdata/tools/rbash:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/go/bin:/opt/X11/bin:/Users/ljf/.ngstk/bin")\n' >> ~/.Rprofile
+#> Copying ngstk bin/ demo_bin.sh to /Users/apple/.ngstk/bin
+#> Please set /Users/apple/.ngstk/bin in your PATH to use the bin files.
+#> Linux/Mac OS X: echo 'export PATH=$PATH:/Users/apple/.ngstk/bin\n' >> ~/.bashrc
+#> R users: echo 'Sys.setenv(PATH="/usr/local/Cellar/spack/bin:/Users/apple/miniconda3/bin:/Users/apple/.yarn/bin:/Users/apple/.config/yarn/global/node_modules/.bin:/Users/apple/Documents/gopath/bin:/usr/local/Cellar/gnu-sed/4.7/bin:/usr/local/opt/gnu-sed/libexec/gnubin:/Users/apple/.go/bin:/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/Cellar/spack/bin:/usr/local/Cellar/modules/4.3.0/bin:/Users/apple/miniconda3/bin:/Users/apple/.yarn/bin:/Users/apple/.config/yarn/global/node_modules/.bin:/Users/apple/repositories/local/mac/go/bin:/usr/local/Cellar/gnu-sed/4.7/bin:/usr/local/opt/gnu-sed/libexec/gnubin:/Users/apple/.go/bin:/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/go/bin:/opt/X11/bin:/Users/apple/.ngstk/bin")\n' >> ~/.Rprofile
 #> ngstk.demo_bin.sh 
 #>              TRUE 
 #> Copying ngstk bin/ demo_bin.sh to /private/tmp/path
 #> Please set /private/tmp/path in your PATH to use the bin files.
 #> Linux/Mac OS X: echo 'export PATH=$PATH:/private/tmp/path\n' >> ~/.bashrc
-#> R users: echo 'Sys.setenv(PATH="/usr/local/Cellar/hugo/0.48/bin:/Users/ljf/Bioinfo/miniconda3/bin:/usr/local/Cellar/gnu-sed/4.4/bin:/Library/Frameworks/R.framework/Versions/3.5/Resources/library/ngstk/extdata/tools/rbash:/Users/ljf/Bioinfo/spack/bin:/Users/ljf/Bioinfo/miniconda3/bin:/usr/local/Cellar/gnu-sed/4.4/bin:/Library/Frameworks/R.framework/Versions/3.5/Resources/library/ngstk/extdata/tools/rbash:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/go/bin:/opt/X11/bin:/private/tmp/path")\n' >> ~/.Rprofile
+#> R users: echo 'Sys.setenv(PATH="/usr/local/Cellar/spack/bin:/Users/apple/miniconda3/bin:/Users/apple/.yarn/bin:/Users/apple/.config/yarn/global/node_modules/.bin:/Users/apple/Documents/gopath/bin:/usr/local/Cellar/gnu-sed/4.7/bin:/usr/local/opt/gnu-sed/libexec/gnubin:/Users/apple/.go/bin:/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/Cellar/spack/bin:/usr/local/Cellar/modules/4.3.0/bin:/Users/apple/miniconda3/bin:/Users/apple/.yarn/bin:/Users/apple/.config/yarn/global/node_modules/.bin:/Users/apple/repositories/local/mac/go/bin:/usr/local/Cellar/gnu-sed/4.7/bin:/usr/local/opt/gnu-sed/libexec/gnubin:/Users/apple/.go/bin:/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/go/bin:/opt/X11/bin:/private/tmp/path")\n' >> ~/.Rprofile
 #> ngstk.demo_bin.sh 
 #>              TRUE 
 #> Description:
 #>  rbin is an R-based tool to collect R packages bin files.
 #> 
 #> Usage: 
-#>  /usr/local/bin/rbin [options] [params]
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rbin [options] [params]
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rbin ngstk
+#>  /Users/apple/.config/yarn/global/node_modules/.bin/rbin --destdir /usr/local/bin/ ngstk
 #> 
 #> Options:
 #>  -v, --verbose
@@ -1047,7 +987,7 @@ rbin -h
 #>                Index or name of used function [e.g. ngstk::bin (1)].
 #>  -c PKGS, --pkgs=PKGS
 #>                Package names used to copy inst/bin directory files to PATH.
-#>  --destdir=DESTDIR
+#>  -o DESTDIR, --destdir=DESTDIR
 #>                Destination directory to store the inst/bin files [~/.ngstk/bin].
 #>  -e EXTRA, --extra=EXTRA
 #>                Extra parameters [e.g. extra.list=list(key='value')].
@@ -1061,8 +1001,8 @@ rbin -h
 
 ## How to contribute?
 
-Please fork the [GitHub ngsjs
-repository](https://github.com/ngsjs/ngsjs), modify it, and submit a
+Please fork the [GitHub rctl
+repository](https://github.com/openanno/rctl), modify it, and submit a
 pull request to us.
 
 ## Maintainer

@@ -2,7 +2,7 @@
 # Author: Jianfeng Li
 # Email: lee_jianfeng@sjtu.edu.cn
 # Year: 2018
-# Homepage: https://github.com/ngsjs/ngsjs
+# Homepage: https://github.com/openanno/rctl
 # License: MIT
 # Copyrights 2018 Jianfeng All Rights Reserved.
 suppressMessages(if(!require('pacman')) install.packages('pacman'))
@@ -27,10 +27,10 @@ description <- paste("\trdownload is an R-based tool to concurrently download ur
 usage <- paste(
                "",
                "%prog [options] [params]",
-               "%prog \"https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg\"",
-               "%prog \"https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg\" \\ \n\t\t\t--destfiles \"ngsjs1.svg,ngsjs2.svg\"",
-               "%prog --urls \"https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg\" \\ \n\t\t\t--destfiles \"ngsjs1.svg,ngsjs2.svg\"",
-               "%prog --urls \"https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg\" \\ \n\t\t\t--destfiles \"ngsjs1.svg,ngsjs2.svg\" --max-cores 1",
+               "%prog \"https://img.shields.io/npm/dm/rctl.svg,https://img.shields.io/npm/l/rctl.svg\"",
+               "%prog \"https://img.shields.io/npm/dm/rctl.svg,https://img.shields.io/npm/l/rctl.svg\" \\ \n\t\t\t--destfiles \"rctl1.svg,rctl2.svg\"",
+               "%prog --urls \"https://img.shields.io/npm/dm/rctl.svg,https://img.shields.io/npm/l/rctl.svg\" \\ \n\t\t\t--destfiles \"rctl1.svg,rctl2.svg\"",
+               "%prog --urls \"https://img.shields.io/npm/dm/rctl.svg,https://img.shields.io/npm/l/rctl.svg\" \\ \n\t\t\t--destfiles \"rctl1.svg,rctl2.svg\" --max-cores 1",
                 sep = "\n\t")
 opt_parser_obj <- opt_parser(option_list = option_list,
                         usage = usage, description = description) 

@@ -13,26 +13,13 @@ knitr::opts_chunk$set(
 ```
 
 <p align="center">
-  <a href="https://github/ngsjs/ngsjs">
-    <img
-      alt="ngsjs"
-      src="doc/images/ngsjs-logo.svg"
-      width="400"
-    />
-  </a>
+  <a href="https://www.npmjs.com/package/rctl"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Life cycle: experimental">
+  <a href="https://npmcharts.com/compare/rctl?minimal=true"><img src="https://img.shields.io/npm/dm/rctl.svg" alt="Downloads"></a>
+  <a href="https://www.npmjs.com/package/rctl"><img src="https://img.shields.io/npm/v/rctl.svg" alt="Version"></a>
+  <a href="https://www.npmjs.com/package/rctl"><img src="https://img.shields.io/npm/l/rctl.svg" alt="License"></a>
 </p>
 
-<p align="center">
-  <a href="https://www.npmjs.com/package/ngsjs"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Life cycle: experimental">
-  <a href="https://circleci.com/gh/ngsjs/ngsjs/tree/master"><img src="https://img.shields.io/circleci/project/github/ngsjs/ngsjs/master.svg" alt="Build Status"></a>
-  <a href="https://npmcharts.com/compare/ngsjs?minimal=true"><img src="https://img.shields.io/npm/dm/ngsjs.svg" alt="Downloads"></a>
-  <a href="https://www.npmjs.com/package/ngsjs"><img src="https://img.shields.io/npm/v/ngsjs.svg" alt="Version"></a>
-  <a href="https://www.npmjs.com/package/ngsjs"><img src="https://img.shields.io/npm/l/ngsjs.svg" alt="License"></a>
-</p>
-
-[ngsjs](https://github.com/ngsjs/ngsjs) is a set of command line tools, NGS data analysis workflows [[WDL](https://github.com/openwdl/wdl), [Nextflow](https://www.nextflow.io/), [snakemake](https://snakemake.readthedocs.io/en/stable/), and [bpipe](https://github.com/ssadedin/bpipe)], and R shiny plugins/R markdown document for exploring next-generation sequencing data.
-
-# ngsjs
+# rctl
 
 Now, there are several difficulties for next-generation sequencing (NGS) data analysis projects that needs to be solved:
 
@@ -43,52 +30,32 @@ Now, there are several difficulties for next-generation sequencing (NGS) data an
 - Reuse of workflows language codes (e.g. commands, input and output information) on other programming platform are still complicated.
 - The readability and reusable will also be decreased when massive Python and R codes mixed with the workflows language codes.
 
-This is an experimental project to providing a set of tools for the exploring next-generation sequencing (NGS) data. We aim to integrate and develop command line tools, NGS data analysis workflows [[WDL](https://github.com/openwdl/wdl), [Nextflow](https://www.nextflow.io/), [snakemake](https://snakemake.readthedocs.io/en/stable/), and [bpipe](https://github.com/ssadedin/bpipe)], and R shiny plugins/R markdown document.
+This project is part of [openanno](https://github.com/openanno), and aim to integrate and develop command line tools based on R and JavaScript ecosystem.
 
 <p align="center">
   <img 
       alt="Best practice of reproducible NGS data analysis projects"
-      src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/ngsjs/reproducible_NGS_data_analysis_projects_best_practice.jpg"
+      src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/rctl/reproducible_NGS_data_analysis_projects_best_practice.jpg"
   />
 </p>
 
-We proposed that using [node](https://nodejs.org/en/) to distribute the bioinformatics data analysis required workflows (e.g [Common workflow language (CWL) ](https://www.commonwl.org/)) and user created command line scripts in data analysis process. The creation, update and upload of a node package are very simple. Well-tested and high-performance distribution tools of node packages, such as [npm](https://www.npmjs.com/) and [yarn](https://www.yarnpkg.com), are providing the service for more than 831,195 node packages. 
+We proposed that using [node](https://nodejs.org/en/) to distribute the bioinformatics data analysis required workflows (e.g [Common workflow language (CWL) ](https://www.commonwl.org/)) or the command line scripts that created by users. The creation, update and upload of a node package are very simple. Well-tested and high-performance distribution tools of node packages, such as [npm](https://www.npmjs.com/) and [yarn](https://www.yarnpkg.com), are providing the service for more than 1,264,413 packages. 
 
 **Command line scripts supported now:**
 
 tool | function
 ---|---
-rdeps | Getting all `ngsjs` required R packages
+rdeps | Getting all `rctl` required R packages
 rsession | `sessionInfo()` and `sessioninfo::session\_info()`
-rinstall | Install R packages and [BioInstaller](https://github.com/ngsjs/BioInstaller) resources using `install.packages()` and R packages `devtools`, `BiocManager` and `BioInstaller`
-rbashful | Using the GO program [bashful](https://github.com/wagoodman/bashful), yaml and toml and R scripts to stitch together commands and bash snippits and run them with a bit of style
+rinstall | Install R packages and [BioInstaller](https://github.com/rctl/BioInstaller) resources using `install.packages()` and R packages `devtools`, `BiocManager` and `BioInstaller`
 rconfig | Parsing and generating json, ini, yaml, and toml format configuration files
+rbashful | run bashful 
 rclrs | Generating colors for visulization using a theme key
 rmv | Formating the file names.
 ranystr | Generating any counts and any length random strings (e.g. Ies1y7fpgMVjsAyBAtTT)
 rtime_stamp | Generating time stamp (e.g. 2018_11_15_22_43_25_, 2018/11/15/, 2018/11/15/22/).
 rdownload | Parallel download URLs with logs
 rbin | Collecting R packages inst/bin files to a directory, e.g. PATH
-
-We are collecting the CWL language created workflows and publish on the [npm](https://www.npmjs.com/): 
-
-- [ngsjs-wkfl-wdl](https://github.com/ngsjs/ngsjs-wkfl-wdl)
-- [ngsjs-wkfl-nextflow](https://github.com/ngsjs/ngsjs-wkfl-nextflow)
-- [ngsjs-wkfl-snakemake](https://github.com/ngsjs/ngsjs-wkfl-snakemake)
-- [ngsjs-wkfl-bpipe](https://github.com/ngsjs/ngsjs-wkfl-bpipe)
-
-Besides, we are developing a framework to integrate various data analysis workflows and command line scripts:
-
-- rbashful: A ngsjs command line tool to dynamically render env.toml and cli.yaml for a unified downstream analysis environment shared between all integrated tools, workflows, scripts.
-- cli.yaml: Process controller with the [bashful](https://github.com/wagoodman/bashful) style.
-- env.toml: Store the fields and values of input and output parameters; the core command line commands indexed by unique keys.
-- others
-
-## Requirements
-
-- [node](https://nodejs.org/en/)
-- [R](https://cran.r-project.org/)
-- [GO](https://golang.org/)
 
 ### R packages
 
@@ -107,54 +74,51 @@ Besides, we are developing a framework to integrate various data analysis workfl
 
 ## Installation
 
-You need to install the [node](https://nodejs.org/en/), [R](https://cran.r-project.org/) and [GO](https://golang.org/) for running all [ngsjs](https://github.com/ngsjs/ngsjs) executable files.
-
 ```{bash eval=FALSE}
 # Use conda to manage the env
 conda install go nodejs \
 echo 'export NODE_PATH="/path/miniconda2/lib/node_modules/"\n' >> ~/.bashrc \
-&& npm install -g npm \
 && npm install -g yarn \
 && echo 'export PATH=$PATH:~/.yarn/bin/\n' >> ~/.bashrc
 
 # Other see https://nodejs.org/en/download/package-manager/
 # For: Ubuntu
 apt update
-apt install -y npm golang
+apt install -y npm
 
 # For MacOS
-brew install node go
+brew install node
 ```
 
 ```{bash eval=FALSE}
-npm install -g ngsjs
+npm install -g rctl
 # or
-yarn global add ngsjs
+yarn global add rctl
 
-# If you not to globaly install ngsjs 
+# If you not to globaly install rctl 
 # You need to set the PATH
-echo "export NGSJS_ROOT=/path/node_modules/nodejs" >> ~/.bashrc
-echo "export PATH=$PATH:${NGSJS_ROOT}/bin" >> ~/.bashrc
+echo "export rctl_ROOT=/path/node_modules/nodejs" >> ~/.bashrc
+echo "export PATH=$PATH:${rctl_ROOT}/bin" >> ~/.bashrc
 
 # Current dir is /path
-npm install ngsjs
+npm install rctl
 # or
-yarn add ngsjs
+yarn add rctl
 ```
 
 ## Usage
 
-Before try your `ngsjs` command line tools, you need run the `rdeps`  getting all the extra R packages required by `ngsjs`.
+Before try your `rctl` command line tools, you need run the `rdeps`  getting all the extra R packages required by `rctl`.
 
-```{bash}
-# install the extra R packages used in `ngsjs` scripts
+```{bash eval=FALSE}
+# install the extra R packages used in `rctl` scripts
 rdeps
 ```
 
-Then you can use the `ngsjs` to run all sub-commands.
+Then you can use the `rctl` to run all sub-commands.
 
 ```{bash}
-ngsjs -h
+rctl -h
 ```
 
 ### rbashful
@@ -192,10 +156,10 @@ go get github.com/wagoodman/bashful
 
 ![](https://raw.githubusercontent.com/wagoodman/bashful/master/doc/demo.gif)
 
-View a `rbashful` demo [here](https://github.com/ngsjs/ngsjs/test/rbashful/rnaseq_splicing).
+View a `rbashful` demo [here](https://github.com/openanno/rctl/test/rbashful/rnaseq_splicing).
 
 ```{r}
-source_dir <- "/Users/ljf/Documents/repositories/ljf/github/ngsjs/examples/rbashful/rnaseq_splicing/02_leafcutter_majiq"
+source_dir <- "/Users/apple/Documents/repositories/rctl/examples/rbashful/rnaseq_splicing/02_leafcutter_majiq"
 
 # View the cli.yaml
 cat(paste0(readLines(sprintf("%s/cli.yaml", source_dir)), 
@@ -209,6 +173,7 @@ cat(paste0(readLines(sprintf("%s/env.toml", source_dir)),
 cat(paste0(readLines(sprintf("%s/submit", source_dir)), 
            collapse = "\n"), sep = "\n")
 ```
+
 ```{bash}
 rbashful -h
 ```
@@ -251,12 +216,12 @@ rinstall -d
 rinstall yaml
 rinstall -f 1 yaml
 
-# Install R package ngstk from GitHub ngsjs/ngstk (devtools::install_github)
-rinstall -f 2 ngsjs/ngstk
+# Install R package ngstk from GitHub rctl/ngstk (devtools::install_github)
+rinstall -f 2 rctl/ngstk
 
-# Install R package ngstk from GitHub ngsjs/ngstk (install.package)
+# Install R package ngstk from GitHub rctl/ngstk (install.package)
 # devtools::install_github with force = TRUE, ref = 'develop'
-rinstall -f 2 -e "force = TRUE, ref = 'develop'" ngsjs/ngstk
+rinstall -f 2 -e "force = TRUE, ref = 'develop'" rctl/ngstk
 
 # Install Bioconductor package ggtree (BiocManager)
 # BiocManager::install('ggtree')
@@ -287,12 +252,12 @@ rinstall -h
 ### rdownload
 
 ```{bash eval = FALSE}
-rdownload "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg"
+rdownload "https://img.shields.io/npm/dm/rctl.svg,https://img.shields.io/npm/v/rctl.svg,https://img.shields.io/npm/l/rctl.svg"
 
-rdownload "https://img.shields.io/npm/dm/ngsjs.svg,https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg" --destfiles "/tmp/ngsjs1.svg,ngsjs2.svg,ngsjs3.svg"
+rdownload "https://img.shields.io/npm/dm/rctl.svg,https://img.shields.io/npm/v/rctl.svg,https://img.shields.io/npm/l/rctl.svg" --destfiles "/tmp/rctl1.svg,rctl2.svg,rctl3.svg"
 
-rdownload --urls "https://img.shields.io/npm/dm/ngsjs.svg , https://img.shields.io/npm/v/ngsjs.svg,https://img.shields.io/npm/l/ngsjs.svg" \
-          --destfiles "ngsjs1.svg,ngsjs2.svg,ngsjs3.svg" --max-cores 1
+rdownload --urls "https://img.shields.io/npm/dm/rctl.svg , https://img.shields.io/npm/v/rctl.svg,https://img.shields.io/npm/l/rctl.svg" \
+          --destfiles "rctl1.svg,rctl2.svg,rctl3.svg" --max-cores 1
 ```
 ```{bash}
 rdownload -h
@@ -397,7 +362,7 @@ rbin -h
 
 ## How to contribute?
 
-Please fork the [GitHub ngsjs repository](https://github.com/ngsjs/ngsjs), modify it, and submit a pull request to us. 
+Please fork the [GitHub rctl repository](https://github.com/openanno/rctl), modify it, and submit a pull request to us. 
 
 ## Maintainer
 

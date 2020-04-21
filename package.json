@@ -1,48 +1,26 @@
 {
-  "name": "ngsjs",
-  "version": "0.1.6-3",
-  "description": "A set of command line tools, NGS data analysis workflows [WDL, Nextflow, Snakemake, and Bpipe], and R shiny plugins/R markdown document for exploring next-generation sequencing data.",
+  "name": "rctl",
+  "version": "0.1.0",
+  "description": "based on R and JavaScript ecosystem.",
   "main": "index.js",
-  "repository": "https://github.com/ngsjs/ngsjs.git",
+  "repository": "https://github.com/openanno/rctl.git",
   "keywords": [
-    "ngsjs",
+    "rctl",
     "cli"
   ],
-  "author": "Jianfeng <lee_jianfeng@sjtu.edu.cn>",
+  "author": "Jianfeng <lee_jianfeng@openbiox.org>",
   "bugs": {
-    "url": "https://github.com/ngsjs/ngsjs/issues"
+    "url": "https://github.com/openanno/rctl/issues"
   },
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.1.6",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
-    "@babel/plugin-syntax-jsx": "^7.0.0",
-    "@babel/plugin-transform-flow-strip-types": "^7.1.6",
-    "@babel/preset-env": "^7.1.6",
-    "@babel/register": "^7.0.0",
-    "babel-cli": "^6.26.0",
-    "babel-eslint": "^10.0.1",
-    "babel-helper-vue-jsx-merge-props": "^2.0.3",
-    "babel-loader": "^8.0.4",
-    "babel-plugin-istanbul": "^5.1.0",
-    "babel-plugin-transform-vue-jsx": "^3.7.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-flow-vue": "^1.0.0",
-    "buble": "^0.19.6",
-    "chai": "^4.2.0",
-    "codecov": "^3.1.0",
-    "eslint": "^5.9.0",
-    "eslint-plugin-flowtype": "^3.2.0",
-    "eslint-plugin-jasmine": "^2.10.1"
   },
   "scripts": {
-    "gadd": "yarn global add `pwd`",
     "test": "./scripts/test/start_cli_test"
   },
   "bin": {
-    "ngsjs": "./bin/ngsjs",
+    "rctl": "./bin/rctl",
     "rsession": "./bin/rsession",
     "rinstall": "./bin/rinstall",
     "rbashful": "./bin/rbashful",

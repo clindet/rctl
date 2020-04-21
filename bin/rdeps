@@ -2,21 +2,21 @@
 # Author: Jianfeng Li
 # Email: lee_jianfeng@sjtu.edu.cn
 # Year: 2018
-# Homepage: https://github.com/ngsjs/ngsjs
+# Homepage: https://github.com/openanno/rctl
 # License: MIT
 # Copyrights 2018 Jianfeng All Rights Reserved.
-pkgs <- c("devtools", "BiocManager", 
+pkgs <- c("devtools", "remotes", "BiocManager", 
           "sessioninfo", "glue", 
           "futile.logger", "stringi",
           "future")
 tryCatch({if (!requireNamespace("pacman")) install.packages("pacman")}, warning = function(w) {
   if (!requireNamespace("devtools"))
     install.packages("devtools")
-  devtools::install_url("https://cran.r-project.org/src/contrib/Archive/pacman/pacman_0.4.6.tar.gz")
+  remotes::install_url("https://cran.r-project.org/src/contrib/Archive/pacman/pacman_0.4.6.tar.gz")
 })
 suppressMessages(pacman::p_load(pkgs, character.only = TRUE))
-pkgs <- c(pkgs, "configr", "ngstk", "BioInstaller", "ngsjs")
-suppressMessages(devtools::install_github("ngsjs/ngsjs/src/ngsjs", upgrade = "never"))
+pkgs <- c(pkgs, "configr", "ngstk", "BioInstaller", "rctl")
+suppressMessages(remotes::install_github("openanno/rctl/rlib", upgrade = "never"))
 
 flog.info("All basic dependences (R packages) were resolved.")
 flog.info(paste0(pkgs, collapse = ", "))
